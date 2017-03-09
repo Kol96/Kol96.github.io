@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Kylen" />
+
+
+
+<meta name="description" content="在Parallels Desktop下配置Kali Linux可以参考官网的documentation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to config your Kali Linux">
+<meta property="og:url" content="/2015/08/29/Linux/KaliConfig/index.html">
+<meta property="og:site_name" content="Kylen's Blog">
+<meta property="og:description" content="在Parallels Desktop下配置Kali Linux可以参考官网的documentation">
+<meta property="og:updated_time" content="2015-09-12T02:34:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to config your Kali Linux">
+<meta name="twitter:description" content="在Parallels Desktop下配置Kali Linux可以参考官网的documentation">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Kylen&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img//favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>How to config your Kali Linux | Kylen&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: false,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/profile.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kylen</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Aircrack-ng/">Aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew/">Homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sql/">Sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text/">Sublime Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Terminal/">Terminal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/">Zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cURL/">cURL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm2/">iTerm2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reaver/">reaver</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kylen</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/profile.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kylen</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Linux/KaliConfig" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/29/Linux/KaliConfig/" class="article-date">
+      <time datetime="2015-08-28T16:00:00.000Z" itemprop="datePublished">2015-08-29</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How to config your Kali Linux
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kali/">Kali</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>在Parallels Desktop下配置Kali Linux<br>可以参考官网的<a href="https://www.kali.org/kali-linux-documentation/" target="_blank" rel="external">documentation</a>  </p>
+<a id="more"></a>  
+<h2 id="一、安装parallels-tools"><a href="#一、安装parallels-tools" class="headerlink" title="一、安装parallels tools"></a>一、安装parallels tools</h2><p>参考文档<a href="http://download.parallels.com/desktop/v9/ga/docs/zh_TW/Parallels%20Desktop%20User%27s%20Guide/32791.htm" target="_blank" rel="external">Parallels Tools</a><br>1、在parallels desktop的操作菜单下选择安装parallels tools<br>2、在终端中获取root  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">su</span></div></pre></td></tr></table></figure>
+<p>3、检查是否已经挂载parallels tools CD镜像  </p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount <span class="string">| grep iso9660</span></div></pre></td></tr></table></figure>
+<p>如果返回以下资讯</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/dev/cdrom on /media/cdrom <span class="keyword">type</span> iso9660 (ro,exec,nosuid,nodev,uid=0)</div></pre></td></tr></table></figure>
+<p>则挂载成功。  </p>
+<p>如果没有返回任何值或出现以下资讯<br><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/dev/cdrom on /media/cdrom <span class="keyword">type</span> iso9660 (ro,noexec,nosuid,nodev,uid=0)</div></pre></td></tr></table></figure><br>则使用以下命令先卸载镜像并重新安装</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">umount <span class="regexp">/dev/</span>cdrom</div><div class="line">mount -o exec <span class="regexp">/dev/</span>cdrom <span class="regexp">/media/</span>cdrom</div></pre></td></tr></table></figure>
+<p>4、当镜像挂载成功后，进入镜像的路径  </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd <span class="regexp">/media/</span>cdrom<span class="regexp">/</span></div></pre></td></tr></table></figure>
+<p>5、在root权限下下载安装</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./<span class="keyword">install</span></div></pre></td></tr></table></figure>
+<h2 id="二、更新软件源"><a href="#二、更新软件源" class="headerlink" title="二、更新软件源"></a>二、更新软件源</h2><p>修改sources.list文件：  </p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">leafpad /etc/apt/sources.<span class="built_in">list</span></div></pre></td></tr></table></figure>
+<p>然后选择添加以下适合自己较快的源（可自由选择喔）：<br>1、中科大kali源  </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">deb <span class="string">http:</span><span class="comment">//mirrors.ustc.edu.cn/kali sana main non-free contrib</span></div><div class="line">deb <span class="string">http:</span><span class="comment">//mirrors.ustc.edu.cn/kali-security/ sana/updates main contrib non-free</span></div><div class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.ustc.edu.cn/kali-security/ sana/updates main contrib non-free</span></div></pre></td></tr></table></figure>
+<p>2、aliyun update  </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">deb <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/kali sana main non-free contrib</span></div><div class="line">deb <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/kali-security/ sana/updates main contrib non-free</span></div><div class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/kali-security/ sana/updates main contrib non-free</span></div></pre></td></tr></table></figure>
+<p>对软件进行一次整体更新  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get <span class="keyword">update</span> &amp; apt-<span class="keyword">get</span> <span class="keyword">upgrade</span></div><div class="line">apt-<span class="keyword">get</span> dist-<span class="keyword">upgrade</span> </div></pre></td></tr></table></figure>
+<h2 id="三、安装中文输入法"><a href="#三、安装中文输入法" class="headerlink" title="三、安装中文输入法"></a>三、安装中文输入法</h2><p>1、ibus  </p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line">apt-<span class="keyword">get</span> install ibus ibus-pinyin</div></pre></td></tr></table></figure>
+<p>2、fcitx  </p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-<span class="built_in">get</span> install fcitx fcitx-pinyin fcitx-<span class="keyword">module</span>-cloudpinyin fcitx-googlepinyin</div></pre></td></tr></table></figure>
+<p>3、搜狗输入法<a href="http://pinyin.sogou.com/linux/" target="_blank" rel="external">官网</a><br>先下载输入法deb文件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">apt-get -f <span class="keyword">install</span></div><div class="line">apt-<span class="keyword">get</span> <span class="keyword">install</span> fcitx fcitx-pinyin fcitx-<span class="keyword">module</span>-cloudpinyin fcitx-googlepinyin</div><div class="line">dpkg -i 搜狗输入法.deb</div></pre></td></tr></table></figure>  
+<p>安装完成后，可以配置输入法  </p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">im-<span class="built_in">config</span></div></pre></td></tr></table></figure>
+<p>然后重启系统~  </p>
+<p>另：安装中文字体  </p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-<span class="built_in">get</span> install ttf-wqy-microhei</div><div class="line">fc-cache -<span class="built_in">fv</span></div></pre></td></tr></table></figure>
+<h2 id="四、运行-Metasploit-Framework"><a href="#四、运行-Metasploit-Framework" class="headerlink" title="四、运行 Metasploit Framework"></a>四、运行 Metasploit Framework</h2><p>依照kali linux网络服务策略，Kali没有自动启动的网络服务，包括数据库服务在内。所以为了让metasploit以支持数据库的方式运行有些必要的步骤。<br>1、启动Kali的PostgreSQL服务<br>Metasploit 使用PostgreSQL作为数据库，所以必须先运行它。  </p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service postgresql <span class="literal">start</span></div></pre></td></tr></table></figure>
+<p>你可以用<code>ss -ant</code>的输出来检验PostgreSQL是否在运行，然后确认5432端口处于listening状态。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">State</span> <span class="selector-tag">Recv-Q</span> <span class="selector-tag">Send-Q</span> <span class="selector-tag">Local</span> <span class="selector-tag">Address</span><span class="selector-pseudo">:Port</span> <span class="selector-tag">Peer</span> <span class="selector-tag">Address</span><span class="selector-pseudo">:Port</span></div><div class="line"><span class="selector-tag">LISTEN</span> 0 128 :<span class="selector-pseudo">::22</span> :::*</div><div class="line"><span class="selector-tag">LISTEN</span> 0 128 *<span class="selector-pseudo">:22</span> *:*</div><div class="line"><span class="selector-tag">LISTEN</span> 0 128 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:5432</span> *:*</div><div class="line"><span class="selector-tag">LISTEN</span> 0 128 <span class="selector-pseudo">::1</span><span class="selector-pseudo">:5432</span> :::*	</div></pre></td></tr></table></figure>
+<p>2、Initialise the Metasploit PostgreSQL Database<br>With PostgreSQL up and running, we next need to create and initialize the msf database.  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">msfdb init</span></div></pre></td></tr></table></figure>
+<p>3、Launch msfconsole in Kali<br>Now that the PostgreSQL service is up and running and the database is initialized, you can launch msfconsole and verify database connectivity with the db_status command as shown below.  </p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">msfconsole</div><div class="line">msf &gt; db_status</div><div class="line"><span class="string">[*]</span> postgresql connected to msf3</div><div class="line">msf &gt;</div></pre></td></tr></table></figure>
+<h2 id="五、安装无线网卡驱动"><a href="#五、安装无线网卡驱动" class="headerlink" title="五、安装无线网卡驱动"></a>五、安装无线网卡驱动</h2><p>设备菜单下选择自己的无线网卡一栏，使用的是360免费wifi，驱动需要从网上找，这里放个<a href="https://github.com/kuba-moo/mt7601u" target="_blank" rel="external">github</a>上的资源。    </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">lsusb</span></div></pre></td></tr></table></figure>
+<p>返回  </p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Bus </span><span class="number">004</span> Device <span class="number">004</span>: ID <span class="number">148</span>f:<span class="number">760</span>b Ralink Technology, Corp. MT7601U Wireless Adapter</div></pre></td></tr></table></figure>
+<p>可知USB ID号为：148f:760b 谷歌后了解到该序列号对应的Mt7601U芯片组，最后一个“U”指的即是USB接口，搜索适合该驱动，可以到gtihub上找，要让驱动匹配linux的核心。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/09/02/Linux/Aircrack/">
+                    Aircrack-ng hack wireless network
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/08/25/Mac/Mamp/">
+                    Mac Yosemite Lamp环境安装
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装parallels-tools"><span class="toc-number">1.</span> <span class="toc-text">一、安装parallels tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、更新软件源"><span class="toc-number">2.</span> <span class="toc-text">二、更新软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、安装中文输入法"><span class="toc-number">3.</span> <span class="toc-text">三、安装中文输入法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、运行-Metasploit-Framework"><span class="toc-number">4.</span> <span class="toc-text">四、运行 Metasploit Framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、安装无线网卡驱动"><span class="toc-number">5.</span> <span class="toc-text">五、安装无线网卡驱动</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = '/2015/08/29/Linux/KaliConfig/';
+            this.page.identifier = '2015/08/29/Linux/KaliConfig/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//kol96.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/09/02/Linux/Aircrack/" title="Pre: Aircrack-ng hack wireless network">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/08/25/Mac/Mamp/" title="Next: Mac Yosemite Lamp环境安装">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/05/Linux/java和php共用/">Java、PHP共用端口使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Oracle/oracle11g silent install/">Centos6.5 x86_64下 静默安装Oracle 11g R2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/Linux/阿里云/">阿里云服务器下的Linux配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Oracle/oracle语法/">Oracle数据库的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Oracle/oracle安装/">Mac下的Oracle数据库的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/工具/sublime/">Sublime Text的配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/PHP/cURL/">在PHP中使用cURL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/17/Linux/Linux服务器/">linux服务器的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/12/Linux/Terminator/">Kali Terminator多窗口终端的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/11/Mac/Mnmp/">Mac Yosemite 安装Lnmp环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Linux/Aircrack/">Aircrack-ng hack wireless network</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/Linux/KaliConfig/">How to config your Kali Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Mac/Mamp/">Mac Yosemite Lamp环境安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/Mac/Hexo/">How to install Hexo on Mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/Mac/mac工具/">Mac必备工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/Git/git分支管理/">Git分支管理策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/Git/git命令/">Git命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/20/PHP/PHP+Mysql分页原理/">PHP+Mysql分页原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/PHP/PHP上传原理/">PHP上传原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/10/PHP/PHP随笔记/">PHP随笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/02/C++/C++随笔之语言基础/">C++随笔之语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/15/Java/Java随笔之类与对象/">Java随笔之类与对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/10/Java/Java随笔之正则/">Java随笔之正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/02/Java/Java随笔之字符串/">Java随笔记之字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/25/Java/Java随笔之语言基础/">Java随笔记之语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/15/生活/博客/">为什么要写博客？</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Kylen
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 2;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
