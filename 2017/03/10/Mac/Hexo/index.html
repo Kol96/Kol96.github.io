@@ -15,16 +15,18 @@
 
 
 
-<meta name="description" content="cURL（Client URL Library Functions）is a command line tool for transferring data with URL syntax">
+<meta name="description" content="This is a brand new Hexo built in Mac OS X 10.10.Get Started.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在PHP中使用cURL">
-<meta property="og:url" content="/2015/11/02/PHP/cURL/index.html">
+<meta property="og:title" content="How to install Hexo on Mac">
+<meta property="og:url" content="/2017/03/10/Mac/Hexo/index.html">
 <meta property="og:site_name" content="Kylen's Blog">
-<meta property="og:description" content="cURL（Client URL Library Functions）is a command line tool for transferring data with URL syntax">
-<meta property="og:updated_time" content="2015-11-02T04:49:06.000Z">
+<meta property="og:description" content="This is a brand new Hexo built in Mac OS X 10.10.Get Started.">
+<meta property="og:image" content="/images/github.png">
+<meta property="og:updated_time" content="2017-03-10T03:11:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在PHP中使用cURL">
-<meta name="twitter:description" content="cURL（Client URL Library Functions）is a command line tool for transferring data with URL syntax">
+<meta name="twitter:title" content="How to install Hexo on Mac">
+<meta name="twitter:description" content="This is a brand new Hexo built in Mac OS X 10.10.Get Started.">
+<meta name="twitter:image" content="/images/github.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>在PHP中使用cURL | Kylen&#39;s Blog</title>
+<title>How to install Hexo on Mac | Kylen&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +261,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-PHP/cURL" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Mac/Hexo" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/02/PHP/cURL/" class="article-date">
-      <time datetime="2015-11-01T16:00:00.000Z" itemprop="datePublished">2015-11-02</time>
+      <a href="/2017/03/10/Mac/Hexo/" class="article-date">
+      <time datetime="2017-03-09T16:00:00.000Z" itemprop="datePublished">2017-03-10</time>
 </a>
 
 
@@ -276,7 +278,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      在PHP中使用cURL
+      How to install Hexo on Mac
     </h1>
   
 
@@ -285,13 +287,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+    <a class="article-category-link" href="/categories/Mac/">Mac</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cURL/">cURL</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -301,11 +303,33 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>cURL（Client URL Library Functions）is a command line tool for transferring data with URL syntax<br><a id="more"></a><br>1、可以使用 <code>php -i | grep cURL</code> 查看是否安装cURL<br>2、初始化cURL curl_init()<br>3、向服务器发送请求  curl_exec()<br>4、接收服务器数据 curl_exec()<br>5、关闭cURL curl_close()  </p>
-<h2 id="一、简单的网页爬虫"><a href="#一、简单的网页爬虫" class="headerlink" title="一、简单的网页爬虫"></a>一、简单的网页爬虫</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"><span class="php"><span class="meta">&lt;?php</span>  </span></div><div class="line">$curl = curl_init(<span class="string">"http://www.baidu.com"</span>);  </div><div class="line">curl_exec($curl);  </div><div class="line">curl_close($curl);  </div><div class="line"><span class="meta">?&gt;</span></div><div class="line"></div><div class="line">php -f **.php &gt; baidu.html   </div></pre></td></tr></table></figure>  
-<h2 id="二、抓取网页信息并替换"><a href="#二、抓取网页信息并替换" class="headerlink" title="二、抓取网页信息并替换"></a>二、抓取网页信息并替换</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line"><span class="php"><span class="meta">&lt;?php</span>  </span></div><div class="line">$curl = curl_init();  </div><div class="line">curl_setopt($curl,CURLOPT_URL,<span class="string">"http://www.baidu.com"</span>);  </div><div class="line">curl_setopt($curl,CURLOPT_RETURNTRANSFER,<span class="keyword">true</span>);<span class="comment">//执行后不打印  </span></div><div class="line">$output = curl_exec($curl);</div><div class="line">curl_close($curl);</div><div class="line"><span class="keyword">echo</span> str_replace(<span class="string">"百度"</span>,<span class="string">"谷歌"</span>,$output);</div><div class="line"><span class="meta">?&gt;</span>  </div></pre></td></tr></table></figure>  
-<h2 id="三、调用WebService查天气"><a href="#三、调用WebService查天气" class="headerlink" title="三、调用WebService查天气"></a>三、调用WebService查天气</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"><span class="php"><span class="meta">&lt;?php</span>  </span></div><div class="line">$data = <span class="string">'theCityName=北京'</span>;  </div><div class="line">$curlobj = curl_init();	  </div><div class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName"</span>);    </div><div class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </div><div class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </div><div class="line">curl_setopt($curlobj, CURLOPT_POST, <span class="number">1</span>);    </div><div class="line">curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);    </div><div class="line">curl_setopt($curlobj, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>,   </div><div class="line">	<span class="string">"Content-length: "</span>.strlen($data)  </div><div class="line">	));  </div><div class="line">curl_setopt ($curl, CURLOPT_USERAGENT,$_SERVER[<span class="string">'HTTP_USER_AGENT'</span>]); </div><div class="line">$rtn = curl_exec($curlobj);     </div><div class="line"><span class="keyword">if</span>(!curl_errno($curlobj))&#123;  </div><div class="line">	<span class="comment">// $info = curl_getinfo($curlobj);   </span></div><div class="line">	<span class="comment">// print_r($info);  </span></div><div class="line">	<span class="keyword">echo</span> $rtn;    </div><div class="line">&#125; <span class="keyword">else</span> &#123;  </div><div class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error($curlobj);</div><div class="line">&#125;    </div><div class="line">curl_close($curlobj);  </div><div class="line"><span class="meta">?&gt;</span>  </div></pre></td></tr></table></figure>  
-<h2 id="四、抓课表"><a href="#四、抓课表" class="headerlink" title="四、抓课表"></a>四、抓课表</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">	  </div><div class="line">$username = <span class="string">''</span>;</div><div class="line">     $pwd = md5(<span class="string">''</span>);</div><div class="line">     </div><div class="line">     <span class="comment">//获取lt动态字符串</span></div><div class="line">     $url = <span class="string">"http://cas.hdu.edu.cn/cas/login"</span>;  <span class="comment">//登陆界面</span></div><div class="line">     $ch = curl_init();</div><div class="line">     curl_setopt($ch, CURLOPT_URL, $url);</div><div class="line">     curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>); <span class="comment">//不显示头</span></div><div class="line">     curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  <span class="comment">//不显示</span></div><div class="line">     $data = curl_exec($ch);</div><div class="line">     curl_close($ch);</div><div class="line">     $pattern = <span class="string">'/name="lt" value="(.*?)"/'</span>;</div><div class="line">     preg_match_all($pattern, $data, $matches); <span class="comment">//正则取出value值</span></div><div class="line">     $lt = $matches[<span class="number">1</span>][<span class="number">0</span>];</div><div class="line"></div><div class="line">     <span class="comment">//设置post的数据</span></div><div class="line">     $post = <span class="keyword">array</span> (</div><div class="line">         <span class="string">'username'</span> =&gt; $username,</div><div class="line">         <span class="string">'password'</span>  =&gt; $pwd,</div><div class="line">         <span class="string">'encodedService'</span>  =&gt; <span class="string">'http%3a%2f%2fi.hdu.edu.cn%2fdcp%2findex.jsp'</span>,</div><div class="line">         <span class="string">'service'</span>  =&gt;  <span class="string">'http://i.hdu.edu.cn/dcp/index.jsp'</span>,</div><div class="line">         <span class="string">'serviceName'</span>  =&gt; <span class="string">'null'</span>,</div><div class="line">         <span class="string">'loginErrCnt'</span>  =&gt; <span class="string">'0'</span>,</div><div class="line">         <span class="string">'lt'</span>  =&gt; $lt,</div><div class="line">     );</div><div class="line"></div><div class="line">     <span class="comment">//登陆获取cookie并抓取js中的跳转url</span></div><div class="line">     $url = <span class="string">"http://cas.hdu.edu.cn/cas/login"</span>;</div><div class="line">     $ch = curl_init();</div><div class="line">     curl_setopt($ch, CURLOPT_URL, $url);</div><div class="line">     curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</div><div class="line">     curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</div><div class="line">     curl_setopt($ch, CURLOPT_POST, <span class="number">1</span>);</div><div class="line">     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));</div><div class="line">     curl_setopt($ch, CURLOPT_COOKIEJAR, <span class="string">'cookiefile'</span>);</div><div class="line">     <span class="comment">//curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookiefile');</span></div><div class="line">     $data = curl_exec($ch);</div><div class="line">     curl_close($ch);</div><div class="line">     $pattern = <span class="string">'/href="(.*?)"/'</span>;</div><div class="line">     preg_match_all($pattern, $data, $matches);</div><div class="line">     $url = $matches[<span class="number">1</span>][<span class="number">0</span>];</div><div class="line"></div><div class="line">     <span class="comment">//通过url获取cookie</span></div><div class="line">     $ch = curl_init();</div><div class="line">     curl_setopt($ch, CURLOPT_URL, $url);</div><div class="line">     curl_setopt($ch,CURLOPT_HEADER,<span class="number">0</span>);</div><div class="line">     curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</div><div class="line">     curl_setopt($ch, CURLOPT_COOKIEJAR, <span class="string">'cookiefile'</span>);</div><div class="line">     <span class="comment">//curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookiefile');</span></div><div class="line">     $data = curl_exec($ch);</div><div class="line">     curl_close($ch);</div><div class="line">     <span class="comment">// echo $data;</span></div><div class="line"></div><div class="line">     $url = <span class="string">'http://i.hdu.edu.cn/dcp/xphone/kbcx0.jsp'</span>;</div><div class="line">     $ch = curl_init($url);</div><div class="line">     curl_setopt($ch,CURLOPT_HEADER,<span class="number">0</span>);</div><div class="line">     curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</div><div class="line">     curl_setopt($ch, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"Referer:http://cas.hdu.edu.cn/cas/login"</span>));</div><div class="line">     curl_setopt($ch, CURLOPT_COOKIEFILE, <span class="string">'cookiefile'</span>);</div><div class="line">     $data = curl_exec($ch);</div></pre></td></tr></table></figure>  
+        <p>This is a brand new Hexo built in Mac OS X 10.10.<br>Get Started.  </p>
+<a id="more"></a>  
+<p>搭建步骤如下<br>1、注册GitHub账户<br>2、创建仓库<br>3、安装nodejs<br>4、安装git<br>5、安装Hexo<br>6、相关配置  </p>
+<h2 id="一、注册GitHub账户"><a href="#一、注册GitHub账户" class="headerlink" title="一、注册GitHub账户"></a>一、注册GitHub账户</h2><p>1、如果你已经拥有GitHub账户，请跳过此步骤。<br>2、打开 <a href="https://github.com" target="_blank" rel="external">github</a> 点击 [Sign up fo GitHub] 按钮。注册成功后请牢记您的用户名和密码<br>3、登录GitHub。  </p>
+<h2 id="二、创建仓库"><a href="#二、创建仓库" class="headerlink" title="二、创建仓库"></a>二、创建仓库</h2><p>1、登录GitHub之后点击 [ + New repository ] 按钮新建一个仓库，用来存储博客内容，这里Repository name 填写 [你的登录名].github.io 不能用别的名字。<br><img src="/images/github.png" alt="仓库创建"><br>2、填写完信息之后，点击[Create repository]按钮，完成创建。  </p>
+<h2 id="三、安装nodejs"><a href="#三、安装nodejs" class="headerlink" title="三、安装nodejs"></a>三、安装nodejs</h2><p>1、因为Hexo是基于nodejs的，所以必须安装nodejs。<br>2、用homebrew安装</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install <span class="keyword">node</span> <span class="title"></span></div></pre></td></tr></table></figure>
+<h2 id="四、安装git"><a href="#四、安装git" class="headerlink" title="四、安装git"></a>四、安装git</h2><p>1、如果你已经安装了XCode，就不需要安装git了。<br>2、打开 <a href="http://git-scm.com/download/mac" target="_blank" rel="external">git</a> 下载git,并安装。  </p>
+<h2 id="五、安装Hexo"><a href="#五、安装Hexo" class="headerlink" title="五、安装Hexo"></a>五、安装Hexo</h2><p>获得root权限</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>sudo passwd root</div><div class="line"><span class="variable">$ </span>su root</div></pre></td></tr></table></figure>
+<p>1、在电脑中任意位置创建一个文件夹,用来存放博客文件。<br>2、打开终端输入 <code>npm install hexo-cli -g</code><br>3、建议使用安装 <code>npm install hexo --no-optional</code><br>4、Once Hexo is installed, run the following commands to initialise Hexo in the target <folder>.  </folder></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo init &lt;folder&gt;</div><div class="line"><span class="variable">$ </span>cd &lt;folder&gt;</div><div class="line"><span class="variable">$ </span>npm install</div><div class="line"><span class="variable">$ </span>hexo g</div><div class="line"><span class="variable">$ </span>npm install hexo-server --save</div><div class="line"><span class="variable">$ </span>hexo s</div></pre></td></tr></table></figure>    
+<h2 id="六、连接github"><a href="#六、连接github" class="headerlink" title="六、连接github"></a>六、连接github</h2><p>1、设置个人信息  </p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">"username"</span></div><div class="line">$ git config --global user<span class="selector-class">.email</span> <span class="string">"youremail"</span></div></pre></td></tr></table></figure>    
+<p>2、在hexo根目录下_config.yml文件（xxxx为你的github账户名称）  </p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: github</div><div class="line">  <span class="attribute">repo</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:xxxx/xxxx.github.io.git</div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
+<p>3、检查SSH key  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.ssh</div></pre></td></tr></table></figure>
+<p>4、生成SSH key</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C <span class="string">"xxxx@xxxx.com”</span></div></pre></td></tr></table></figure>
+<p>5、复制SSH key</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span> cd ~/.ssh</div><div class="line"><span class="symbol">$</span> ls</div><div class="line"><span class="symbol">$</span> cat id_rsa.pub</div></pre></td></tr></table></figure>
+<p>6、将SSH key添加到github上并验证</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>ssh -T git<span class="variable">@github</span>.com</div></pre></td></tr></table></figure>
+<p>7、上传hexo文件</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install hexo-deployer-git --save</div><div class="line"><span class="variable">$ </span>hexo d</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -316,16 +340,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2015/11/09/工具/sublime/">
-                    Sublime Text的配置
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2015/10/17/Linux/Linux服务器/">
-                    linux服务器的操作
+                <a href="/2017/03/09/工具/Emmet/">
+                    Emmet
                 </a>
             </div>
         
@@ -337,7 +355,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、简单的网页爬虫"><span class="toc-number">1.</span> <span class="toc-text">一、简单的网页爬虫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、抓取网页信息并替换"><span class="toc-number">2.</span> <span class="toc-text">二、抓取网页信息并替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、调用WebService查天气"><span class="toc-number">3.</span> <span class="toc-text">三、调用WebService查天气</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、抓课表"><span class="toc-number">4.</span> <span class="toc-text">四、抓课表</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、注册GitHub账户"><span class="toc-number">1.</span> <span class="toc-text">一、注册GitHub账户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、创建仓库"><span class="toc-number">2.</span> <span class="toc-text">二、创建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、安装nodejs"><span class="toc-number">3.</span> <span class="toc-text">三、安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、安装git"><span class="toc-number">4.</span> <span class="toc-text">四、安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、安装Hexo"><span class="toc-number">5.</span> <span class="toc-text">五、安装Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、连接github"><span class="toc-number">6.</span> <span class="toc-text">六、连接github</span></a></li></ol>
         
     </div>
     <style>
@@ -367,8 +385,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = '/2015/11/02/PHP/cURL/';
-            this.page.identifier = '2015/11/02/PHP/cURL/';
+            this.page.url = '/2017/03/10/Mac/Hexo/';
+            this.page.identifier = '2017/03/10/Mac/Hexo/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -390,15 +408,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/11/09/工具/sublime/" title="Pre: Sublime Text的配置">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/10/17/Linux/Linux服务器/" title="Next: linux服务器的操作">
+            <a href="/2017/03/09/工具/Emmet/" title="Next: Emmet">
                 <i class="fa fa-angle-right"></i>
             </a>
         
