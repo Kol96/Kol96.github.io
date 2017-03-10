@@ -170,7 +170,7 @@ define([], function(){
                 var $resultArea = $("#local-search-result");
 
                 var getSearchFile = function(){
-                    var search_path = "sitemap.xml";
+                    var search_path = "baidusitemap.xml";
                     var path = yiliaConfig.rootUrl + search_path;
                     searchFunc(path, 'local-search-input', 'local-search-result');
                 }
