@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-03-10T14:33:30.000Z</updated>
+  <updated>2017-03-10T03:11:28.000Z</updated>
   <id>/</id>
   
   <author>
@@ -14,69 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Mac上用Navicat连接Oracle</title>
-    <link href="/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
-    <id>/2017/03/10/Oracle/navicat连接oracle/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-10T14:33:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Oracle" scheme="/categories/Oracle/"/>
-    
-    
-      <category term="Oracle" scheme="/tags/Oracle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>px,em,rem详解</title>
-    <link href="/2017/03/10/CSS/%E5%83%8F%E7%B4%A0/"/>
-    <id>/2017/03/10/CSS/像素/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-10T14:00:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
-<a id="more"></a>
-<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。 </p>
-<ol>
-<li>IE无法调整那些使用px作为单位的字体大小； </li>
-<li>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位； </li>
-<li>Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。 </li>
-</ol>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。 </p>
-<ol>
-<li>em的值并不是固定的； </li>
-<li>em会继承父级元素的字体大小。 </li>
-</ol>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 </p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般浏览器默认为16px,即1em。<br>会用font-size: 62.5%; 是1rem=10px;<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;px,em,rem使用介绍&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="CSS" scheme="/categories/CSS/"/>
-    
-    
-      <category term="CSS" scheme="/tags/CSS/"/>
-    
-  </entry>
   
   <entry>
     <title>How to install Hexo on Mac</title>
@@ -129,6 +66,69 @@
       <category term="Github" scheme="/tags/Github/"/>
     
       <category term="Nodejs" scheme="/tags/Nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>px,em,rem详解</title>
+    <link href="/2017/03/10/CSS/%E5%83%8F%E7%B4%A0/"/>
+    <id>/2017/03/10/CSS/像素/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-10T14:00:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
+<a id="more"></a>
+<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。 </p>
+<ol>
+<li>IE无法调整那些使用px作为单位的字体大小； </li>
+<li>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位； </li>
+<li>Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。 </li>
+</ol>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。 </p>
+<ol>
+<li>em的值并不是固定的； </li>
+<li>em会继承父级元素的字体大小。 </li>
+</ol>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 </p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般浏览器默认为16px,即1em。<br>会用font-size: 62.5%; 是1rem=10px;<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;px,em,rem使用介绍&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CSS" scheme="/categories/CSS/"/>
+    
+    
+      <category term="CSS" scheme="/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac上用Navicat连接Oracle</title>
+    <link href="/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
+    <id>/2017/03/10/Oracle/navicat连接oracle/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-10T14:33:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Oracle" scheme="/categories/Oracle/"/>
+    
+    
+      <category term="Oracle" scheme="/tags/Oracle/"/>
     
   </entry>
   
