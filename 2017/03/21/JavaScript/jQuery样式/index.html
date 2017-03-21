@@ -15,16 +15,21 @@
 
 
 
-<meta name="description" content="centos系统上，同时玩转Java和PHP">
+<meta name="description" content="一、jQuery对象与Dom对象1、jQuery对象与DOM对象是不一样的2、通过jQuery方法包装后的对象，是一个类数组对象。这个对象里面包含了DOM对象的信息，然后封装了很多操作方法，调用自己的方法html与css，得到的效果与标准的JavaScript处理结果是一致的。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。 
+二、jQuery对象转化成DOM对象123456789&amp;lt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java、PHP共用端口使用">
-<meta property="og:url" content="/2016/10/05/Linux/java和php共用/index.html">
+<meta property="og:title" content="jQuery样式篇">
+<meta property="og:url" content="/2017/03/21/JavaScript/jQuery样式/index.html">
 <meta property="og:site_name" content="Kylen's Blog">
-<meta property="og:description" content="centos系统上，同时玩转Java和PHP">
-<meta property="og:updated_time" content="2017-03-10T03:01:01.000Z">
+<meta property="og:description" content="一、jQuery对象与Dom对象1、jQuery对象与DOM对象是不一样的2、通过jQuery方法包装后的对象，是一个类数组对象。这个对象里面包含了DOM对象的信息，然后封装了很多操作方法，调用自己的方法html与css，得到的效果与标准的JavaScript处理结果是一致的。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。 
+二、jQuery对象转化成DOM对象123456789&amp;lt">
+<meta property="og:image" content="/../images/jQuery基本筛选选择器.jpg">
+<meta property="og:updated_time" content="2017-03-21T07:36:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java、PHP共用端口使用">
-<meta name="twitter:description" content="centos系统上，同时玩转Java和PHP">
+<meta name="twitter:title" content="jQuery样式篇">
+<meta name="twitter:description" content="一、jQuery对象与Dom对象1、jQuery对象与DOM对象是不一样的2、通过jQuery方法包装后的对象，是一个类数组对象。这个对象里面包含了DOM对象的信息，然后封装了很多操作方法，调用自己的方法html与css，得到的效果与标准的JavaScript处理结果是一致的。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。 
+二、jQuery对象转化成DOM对象123456789&amp;lt">
+<meta name="twitter:image" content="/../images/jQuery基本筛选选择器.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Java、PHP共用端口使用 | Kylen&#39;s Blog</title>
+<title>jQuery样式篇 | Kylen&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +264,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-Linux/java和php共用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-JavaScript/jQuery样式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/10/05/Linux/java和php共用/" class="article-date">
-      <time datetime="2016-10-04T16:00:00.000Z" itemprop="datePublished">2016-10-05</time>
+      <a href="/2017/03/21/JavaScript/jQuery样式/" class="article-date">
+      <time datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
 </a>
 
 
@@ -276,7 +281,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java、PHP共用端口使用
+      jQuery样式篇
     </h1>
   
 
@@ -285,13 +290,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -301,10 +306,22 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>centos系统上，同时玩转Java和PHP<br><a id="more"></a><br>1、修改nginx.conf</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</div><div class="line">    <span class="attribute">server_name</span> <span class="number">127.0.0.1</span>;   </div><div class="line">    <span class="attribute">access_log</span> /data/wwwlogs/access_nginx.log combined;</div><div class="line">    <span class="attribute">root</span> /data/wwwroot;</div><div class="line">    <span class="attribute">index</span> index.html index.htm index.jsp;</div><div class="line">    <span class="attribute">autoindex</span> <span class="literal">on</span>;</div><div class="line">    <span class="attribute">location</span> /nginx_status &#123;</div><div class="line">        <span class="attribute">stub_status</span> <span class="literal">on</span>;</div><div class="line">        <span class="attribute">access_log</span> <span class="literal">off</span>;</div><div class="line">        <span class="attribute">allow</span> <span class="number">127.0.0.1</span>;</div><div class="line">        <span class="attribute">deny</span> all;</div><div class="line">        &#125;</div><div class="line">    <span class="attribute">location</span> <span class="regexp">~ (\.jsp)|(\.do)$</span> &#123;</div><div class="line">         <span class="attribute">proxy_pass</span> http://127.0.0.1:8080;</div><div class="line">         <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</div><div class="line">         <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</div><div class="line">         <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">         <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">        &#125;</div><div class="line">    <span class="attribute">location</span> <span class="regexp">~ [^/]\.php(/|$)</span> &#123;</div><div class="line">        <span class="comment">#fastcgi_pass remote_php_ip:9000;</span></div><div class="line">        <span class="attribute">fastcgi_pass</span> unix:/dev/shm/php-cgi.sock;</div><div class="line">        <span class="attribute">fastcgi_index</span> index.php;</div><div class="line">        <span class="attribute">include</span> fastcgi.conf;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="attribute">location</span> <span class="regexp">~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|ico)$</span> &#123;</div><div class="line">        <span class="attribute">expires</span> <span class="number">30d</span>;</div><div class="line">        <span class="attribute">access_log</span> <span class="literal">off</span>;</div><div class="line">        &#125;</div><div class="line">    <span class="attribute">location</span> <span class="regexp">~ .*\.(js|css)?$</span> &#123;</div><div class="line">        <span class="attribute">expires</span> <span class="number">7d</span>;</div><div class="line">        <span class="attribute">access_log</span> <span class="literal">off</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>2、修改localhost.xml</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Host name=<span class="string">"localhost"</span> appBase=<span class="string">"/data/wwwroot"</span> unpackWARs=<span class="string">"true"</span> autoDeploy=<span class="string">"true"</span></div><div class="line">      &lt;Context path=<span class="string">""</span> docBase=<span class="string">"/data/wwwroot"</span> debug=<span class="string">"0"</span> reloadable=<span class="string">"false"</span> crossContext=<span class="string">"true"</span>/&gt;</div><div class="line">      &lt;Valve className=<span class="string">"org.apache.catalina.valves.AccessLogValve"</span> directory=<span class="string">"logs"</span> prefix=<span class="string">"localhost_access_log."</span> suffix=<span class="string">".txt"</span> pattern=<span class="string">"%h %l %u %t &amp;quot;%r&amp;quot; %s %b"</span> /&gt;</div><div class="line">&lt;<span class="regexp">/Host&gt;</span></div></pre></td></tr></table></figure>
+        <a id="more"></a>
+<h2 id="一、jQuery对象与Dom对象"><a href="#一、jQuery对象与Dom对象" class="headerlink" title="一、jQuery对象与Dom对象"></a>一、jQuery对象与Dom对象</h2><p>1、jQuery对象与DOM对象是不一样的<br>2、通过jQuery方法包装后的对象，是一个类数组对象。这个对象里面包含了DOM对象的信息，然后封装了很多操作方法，调用自己的方法html与css，得到的效果与标准的JavaScript处理结果是一致的。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。 </p>
+<h2 id="二、jQuery对象转化成DOM对象"><a href="#二、jQuery对象转化成DOM对象" class="headerlink" title="二、jQuery对象转化成DOM对象"></a>二、jQuery对象转化成DOM对象</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;元素一&lt;/div&gt;</div><div class="line">&lt;div&gt;元素二&lt;/div&gt;</div><div class="line">&lt;div&gt;元素三&lt;/div&gt;</div><div class="line"></div><div class="line"><span class="selector-tag">var</span> <span class="variable">$div</span> = $(<span class="string">'div'</span>) <span class="comment">//jQuery对象</span></div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = <span class="variable">$div</span>[<span class="number">0</span>] <span class="comment">//转化成DOM对象</span></div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.style</span><span class="selector-class">.color</span> = <span class="string">'red'</span> <span class="comment">//操作dom对象的属性</span></div><div class="line"></div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = <span class="variable">$div</span>.get(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<h2 id="三、DOM对象转化成jQuery对象"><a href="#三、DOM对象转化成jQuery对象" class="headerlink" title="三、DOM对象转化成jQuery对象"></a>三、DOM对象转化成jQuery对象</h2><p>如果传递给$(DOM)函数的参数是一个DOM对象，jQuery方法会把这个DOM对象给包装成一个新的jQuery对象 </p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built-in">div</span>&gt;元素一&lt;/<span class="built-in">div</span>&gt;</div><div class="line">&lt;<span class="built-in">div</span>&gt;元素二&lt;/<span class="built-in">div</span>&gt;</div><div class="line">&lt;<span class="built-in">div</span>&gt;元素三&lt;/<span class="built-in">div</span>&gt; </div><div class="line"></div><div class="line">var <span class="built-in">div</span> = document.getElementsByTagName(<span class="string">'div'</span>); <span class="comment">//dom对象</span></div><div class="line">var <span class="symbol">$</span><span class="built-in">div</span> = <span class="symbol">$</span>(<span class="built-in">div</span>); <span class="comment">//jQuery对象</span></div><div class="line">var <span class="symbol">$</span>first = <span class="symbol">$</span><span class="built-in">div</span>.first(); <span class="comment">//找到第一个div元素</span></div><div class="line"><span class="meta"><span class="meta-keyword">$first</span>.css('color', 'red'); //给第一个元素设置颜色</span></div></pre></td></tr></table></figure>
+<h2 id="四、选择器"><a href="#四、选择器" class="headerlink" title="四、选择器"></a>四、选择器</h2><p>1、id选择器</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span> <span class="string">"#id"</span> )</div></pre></td></tr></table></figure>
+<p>2、类选择器</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span> <span class="string">".class"</span> )</div></pre></td></tr></table></figure>
+<p>3、元素选择器</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span> <span class="string">"element"</span> )</div></pre></td></tr></table></figure>
+<p>4、全选择器</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span> <span class="string">"*"</span> )</div></pre></td></tr></table></figure>
+<p>5、层级选择器</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span>(<span class="string">"parent &gt; child"</span>) <span class="comment">//子选择器:选择所有指定“parent”元素中指定的"child"的直接子元素</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"ancestor descendant"</span>) <span class="comment">//后代选择器:选择给定的祖先元素的所有后代元素, 一个元素的后代可能是该元素的一个孩子，孙子，曾孙等</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"prev + next"</span>) <span class="comment">//相邻兄弟选择器:选择所有紧接在“prev”元素后的“next”元素</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"prev ~ siblings"</span>) <span class="comment">//一般兄弟选择器:匹配“prev”元素之后的所有 兄弟元素。具有相同的父元素，并匹配过滤“siblings”选择器</span></div></pre></td></tr></table></figure>
+<p>6、基本筛选选择器<br><img src="../images/jQuery基本筛选选择器.jpg" alt="基本筛选选择器"></p>
 
       
     </div>
@@ -316,16 +333,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/03/09/工具/Emmet/">
-                    Emmet
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/05/01/Oracle/oracle11g silent install/">
-                    Centos6.5 x86_64下 静默安装Oracle 11g R2
+                <a href="/2017/03/13/工具/自动化构建工具/">
+                    自动化构建工具以及打包工具
                 </a>
             </div>
         
@@ -337,7 +348,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、jQuery对象与Dom对象"><span class="toc-number">1.</span> <span class="toc-text">一、jQuery对象与Dom对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、jQuery对象转化成DOM对象"><span class="toc-number">2.</span> <span class="toc-text">二、jQuery对象转化成DOM对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、DOM对象转化成jQuery对象"><span class="toc-number">3.</span> <span class="toc-text">三、DOM对象转化成jQuery对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、选择器"><span class="toc-number">4.</span> <span class="toc-text">四、选择器</span></a></li></ol>
         
     </div>
     <style>
@@ -367,8 +378,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = '/2016/10/05/Linux/java和php共用/';
-            this.page.identifier = '2016/10/05/Linux/java和php共用/';
+            this.page.url = '/2017/03/21/JavaScript/jQuery样式/';
+            this.page.identifier = '2017/03/21/JavaScript/jQuery样式/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -390,15 +401,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/03/09/工具/Emmet/" title="Pre: Emmet">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/05/01/Oracle/oracle11g silent install/" title="Next: Centos6.5 x86_64下 静默安装Oracle 11g R2">
+            <a href="/2017/03/13/工具/自动化构建工具/" title="Next: 自动化构建工具以及打包工具">
                 <i class="fa fa-angle-right"></i>
             </a>
         
