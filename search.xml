@@ -6,9 +6,9 @@
     <entry>
       <title><![CDATA[jQuery样式篇]]></title>
       <url>/2017/03/21/JavaScript/jQuery%E6%A0%B7%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
+      <content type="html"><![CDATA[<p>jQuery样式学习篇<br><a id="more"></a></p>
 <h2 id="一、jQuery对象与Dom对象"><a href="#一、jQuery对象与Dom对象" class="headerlink" title="一、jQuery对象与Dom对象"></a>一、jQuery对象与Dom对象</h2><p>1、jQuery对象与DOM对象是不一样的<br>2、通过jQuery方法包装后的对象，是一个类数组对象。这个对象里面包含了DOM对象的信息，然后封装了很多操作方法，调用自己的方法html与css，得到的效果与标准的JavaScript处理结果是一致的。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。 </p>
-<h2 id="二、jQuery对象转化成DOM对象"><a href="#二、jQuery对象转化成DOM对象" class="headerlink" title="二、jQuery对象转化成DOM对象"></a>二、jQuery对象转化成DOM对象</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;元素一&lt;/div&gt;</div><div class="line">&lt;div&gt;元素二&lt;/div&gt;</div><div class="line">&lt;div&gt;元素三&lt;/div&gt;</div><div class="line"></div><div class="line"><span class="selector-tag">var</span> <span class="variable">$div</span> = $(<span class="string">'div'</span>) <span class="comment">//jQuery对象</span></div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = <span class="variable">$div</span>[<span class="number">0</span>] <span class="comment">//转化成DOM对象</span></div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.style</span><span class="selector-class">.color</span> = <span class="string">'red'</span> <span class="comment">//操作dom对象的属性</span></div><div class="line"></div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = <span class="variable">$div</span>.get(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<h2 id="二、jQuery对象转化成DOM对象"><a href="#二、jQuery对象转化成DOM对象" class="headerlink" title="二、jQuery对象转化成DOM对象"></a>二、jQuery对象转化成DOM对象</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;元素一&lt;/div&gt;</div><div class="line">&lt;div&gt;元素二&lt;/div&gt;</div><div class="line">&lt;div&gt;元素三&lt;/div&gt; </div><div class="line"></div><div class="line"><span class="selector-tag">var</span> <span class="variable">$div</span> = $(<span class="string">'div'</span>) <span class="comment">//jQuery对象</span></div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = <span class="variable">$div</span>[<span class="number">0</span>] <span class="comment">//转化成DOM对象</span></div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.style</span><span class="selector-class">.color</span> = <span class="string">'red'</span> <span class="comment">//操作dom对象的属性 </span></div><div class="line"></div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = <span class="variable">$div</span>.get(<span class="number">0</span>)</div></pre></td></tr></table></figure>
 <h2 id="三、DOM对象转化成jQuery对象"><a href="#三、DOM对象转化成jQuery对象" class="headerlink" title="三、DOM对象转化成jQuery对象"></a>三、DOM对象转化成jQuery对象</h2><p>如果传递给$(DOM)函数的参数是一个DOM对象，jQuery方法会把这个DOM对象给包装成一个新的jQuery对象 </p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built-in">div</span>&gt;元素一&lt;/<span class="built-in">div</span>&gt;</div><div class="line">&lt;<span class="built-in">div</span>&gt;元素二&lt;/<span class="built-in">div</span>&gt;</div><div class="line">&lt;<span class="built-in">div</span>&gt;元素三&lt;/<span class="built-in">div</span>&gt; </div><div class="line"></div><div class="line">var <span class="built-in">div</span> = document.getElementsByTagName(<span class="string">'div'</span>); <span class="comment">//dom对象</span></div><div class="line">var <span class="symbol">$</span><span class="built-in">div</span> = <span class="symbol">$</span>(<span class="built-in">div</span>); <span class="comment">//jQuery对象</span></div><div class="line">var <span class="symbol">$</span>first = <span class="symbol">$</span><span class="built-in">div</span>.first(); <span class="comment">//找到第一个div元素</span></div><div class="line"><span class="meta"><span class="meta-keyword">$first</span>.css('color', 'red'); //给第一个元素设置颜色</span></div></pre></td></tr></table></figure>
 <h2 id="四、选择器"><a href="#四、选择器" class="headerlink" title="四、选择器"></a>四、选择器</h2><p>1、id选择器</p>
@@ -129,6 +129,30 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Mac上用Navicat连接Oracle]]></title>
+      <url>/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/</url>
+      <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Oracle </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Oracle </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[px,em,rem详解]]></title>
       <url>/2017/03/10/CSS/%E5%83%8F%E7%B4%A0/</url>
       <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
@@ -213,30 +237,6 @@
             <tag> Github </tag>
             
             <tag> Nodejs </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Mac上用Navicat连接Oracle]]></title>
-      <url>/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/</url>
-      <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Oracle </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Oracle </tag>
             
         </tags>
         
