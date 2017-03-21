@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-03-21T07:50:30.000Z</updated>
+  <updated>2017-03-21T07:52:32.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2017/03/21/JavaScript/jQuery%E6%A0%B7%E5%BC%8F/"/>
     <id>/2017/03/21/JavaScript/jQuery样式/</id>
     <published>2017-03-20T16:00:00.000Z</published>
-    <updated>2017-03-21T07:50:30.000Z</updated>
+    <updated>2017-03-21T07:52:32.000Z</updated>
     
     <content type="html"><![CDATA[<p>jQuery样式学习篇<br><a id="more"></a></p>
 <h2 id="一、jQuery对象与Dom对象"><a href="#一、jQuery对象与Dom对象" class="headerlink" title="一、jQuery对象与Dom对象"></a>一、jQuery对象与Dom对象</h2><p>1、jQuery对象与DOM对象是不一样的<br>2、通过jQuery方法包装后的对象，是一个类数组对象。这个对象里面包含了DOM对象的信息，然后封装了很多操作方法，调用自己的方法html与css，得到的效果与标准的JavaScript处理结果是一致的。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。 </p>
@@ -37,7 +37,7 @@
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span> <span class="string">"*"</span> )</div></pre></td></tr></table></figure>
 <p>5、层级选择器</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span>(<span class="string">"parent &gt; child"</span>) <span class="comment">//子选择器:选择所有指定“parent”元素中指定的"child"的直接子元素</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"ancestor descendant"</span>) <span class="comment">//后代选择器:选择给定的祖先元素的所有后代元素, 一个元素的后代可能是该元素的一个孩子，孙子，曾孙等</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"prev + next"</span>) <span class="comment">//相邻兄弟选择器:选择所有紧接在“prev”元素后的“next”元素</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"prev ~ siblings"</span>) <span class="comment">//一般兄弟选择器:匹配“prev”元素之后的所有 兄弟元素。具有相同的父元素，并匹配过滤“siblings”选择器</span></div></pre></td></tr></table></figure>
-<p>6、基本筛选选择器<br><img src="../images/jQuery基本筛选选择器.jpg" alt="基本筛选选择器"></p>
+<p>6、基本筛选选择器<br><img src="/images/jQuery基本筛选选择器.jpg" alt="基本筛选选择器"></p>
 ]]></content>
     
     <summary type="html">
@@ -85,39 +85,6 @@
   </entry>
   
   <entry>
-    <title>清除浮动</title>
-    <link href="/2017/03/11/CSS/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/"/>
-    <id>/2017/03/11/CSS/清除浮动/</id>
-    <published>2017-03-10T16:00:00.000Z</published>
-    <updated>2017-03-21T06:29:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>当子元素设置为float后，父元素会出现高度塌陷，本文则是介绍如何解决浮动带来的影响<br><a id="more"></a></p>
-<h2 id="一、增加一个无意义的空标签"><a href="#一、增加一个无意义的空标签" class="headerlink" title="一、增加一个无意义的空标签"></a>一、增加一个无意义的空标签</h2><p>在浮动元素后加一个div</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"float-content"</span>&gt;</div><div class="line">    Lorem ipsum dolor sit amet, consectetur </div><div class="line">    adipisicing elit. Distinctio, sapiente.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> style=<span class="string">"clear: both"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
-<p>但我们一般不想在代码里面用直接添加元素的方式清除浮动 </p>
-<h2 id="二、给父元素增加一个overflow"><a href="#二、给父元素增加一个overflow" class="headerlink" title="二、给父元素增加一个overflow"></a>二、给父元素增加一个overflow</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">overflow</span>:hidden;<span class="comment">//auto也可</span></div></pre></td></tr></table></figure>
-<h2 id="三、使用-after伪类元素"><a href="#三、使用-after伪类元素" class="headerlink" title="三、使用:after伪类元素"></a>三、使用:after伪类元素</h2><p>1、伪元素只有加了内容才能有效果。<br>2、IE6、7不支持伪元素，在IE6、7内有个hasLayout的概念，当元素的hasLayout属性值为true的时候会达到和BFC类似的效果。zoom:1 在IE6、7可以使hasLayout为true  </p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span>:after&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">'.'</span>;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">    <span class="attribute">visibility</span>: hidden;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.clearfix</span>&#123; <span class="comment">/*兼容IE*/</span></div><div class="line">    *zoom: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="四、BFC-Box、Formatting-Context"><a href="#四、BFC-Box、Formatting-Context" class="headerlink" title="四、BFC(Box、Formatting Context)"></a>四、BFC(Box、Formatting Context)</h2><p>块级格式化上下文：只要触发了BFC就可以清除浮动–闭合浮动，也就是预防高度塌陷（float，overflow，display，position）<br>加before伪类可以避免浏览器顶部的空白崩溃（margin-top margin-bottom的宽度会叠加，比如top bottom都是10，本应该是20，但会叠加变成10） </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>,</div><div class="line"><span class="selector-class">.claerfix</span><span class="selector-pseudo">:before</span>&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</div><div class="line">    <span class="attribute">display</span>: table;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;当子元素设置为float后，父元素会出现高度塌陷，本文则是介绍如何解决浮动带来的影响&lt;br&gt;
-    
-    </summary>
-    
-      <category term="CSS" scheme="/categories/CSS/"/>
-    
-    
-      <category term="CSS" scheme="/tags/CSS/"/>
-    
-      <category term="float" scheme="/tags/float/"/>
-    
-  </entry>
-  
-  <entry>
     <title>理解BFC</title>
     <link href="/2017/03/11/CSS/BFC/"/>
     <id>/2017/03/11/CSS/BFC/</id>
@@ -149,28 +116,35 @@
   </entry>
   
   <entry>
-    <title>Mac上用Navicat连接Oracle</title>
-    <link href="/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
-    <id>/2017/03/10/Oracle/navicat连接oracle/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-10T14:33:30.000Z</updated>
+    <title>清除浮动</title>
+    <link href="/2017/03/11/CSS/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/"/>
+    <id>/2017/03/11/CSS/清除浮动/</id>
+    <published>2017-03-10T16:00:00.000Z</published>
+    <updated>2017-03-21T06:29:12.000Z</updated>
     
-    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+    <content type="html"><![CDATA[<p>当子元素设置为float后，父元素会出现高度塌陷，本文则是介绍如何解决浮动带来的影响<br><a id="more"></a></p>
+<h2 id="一、增加一个无意义的空标签"><a href="#一、增加一个无意义的空标签" class="headerlink" title="一、增加一个无意义的空标签"></a>一、增加一个无意义的空标签</h2><p>在浮动元素后加一个div</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"float-content"</span>&gt;</div><div class="line">    Lorem ipsum dolor sit amet, consectetur </div><div class="line">    adipisicing elit. Distinctio, sapiente.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> style=<span class="string">"clear: both"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<p>但我们一般不想在代码里面用直接添加元素的方式清除浮动 </p>
+<h2 id="二、给父元素增加一个overflow"><a href="#二、给父元素增加一个overflow" class="headerlink" title="二、给父元素增加一个overflow"></a>二、给父元素增加一个overflow</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">overflow</span>:hidden;<span class="comment">//auto也可</span></div></pre></td></tr></table></figure>
+<h2 id="三、使用-after伪类元素"><a href="#三、使用-after伪类元素" class="headerlink" title="三、使用:after伪类元素"></a>三、使用:after伪类元素</h2><p>1、伪元素只有加了内容才能有效果。<br>2、IE6、7不支持伪元素，在IE6、7内有个hasLayout的概念，当元素的hasLayout属性值为true的时候会达到和BFC类似的效果。zoom:1 在IE6、7可以使hasLayout为true  </p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span>:after&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">'.'</span>;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">    <span class="attribute">visibility</span>: hidden;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.clearfix</span>&#123; <span class="comment">/*兼容IE*/</span></div><div class="line">    *zoom: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="四、BFC-Box、Formatting-Context"><a href="#四、BFC-Box、Formatting-Context" class="headerlink" title="四、BFC(Box、Formatting Context)"></a>四、BFC(Box、Formatting Context)</h2><p>块级格式化上下文：只要触发了BFC就可以清除浮动–闭合浮动，也就是预防高度塌陷（float，overflow，display，position）<br>加before伪类可以避免浏览器顶部的空白崩溃（margin-top margin-bottom的宽度会叠加，比如top bottom都是10，本应该是20，但会叠加变成10） </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>,</div><div class="line"><span class="selector-class">.claerfix</span><span class="selector-pseudo">:before</span>&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</div><div class="line">    <span class="attribute">display</span>: table;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
+      &lt;p&gt;当子元素设置为float后，父元素会出现高度塌陷，本文则是介绍如何解决浮动带来的影响&lt;br&gt;
     
     </summary>
     
-      <category term="Oracle" scheme="/categories/Oracle/"/>
+      <category term="CSS" scheme="/categories/CSS/"/>
     
     
-      <category term="Oracle" scheme="/tags/Oracle/"/>
+      <category term="CSS" scheme="/tags/CSS/"/>
+    
+      <category term="float" scheme="/tags/float/"/>
     
   </entry>
   
@@ -265,6 +239,32 @@
       <category term="Github" scheme="/tags/Github/"/>
     
       <category term="Nodejs" scheme="/tags/Nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac上用Navicat连接Oracle</title>
+    <link href="/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
+    <id>/2017/03/10/Oracle/navicat连接oracle/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-10T14:33:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Oracle" scheme="/categories/Oracle/"/>
+    
+    
+      <category term="Oracle" scheme="/tags/Oracle/"/>
     
   </entry>
   
