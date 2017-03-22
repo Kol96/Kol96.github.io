@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-03-21T07:52:32.000Z</updated>
+  <updated>2017-03-21T13:06:33.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2017/03/21/JavaScript/jQuery%E6%A0%B7%E5%BC%8F/"/>
     <id>/2017/03/21/JavaScript/jQuery样式/</id>
     <published>2017-03-20T16:00:00.000Z</published>
-    <updated>2017-03-21T07:52:32.000Z</updated>
+    <updated>2017-03-21T13:06:33.000Z</updated>
     
     <content type="html"><![CDATA[<p>jQuery样式学习篇<br><a id="more"></a></p>
 <h2 id="一、jQuery对象与Dom对象"><a href="#一、jQuery对象与Dom对象" class="headerlink" title="一、jQuery对象与Dom对象"></a>一、jQuery对象与Dom对象</h2><p>1、jQuery对象与DOM对象是不一样的<br>2、通过jQuery方法包装后的对象，是一个类数组对象。这个对象里面包含了DOM对象的信息，然后封装了很多操作方法，调用自己的方法html与css，得到的效果与标准的JavaScript处理结果是一致的。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。 </p>
@@ -38,6 +38,13 @@
 <p>5、层级选择器</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span>(<span class="string">"parent &gt; child"</span>) <span class="comment">//子选择器:选择所有指定“parent”元素中指定的"child"的直接子元素</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"ancestor descendant"</span>) <span class="comment">//后代选择器:选择给定的祖先元素的所有后代元素, 一个元素的后代可能是该元素的一个孩子，孙子，曾孙等</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"prev + next"</span>) <span class="comment">//相邻兄弟选择器:选择所有紧接在“prev”元素后的“next”元素</span></div><div class="line"></div><div class="line"><span class="symbol">$</span>(<span class="string">"prev ~ siblings"</span>) <span class="comment">//一般兄弟选择器:匹配“prev”元素之后的所有 兄弟元素。具有相同的父元素，并匹配过滤“siblings”选择器</span></div></pre></td></tr></table></figure>
 <p>6、基本筛选选择器<br><img src="/images/jQuery基本筛选选择器.jpg" alt="基本筛选选择器"></p>
+<p>7、内容筛选选择器</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span>(<span class="string">":contains(text)"</span>) <span class="comment">//选择包含所有指定文本的元素</span></div><div class="line"><span class="symbol">$</span>(<span class="string">":has(selector)"</span>) <span class="comment">//选择元素中至少包含指定选择器的元素</span></div><div class="line"><span class="symbol">$</span>(<span class="string">":parent"</span>) <span class="comment">//选择所有含有子元素或者文本的元素</span></div><div class="line"><span class="symbol">$</span>(<span class="string">":empty"</span>) <span class="comment">//选择所有没有子元素的元素（包含文本节点）</span></div></pre></td></tr></table></figure>
+<p>①:contains与:has都有查找的意思，但是contains查找包含“指定文本”的元素，has查找包含“指定元素”的元素。<br>②如果:contains匹配的文本包含在元素的子元素中，同样认为是符合条件的。<br>③:parent与:empty是相反的，两者所涉及的子元素，包括文本节点。 </p>
+<h2 id="可见性筛选选择器"><a href="#可见性筛选选择器" class="headerlink" title="可见性筛选选择器"></a>可见性筛选选择器</h2><p>占用空间布局的被认为是可见的 </p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span>(<span class="string">":visible"</span>) <span class="comment">//选择所有显示元素</span></div><div class="line"><span class="symbol">$</span>(<span class="string">":hidden"</span>) <span class="comment">//选择所有隐藏元素 该选择器对 visibility:hidden 和 opacity: 0 的元素不起作用。</span></div></pre></td></tr></table></figure>
+<h2 id="属性筛选选择器"><a href="#属性筛选选择器" class="headerlink" title="属性筛选选择器"></a>属性筛选选择器</h2><p><img src="/images/jQuery属性筛选选择器.jpg" alt="属性筛选选择器"><br>在这么多属性选择器中[attr=”value”]和[attr*=”value”]是最实用的 </p>
+<p>## </p>
 ]]></content>
     
     <summary type="html">
@@ -149,6 +156,32 @@
   </entry>
   
   <entry>
+    <title>Mac上用Navicat连接Oracle</title>
+    <link href="/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
+    <id>/2017/03/10/Oracle/navicat连接oracle/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-10T14:33:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Oracle" scheme="/categories/Oracle/"/>
+    
+    
+      <category term="Oracle" scheme="/tags/Oracle/"/>
+    
+  </entry>
+  
+  <entry>
     <title>px,em,rem详解</title>
     <link href="/2017/03/10/CSS/%E5%83%8F%E7%B4%A0/"/>
     <id>/2017/03/10/CSS/像素/</id>
@@ -239,32 +272,6 @@
       <category term="Github" scheme="/tags/Github/"/>
     
       <category term="Nodejs" scheme="/tags/Nodejs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac上用Navicat连接Oracle</title>
-    <link href="/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
-    <id>/2017/03/10/Oracle/navicat连接oracle/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-10T14:33:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Oracle" scheme="/categories/Oracle/"/>
-    
-    
-      <category term="Oracle" scheme="/tags/Oracle/"/>
     
   </entry>
   
