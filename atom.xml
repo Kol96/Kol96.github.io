@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-03-21T13:06:33.000Z</updated>
+  <updated>2017-03-23T08:15:14.000Z</updated>
   <id>/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript学习之this</title>
+    <link href="/2017/03/23/JavaScript/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bthiis/"/>
+    <id>/2017/03/23/JavaScript/JS学习之thiis/</id>
+    <published>2017-03-22T16:00:00.000Z</published>
+    <updated>2017-03-23T08:15:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在调用函数之前，this的值是不确定的，this可能会在代码执行过程中引用不同的对象。<br><a id="more"></a></p>
+<h2 id="一、全局范围"><a href="#一、全局范围" class="headerlink" title="一、全局范围"></a>一、全局范围</h2><p>全局范围使用this指向的是全局变量，浏览器环境下就是window。strict模式下没有全局变量，这里的this是undefined。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.<span class="built_in">log</span>(<span class="keyword">this</span>); <span class="comment">//全局变量</span></div></pre></td></tr></table></figure></p>
+<h2 id="二、函数调用"><a href="#二、函数调用" class="headerlink" title="二、函数调用"></a>二、函数调用</h2><p>函数调用中的this也是指向全局变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line">test();<span class="comment">//全局变量</span></div></pre></td></tr></table></figure></p>
+<h2 id="三、对象调用方法"><a href="#三、对象调用方法" class="headerlink" title="三、对象调用方法"></a>三、对象调用方法</h2><p>对象方法调用中，this指的是调用者。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> test = &#123;</div><div class="line">    <span class="attr">foo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">test.foo(); <span class="comment">//test对象</span></div></pre></td></tr></table></figure></p>
+<p>由于this的晚绑定性，同样代码段，只有在运行时才能确定this指向。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> test = &#123;</div><div class="line">    <span class="attr">foo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> test2 = test.foo;</div><div class="line">test2(); <span class="comment">//全局变量</span></div></pre></td></tr></table></figure></p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>在构造函数内部，this指向新创建的对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); </div><div class="line">&#125;</div><div class="line"><span class="keyword">new</span> Foo(); <span class="comment">//新创建的对象</span></div></pre></td></tr></table></figure></p>
+<h2 id="显示设置this"><a href="#显示设置this" class="headerlink" title="显示设置this"></a>显示设置this</h2><p>使用Function.prototyppe的call或者apply方法时，函数内部this会被设置为传入的第一个参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar=&#123;&#125;;</div><div class="line"></div><div class="line">foo.apply(bar,[<span class="number">1</span>, <span class="number">2</span>]); <span class="comment">//bar对象</span></div><div class="line">foo.call(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">//Number对象</span></div></pre></td></tr></table></figure></p>
+<h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><p>bind后的函数不能再次bind<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function <span class="built_in">f</span>()&#123;</div><div class="line">    <span class="keyword">return</span> this.a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="keyword">g</span> = f.bind(&#123;a:<span class="string">"g"</span>&#125;);</div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">g</span>()); <span class="comment">//g</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="keyword">h</span> = <span class="keyword">g</span>.bind(&#123;a:<span class="string">"h"</span>&#125;); <span class="comment">//bind only works once;</span></div><div class="line">console.<span class="built_in">log</span>(<span class="built_in">h</span>()); <span class="comment">//g</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> i = f.bind(&#123;a:<span class="string">"i"</span>&#125;);</div><div class="line">console.<span class="built_in">log</span>(<span class="built_in">i</span>()); <span class="comment">//i</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> o=&#123;a:<span class="string">"37"</span>,<span class="keyword">g</span>:<span class="keyword">g</span>,f:f,<span class="keyword">h</span>:<span class="keyword">h</span>&#125;;</div><div class="line">console.<span class="built_in">log</span>(o.<span class="built_in">f</span>(),o.<span class="keyword">g</span>(),o.<span class="built_in">h</span>()); <span class="comment">//37 g g</span></div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在调用函数之前，this的值是不确定的，this可能会在代码执行过程中引用不同的对象。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>jQuery样式篇</title>
@@ -156,72 +186,6 @@
   </entry>
   
   <entry>
-    <title>Mac上用Navicat连接Oracle</title>
-    <link href="/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
-    <id>/2017/03/10/Oracle/navicat连接oracle/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-10T14:33:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Oracle" scheme="/categories/Oracle/"/>
-    
-    
-      <category term="Oracle" scheme="/tags/Oracle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>px,em,rem详解</title>
-    <link href="/2017/03/10/CSS/%E5%83%8F%E7%B4%A0/"/>
-    <id>/2017/03/10/CSS/像素/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-21T06:28:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
-<a id="more"></a>
-<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。 </p>
-<ol>
-<li>IE无法调整那些使用px作为单位的字体大小； </li>
-<li>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位； </li>
-<li>Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。 </li>
-</ol>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。 </p>
-<ol>
-<li>em的值并不是固定的； </li>
-<li>em会继承父级元素的字体大小。 </li>
-</ol>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 </p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般浏览器默认为16px。<br>但为了使用方便会让html的font-size: 62.5%; 即1rem=10px;</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h2><p>1、发现chrome支持的最小px为12px。即使设置了62.5%的font-size，浏览器显示出来的字体大小1rem=12px。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-webkit-<span class="attribute">font-size</span>: <span class="number">12px</span>;</div><div class="line">-webkit-<span class="attribute">transform</span>: scale(<span class="number">0.84</span>);</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;px,em,rem使用介绍&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="CSS" scheme="/categories/CSS/"/>
-    
-    
-      <category term="CSS" scheme="/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
     <title>How to install Hexo on Mac</title>
     <link href="/2017/03/10/Mac/Hexo/"/>
     <id>/2017/03/10/Mac/Hexo/</id>
@@ -272,6 +236,72 @@
       <category term="Github" scheme="/tags/Github/"/>
     
       <category term="Nodejs" scheme="/tags/Nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>px,em,rem详解</title>
+    <link href="/2017/03/10/CSS/%E5%83%8F%E7%B4%A0/"/>
+    <id>/2017/03/10/CSS/像素/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-21T06:28:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
+<a id="more"></a>
+<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。 </p>
+<ol>
+<li>IE无法调整那些使用px作为单位的字体大小； </li>
+<li>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位； </li>
+<li>Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。 </li>
+</ol>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。 </p>
+<ol>
+<li>em的值并不是固定的； </li>
+<li>em会继承父级元素的字体大小。 </li>
+</ol>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 </p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般浏览器默认为16px。<br>但为了使用方便会让html的font-size: 62.5%; 即1rem=10px;</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h2><p>1、发现chrome支持的最小px为12px。即使设置了62.5%的font-size，浏览器显示出来的字体大小1rem=12px。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-webkit-<span class="attribute">font-size</span>: <span class="number">12px</span>;</div><div class="line">-webkit-<span class="attribute">transform</span>: scale(<span class="number">0.84</span>);</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;px,em,rem使用介绍&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CSS" scheme="/categories/CSS/"/>
+    
+    
+      <category term="CSS" scheme="/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac上用Navicat连接Oracle</title>
+    <link href="/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
+    <id>/2017/03/10/Oracle/navicat连接oracle/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-10T14:33:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Oracle" scheme="/categories/Oracle/"/>
+    
+    
+      <category term="Oracle" scheme="/tags/Oracle/"/>
     
   </entry>
   
@@ -331,11 +361,11 @@
       <category term="Linux" scheme="/categories/Linux/"/>
     
     
+      <category term="PHP" scheme="/tags/PHP/"/>
+    
       <category term="Linux" scheme="/tags/Linux/"/>
     
       <category term="Java" scheme="/tags/Java/"/>
-    
-      <category term="PHP" scheme="/tags/PHP/"/>
     
   </entry>
   
@@ -705,9 +735,9 @@
       <category term="Mac" scheme="/categories/Mac/"/>
     
     
-      <category term="PHP" scheme="/tags/PHP/"/>
-    
       <category term="Mac" scheme="/tags/Mac/"/>
+    
+      <category term="PHP" scheme="/tags/PHP/"/>
     
       <category term="Mysql" scheme="/tags/Mysql/"/>
     
@@ -875,11 +905,11 @@
       <category term="Mac" scheme="/categories/Mac/"/>
     
     
-      <category term="PHP" scheme="/tags/PHP/"/>
-    
       <category term="Mac" scheme="/tags/Mac/"/>
     
       <category term="Apache" scheme="/tags/Apache/"/>
+    
+      <category term="PHP" scheme="/tags/PHP/"/>
     
       <category term="Mysql" scheme="/tags/Mysql/"/>
     
