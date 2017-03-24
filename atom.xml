@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-03-24T07:27:39.000Z</updated>
+  <updated>2017-03-24T07:40:09.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,17 +20,11 @@
     <link href="/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bhoist/"/>
     <id>/2017/03/24/Front End/JS学习之hoist/</id>
     <published>2017-03-23T16:00:00.000Z</published>
-    <updated>2017-03-24T07:27:39.000Z</updated>
+    <updated>2017-03-24T07:40:09.000Z</updated>
     
     <content type="html"><![CDATA[<p>JavaScript能够在变量和函数被声明之前使用它们。<br><a id="more"></a>  </p>
-<h2 id="一、变量声明“被提前”"><a href="#一、变量声明“被提前”" class="headerlink" title="一、变量声明“被提前”"></a>一、变量声明“被提前”</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    console.log(a); <span class="comment">//undefined</span></div><div class="line">    var a = <span class="string">"test"</span>;</div><div class="line">    console.log(a); <span class="comment">//test</span></div><div class="line">```  </div><div class="line"></div><div class="line"><span class="number">1</span>、解析器将当前作用域内声明的所有变量和函数都会放到作用域的开始处，但是，只有变量的声明被提前到作用域的开始处了，而赋值操作被保留在原处。  </div><div class="line"><span class="number">2</span>、根据 JavaScript 语法的定义，已声明而未被赋值的变量会被自动赋值为 `undefined` 。所以第一次打印`a`时，值就为`undefined`。</div></pre></td></tr></table></figure>
-<pre><code>window.name = &quot;window&quot;;
-(function () {
-    console.log(name); //undefined
-    var name = &quot;inner&quot;;
-    console.log(name); //inner
-})();
-</code></pre><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">由于局部变量的`name`被提前，导致无法在第一次打印时获取全局变量的`name`。  </div><div class="line"></div><div class="line">## 二、函数声明“被提前”</div><div class="line">函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，但对于函数表达式，则必须等到解析器执行到它所在的代码行，才会被解释执行。</div></pre></td></tr></table></figure>
+<h2 id="一、变量声明“被提前”"><a href="#一、变量声明“被提前”" class="headerlink" title="一、变量声明“被提前”"></a>一、变量声明“被提前”</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">console.log(a); <span class="comment">//undefined</span></div><div class="line">var a = <span class="string">"test"</span>;</div><div class="line">console.log(a); <span class="comment">//test</span></div><div class="line">```  </div><div class="line"></div><div class="line"><span class="number">1</span>、解析器将当前作用域内声明的所有变量和函数都会放到作用域的开始处，但是，只有变量的声明被提前到作用域的开始处了，而赋值操作被保留在原处。  </div><div class="line"><span class="number">2</span>、根据 JavaScript 语法的定义，已声明而未被赋值的变量会被自动赋值为 `undefined` 。所以第一次打印`a`时，值就为`undefined`。</div></pre></td></tr></table></figure>
+<p>window.name = “window”;<br>(function () {<br>    console.log(name); //undefined<br>    var name = “inner”;<br>    console.log(name); //inner<br>})();<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">由于局部变量的`name`被提前，导致无法在第一次打印时获取全局变量的`name`。  </div><div class="line"></div><div class="line">## 二、函数声明“被提前”</div><div class="line">函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，但对于函数表达式，则必须等到解析器执行到它所在的代码行，才会被解释执行。</div></pre></td></tr></table></figure></p>
 <p>sum(1, 1); //2</p>
 <p>function sum(num1, num2) {<br>    console.log(num1 + num2);<br>}<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">函数声明并不仅仅是函数名“被提前”了，整个函数的定义也“被提前”了。</div></pre></td></tr></table></figure></p>
 <p>sum(1, 1); //Uncaught TypeError: sum is not a function</p>
@@ -728,11 +722,11 @@
       <category term="Linux" scheme="/categories/Linux/"/>
     
     
-      <category term="Linux" scheme="/tags/Linux/"/>
-    
       <category term="Kali" scheme="/tags/Kali/"/>
     
       <category term="Terminal" scheme="/tags/Terminal/"/>
+    
+      <category term="Linux" scheme="/tags/Linux/"/>
     
   </entry>
   
@@ -888,9 +882,9 @@
       <category term="Linux" scheme="/categories/Linux/"/>
     
     
-      <category term="Linux" scheme="/tags/Linux/"/>
-    
       <category term="Kali" scheme="/tags/Kali/"/>
+    
+      <category term="Linux" scheme="/tags/Linux/"/>
     
   </entry>
   
