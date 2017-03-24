@@ -2102,6 +2102,10 @@ aside.comment-bar:active {
   font-family: Menlo, Consolas, "Source Code Pro", Inconsolata, Monaco, monospace, "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei";
   font-size: 1em;
 }
+.article-entry .line:after {
+  content: '';
+  display: inline-block;
+}
 .article-entry pre code {
   text-shadow: none;
   padding: 0;
