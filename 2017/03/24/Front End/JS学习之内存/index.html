@@ -23,7 +23,7 @@
 <meta property="og:description" content="初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。">
 <meta property="og:image" content="/images/JS基本类型操作.png">
 <meta property="og:image" content="/images/JS引用类型操作.png">
-<meta property="og:updated_time" content="2017-03-24T09:37:08.000Z">
+<meta property="og:updated_time" content="2017-03-24T09:52:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript学习之内存">
 <meta name="twitter:description" content="初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。">
@@ -320,7 +320,7 @@
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: <span class="string">"Kol"</span>&#125;<span class="comment">;</span></div><div class="line">var <span class="keyword">b </span>= a<span class="comment">;</span></div><div class="line"><span class="keyword">b.name </span>= <span class="string">"Kylen"</span><span class="comment">;</span></div></pre></td></tr></table></figure>
 <p>引用类型的复制同样也会为新的变量自动分配一个新的值保存在变量对象中，但不同的是，这个新的值，仅仅只是引用类型的一个地址指针。当地址指针相同时，尽管他们相互独立，但是在变量对象中访问到的具体对象实际上是同一个。<br><img src="/images/JS引用类型操作.png" alt="JS引用类型">  </p>
 <h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript的垃圾收集有两种:标记清除、引用计数。<br>在局部作用域中，当函数执行结束，离开作用域的值就会被标记为可回收，在垃圾收集期间就会被删除。但是全局变量和全局对象的属性需要我们手动将其值设置为null来释放其引用（解除引用）  </p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var globalObject</span> = &#123;name: <span class="string">"Kyeln"</span>&#125;;</div><div class="line"></div><div class="line"><span class="attribute">globalObject</span> = null;</div></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">a</span> = <span class="number">1</span>;<span class="comment"> //在内存中给数值变量分配空间</span></div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>);<span class="comment"> //使用内存</span></div><div class="line"><span class="keyword">a</span> = <span class="literal">null</span>;<span class="comment"> //使用完毕之后，释放内存空间</span></div></pre></td></tr></table></figure>
 <p>但解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。  </p>
 
       
@@ -333,10 +333,16 @@
 
     <nav id="article-nav">
         
-        
-            <div id="article-nav-older" class="article-nav-title">
+            <div id="article-nav-newer" class="article-nav-title">
                 <a href="/2017/03/24/Front End/JS学习之hoist/">
                     JavaScript学习之函数及变量hoist
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/23/Front End/JS学习之thiis/">
+                    JavaScript学习之this
                 </a>
             </div>
         
@@ -401,19 +407,21 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+            <a href="/2017/03/24/Front End/JS学习之hoist/" title="Pre: JavaScript学习之函数及变量hoist">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/03/24/Front End/JS学习之hoist/" title="Next: JavaScript学习之函数及变量hoist">
+            <a href="/2017/03/23/Front End/JS学习之thiis/" title="Next: JavaScript学习之this">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之内存/">JavaScript学习之内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之hoist/">JavaScript学习之函数及变量hoist</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/23/Front End/JS学习之thiis/">JavaScript学习之this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/Front End/jQuery样式/">jQuery样式篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/Tools/自动化构建工具/">自动化构建工具以及打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/清除浮动/">清除浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/BFC/">理解BFC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Database/navicat连接oracle/">Mac上用Navicat连接Oracle</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Mac/Hexo/">How to install Hexo on Mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Front End/像素/">px,em,rem详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/Tools/Emmet/">Emmet</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/05/Linux/java和php共用/">Java、PHP共用端口使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Database/oracle11g silent install/">Centos6.5 x86_64下 静默安装Oracle 11g R2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/Linux/阿里云/">阿里云服务器下的Linux配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Database/oracle语法/">Oracle数据库的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Database/oracle安装/">Mac下的Oracle数据库的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/Tools/sublime/">Sublime Text的配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/PHP/cURL/">在PHP中使用cURL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/17/Linux/Linux服务器/">linux服务器的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/12/Linux/Terminator/">Kali Terminator多窗口终端的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/11/Mac/Mnmp/">Mac Yosemite 安装Lnmp环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Linux/Aircrack/">Aircrack-ng hack wireless network</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/Linux/KaliConfig/">How to config your Kali Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Mac/Mamp/">Mac Yosemite Lamp环境安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/Mac/mac工具/">Mac必备工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/Tools/git分支管理/">Git分支管理策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/Tools/git命令/">Git命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/20/PHP/PHP+Mysql分页原理/">PHP+Mysql分页原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/PHP/PHP上传原理/">PHP上传原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/10/PHP/PHP随笔记/">PHP随笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/15/Life/博客/">为什么要写博客？</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之hoist/">JavaScript学习之函数及变量hoist</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之内存/">JavaScript学习之内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/23/Front End/JS学习之thiis/">JavaScript学习之this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/Front End/jQuery样式/">jQuery样式篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/Tools/自动化构建工具/">自动化构建工具以及打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/清除浮动/">清除浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/BFC/">理解BFC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Database/navicat连接oracle/">Mac上用Navicat连接Oracle</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Mac/Hexo/">How to install Hexo on Mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Front End/像素/">px,em,rem详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/Tools/Emmet/">Emmet</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/05/Linux/java和php共用/">Java、PHP共用端口使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Database/oracle11g silent install/">Centos6.5 x86_64下 静默安装Oracle 11g R2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/Linux/阿里云/">阿里云服务器下的Linux配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Database/oracle语法/">Oracle数据库的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Database/oracle安装/">Mac下的Oracle数据库的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/Tools/sublime/">Sublime Text的配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/PHP/cURL/">在PHP中使用cURL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/17/Linux/Linux服务器/">linux服务器的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/12/Linux/Terminator/">Kali Terminator多窗口终端的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/11/Mac/Mnmp/">Mac Yosemite 安装Lnmp环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Linux/Aircrack/">Aircrack-ng hack wireless network</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/Linux/KaliConfig/">How to config your Kali Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Mac/Mamp/">Mac Yosemite Lamp环境安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/Mac/mac工具/">Mac必备工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/Tools/git分支管理/">Git分支管理策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/Tools/git命令/">Git命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/20/PHP/PHP+Mysql分页原理/">PHP+Mysql分页原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/PHP/PHP上传原理/">PHP上传原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/10/PHP/PHP随笔记/">PHP随笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/15/Life/博客/">为什么要写博客？</a></li></ul>
 
 
 
