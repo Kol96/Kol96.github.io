@@ -4,6 +4,36 @@
   
     
     <entry>
+      <title><![CDATA[JavaScript学习之内存]]></title>
+      <url>/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%85%E5%AD%98/</url>
+      <content type="html"><![CDATA[<p>初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。<br><a id="more"></a></p>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>JavaScript中的基本类型有五种:<code>Undefined</code>,<code>Null</code>,<code>Number</code>,<code>String</code>,<code>Boolean</code>。它们是按值访问，可以操作保存在变量中实际的值。这些基本类型是存放在变量对象中的，而变量对象也是存放在堆内存中。只是由于变量对象的特殊性，我们在理解时才把变量对象与堆内存区分开来。<br>下面我们用代码与图更好的理解这个过程  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var a</span> = <span class="string">"5"</span>;</div><div class="line"><span class="attribute">var b</span> = a;</div><div class="line"><span class="attribute">a</span> = 10;</div></pre></td></tr></table></figure>
+<p>基本类型进行赋值操作时，会为新的变量分配一个值，这两个变量相互独立，互不影响。即使改变了a的值，b的值也不会变。<br><img src="/images/JS基本类型操作.png" alt="JS基本类型">  </p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用数据类型的值是保存在堆内存中的对象。在操作对象时，实际上是在操作对象的引用而不是实际的对象。因此，引用类型的值都是按引用访问的。这里的引用，我们可以粗浅地理解为保存在变量对象中的一个地址，该地址与堆内存的实际值相关联。  </p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: <span class="string">"Kol"</span>&#125;<span class="comment">;</span></div><div class="line">var <span class="keyword">b </span>= a<span class="comment">;</span></div><div class="line"><span class="keyword">b.name </span>= <span class="string">"Kylen"</span><span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>引用类型的复制同样也会为新的变量自动分配一个新的值保存在变量对象中，但不同的是，这个新的值，仅仅只是引用类型的一个地址指针。当地址指针相同时，尽管他们相互独立，但是在变量对象中访问到的具体对象实际上是同一个。<br><img src="/images/JS引用类型操作.png" alt="JS引用类型">  </p>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript的垃圾收集有两种:标记清除、引用计数。<br>在局部作用域中，当函数执行结束，离开作用域的值就会被标记为可回收，在垃圾收集期间就会被删除。但是全局变量和全局对象的属性需要我们手动将其值设置为null来释放其引用（解除引用）  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var globalObject</span> = &#123;name: <span class="string">"Kyeln"</span>&#125;;</div><div class="line"></div><div class="line"><span class="attribute">globalObject</span> = null;</div></pre></td></tr></table></figure>
+<p>但解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。  </p>
+]]></content>
+      
+        <categories>
+            
+            <category> Front End </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaScript学习之函数及变量hoist]]></title>
       <url>/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bhoist/</url>
       <content type="html"><![CDATA[<p>JavaScript能够在变量和函数被声明之前使用它们。<br><a id="more"></a>  </p>
@@ -14,7 +44,7 @@
 <h2 id="二、函数声明“被提前”"><a href="#二、函数声明“被提前”" class="headerlink" title="二、函数声明“被提前”"></a>二、函数声明“被提前”</h2><p>函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，但对于函数表达式，则必须等到解析器执行到它所在的代码行，才会被解释执行。  </p>
 <figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span>(<span class="number">1</span>, <span class="number">1</span>); <span class="comment">//2</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span> &#123;</span></div><div class="line">    console.<span class="built_in">log</span>(num1 + num2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>函数声明并不仅仅是函数名“被提前”了，整个函数的定义也“被提前”了。  </p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span>(<span class="number">1</span>, <span class="number">1</span>); //Uncaught TypeError: <span class="built_in">sum</span> is not a <span class="function"><span class="keyword">function</span></span></div><div class="line"></div><div class="line">var <span class="built_in">sum</span> = <span class="function"><span class="keyword">function</span></span> <span class="built_in">sum</span>(num1, num2) &#123;</div><div class="line">    console.<span class="built_in">log</span>(num1 + num2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span>(<span class="number">1</span>, <span class="number">1</span>); //Uncaught TypeError: <span class="built_in">sum</span> is not a <span class="function"><span class="keyword">function</span></span></div><div class="line"></div><div class="line">var <span class="built_in">sum</span> = <span class="function"><span class="keyword">function</span><span class="params">(num1, num2)</span></span> &#123;</div><div class="line">    console.<span class="built_in">log</span>(num1 + num2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>函数表达式单单变量被提前了，它的赋值（函数）却没有提前。  </p>
 <h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>1、变量的声明被提前到作用域顶部，赋值保留在原地<br>2、函数声明整个“被提前”<br>3、函数作为值赋给变量时只有变量“被提前”了，函数没有“被提前”  </p>
 ]]></content>
@@ -195,6 +225,30 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Mac上用Navicat连接Oracle]]></title>
+      <url>/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/</url>
+      <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+      
+        <categories>
+            
+            <category> database </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Oracle </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[How to install Hexo on Mac]]></title>
       <url>/2017/03/10/Mac/Hexo/</url>
       <content type="html"><![CDATA[<p>This is a brand new Hexo built in Mac OS X 10.10.<br>Get Started.  </p>
@@ -241,30 +295,6 @@
             <tag> Github </tag>
             
             <tag> Nodejs </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Mac上用Navicat连接Oracle]]></title>
-      <url>/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/</url>
-      <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-      
-        <categories>
-            
-            <category> database </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Oracle </tag>
             
         </tags>
         
@@ -882,9 +912,9 @@
             
             <tag> Mac </tag>
             
-            <tag> Apache </tag>
-            
             <tag> Mysql </tag>
+            
+            <tag> Apache </tag>
             
         </tags>
         

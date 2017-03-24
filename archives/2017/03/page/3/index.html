@@ -15,16 +15,15 @@
 
 
 
-<meta name="description" content="JavaScript能够在变量和函数被声明之前使用它们。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript学习之函数及变量hoist">
-<meta property="og:url" content="/2017/03/24/Front End/JS学习之hoist/index.html">
+<meta name="description" content="You can never be happy if you&apos;re trapped in the past and fearful of the future.Living in the present is the only way to be happy.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kylen's Blog">
+<meta property="og:url" content="/archives/2017/03/page/3/index.html">
 <meta property="og:site_name" content="Kylen's Blog">
-<meta property="og:description" content="JavaScript能够在变量和函数被声明之前使用它们。">
-<meta property="og:updated_time" content="2017-03-24T08:18:57.000Z">
+<meta property="og:description" content="You can never be happy if you&apos;re trapped in the past and fearful of the future.Living in the present is the only way to be happy.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript学习之函数及变量hoist">
-<meta name="twitter:description" content="JavaScript能够在变量和函数被声明之前使用它们。">
+<meta name="twitter:title" content="Kylen's Blog">
+<meta name="twitter:description" content="You can never be happy if you&apos;re trapped in the past and fearful of the future.Living in the present is the only way to be happy.">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,7 +53,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>JavaScript学习之函数及变量hoist | Kylen&#39;s Blog</title>
+<title>Archives: 2017/3 | Kylen&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -64,8 +63,8 @@
         fancybox: false,
         animate: true,
         isHome: false,
-        isPost: true,
-        isArchive: false,
+        isPost: false,
+        isArchive: true,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -267,166 +266,64 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-Front End/JS学习之hoist" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2017/03/24/Front End/JS学习之hoist/" class="article-date">
-      <time datetime="2017-03-23T16:00:00.000Z" itemprop="datePublished">2017-03-24</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2017/03/09/Tools/Emmet/" class="archive-article-date">
+      <time datetime="2017-03-08T16:00:00.000Z" itemprop="datePublished">03-09</time>
 </a>
 
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      JavaScript学习之函数及变量hoist
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/03/09/Tools/Emmet/">Emmet</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Front-End/">Front End</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+        <div class="article-info info-on-archive">
           
-        <p>JavaScript能够在变量和函数被声明之前使用它们。<br><a id="more"></a>  </p>
-<h2 id="一、变量声明“被提前”"><a href="#一、变量声明“被提前”" class="headerlink" title="一、变量声明“被提前”"></a>一、变量声明“被提前”</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//undefined</span></div><div class="line"><span class="keyword">var</span> a = <span class="string">"test"</span>;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//test</span></div></pre></td></tr></table></figure>
-<p>1、解析器将当前作用域内声明的所有变量和函数都会放到作用域的开始处，但是，只有变量的声明被提前到作用域的开始处了，而赋值操作被保留在原处。<br>2、根据 JavaScript 语法的定义，已声明而未被赋值的变量会被自动赋值为 <code>undefined</code> 。所以第一次打印<code>a</code>时，值就为<code>undefined</code>。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.name = <span class="string">"window"</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(name); <span class="comment">//undefined</span></div><div class="line">    <span class="keyword">var</span> name = <span class="string">"inner"</span>;</div><div class="line">    <span class="built_in">console</span>.log(name); <span class="comment">//inner</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
-<p>由于局部变量的<code>name</code>被提前，导致无法在第一次打印时获取全局变量的<code>name</code>。  </p>
-<h2 id="二、函数声明“被提前”"><a href="#二、函数声明“被提前”" class="headerlink" title="二、函数声明“被提前”"></a>二、函数声明“被提前”</h2><p>函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，但对于函数表达式，则必须等到解析器执行到它所在的代码行，才会被解释执行。  </p>
-<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span>(<span class="number">1</span>, <span class="number">1</span>); <span class="comment">//2</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span> &#123;</span></div><div class="line">    console.<span class="built_in">log</span>(num1 + num2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>函数声明并不仅仅是函数名“被提前”了，整个函数的定义也“被提前”了。  </p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span>(<span class="number">1</span>, <span class="number">1</span>); //Uncaught TypeError: <span class="built_in">sum</span> is not a <span class="function"><span class="keyword">function</span></span></div><div class="line"></div><div class="line">var <span class="built_in">sum</span> = <span class="function"><span class="keyword">function</span><span class="params">(num1, num2)</span></span> &#123;</div><div class="line">    console.<span class="built_in">log</span>(num1 + num2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>函数表达式单单变量被提前了，它的赋值（函数）却没有提前。  </p>
-<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>1、变量的声明被提前到作用域顶部，赋值保留在原地<br>2、函数声明整个“被提前”<br>3、函数作为值赋给变量时只有变量“被提前”了，函数没有“被提前”  </p>
-
-      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Tools/">Tools</a>
     </div>
-    
+
+
+          
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Emmet/">Emmet</a></li></ul>
+    </div>
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
-  
-    
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/03/24/Front End/JS学习之内存/">
-                    JavaScript学习之内存
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/03/23/Front End/JS学习之thiis/">
-                    JavaScript学习之this
-                </a>
-            </div>
-        
-    </nav>
-
-  
 </article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、变量声明“被提前”"><span class="toc-number">1.</span> <span class="toc-text">一、变量声明“被提前”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、函数声明“被提前”"><span class="toc-number">2.</span> <span class="toc-text">二、函数声明“被提前”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、总结"><span class="toc-number">3.</span> <span class="toc-text">三、总结</span></a></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
-
-    <script>
-        yiliaConfig.toc = ["Hide", "Show", !!"false"];
-    </script>
-
-
-
-
+  
+  
+    </div></section>
+  
 
     
-        <section id="comments">
-    <style> aside.comment-bar { margin: auto 30px; }</style>
-    <div id="disqus_thread"></div>
-    <script>
-        var disqus_config = function(){
-            this.page.url = '/2017/03/24/Front End/JS学习之hoist/';
-            this.page.identifier = '2017/03/24/Front End/JS学习之hoist/';
-        };
-        var loadComment = function(){
-            var d = document, s = d.createElement('script');
-            s.src = '//kol96.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        }
-    </script>
-    
-    <script> loadComment(); </script>
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2017/03/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2017/03/">1</a><a class="page-number" href="/archives/2017/03/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+  
 
-</section>
-
-
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2017/03/24/Front End/JS学习之内存/" title="Pre: JavaScript学习之内存">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2017/03/23/Front End/JS学习之thiis/" title="Next: JavaScript学习之this">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之内存/">JavaScript学习之内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之hoist/">JavaScript学习之函数及变量hoist</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/23/Front End/JS学习之thiis/">JavaScript学习之this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/Front End/jQuery样式/">jQuery样式篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/Tools/自动化构建工具/">自动化构建工具以及打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/清除浮动/">清除浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/BFC/">理解BFC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Database/navicat连接oracle/">Mac上用Navicat连接Oracle</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Mac/Hexo/">How to install Hexo on Mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Front End/像素/">px,em,rem详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/Tools/Emmet/">Emmet</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/05/Linux/java和php共用/">Java、PHP共用端口使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Database/oracle11g silent install/">Centos6.5 x86_64下 静默安装Oracle 11g R2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/Linux/阿里云/">阿里云服务器下的Linux配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Database/oracle语法/">Oracle数据库的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Database/oracle安装/">Mac下的Oracle数据库的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/Tools/sublime/">Sublime Text的配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/PHP/cURL/">在PHP中使用cURL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/17/Linux/Linux服务器/">linux服务器的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/12/Linux/Terminator/">Kali Terminator多窗口终端的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/11/Mac/Mnmp/">Mac Yosemite 安装Lnmp环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Linux/Aircrack/">Aircrack-ng hack wireless network</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/Linux/KaliConfig/">How to config your Kali Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Mac/Mamp/">Mac Yosemite Lamp环境安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/Mac/mac工具/">Mac必备工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/Tools/git分支管理/">Git分支管理策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/Tools/git命令/">Git命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/20/PHP/PHP+Mysql分页原理/">PHP+Mysql分页原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/PHP/PHP上传原理/">PHP上传原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/10/PHP/PHP随笔记/">PHP随笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/15/Life/博客/">为什么要写博客？</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
 </div>
       <footer id="footer">
     <div class="outer">
