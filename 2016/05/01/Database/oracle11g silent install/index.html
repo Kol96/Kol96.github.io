@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Kylen" />
+
+
+
+<meta name="description" content="在linux下安装Oracle需要符合硬件和软件条件，蛮折腾的，我用的是阿里云的服务器，oneinstack一键安装包。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos6.5 x86_64下 静默安装Oracle 11g R2">
+<meta property="og:url" content="/2016/05/01/Database/oracle11g silent install/index.html">
+<meta property="og:site_name" content="Kylen's Blog">
+<meta property="og:description" content="在linux下安装Oracle需要符合硬件和软件条件，蛮折腾的，我用的是阿里云的服务器，oneinstack一键安装包。">
+<meta property="og:updated_time" content="2017-03-24T07:15:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos6.5 x86_64下 静默安装Oracle 11g R2">
+<meta name="twitter:description" content="在linux下安装Oracle需要符合硬件和软件条件，蛮折腾的，我用的是阿里云的服务器，oneinstack一键安装包。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Kylen&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img//favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Centos6.5 x86_64下 静默安装Oracle 11g R2 | Kylen&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: false,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/profile.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kylen</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:857137918@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/Kol96" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Aircrack-ng/">Aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFC/">BFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emmet/">Emmet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp/">Gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew/">Homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sql/">Sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text/">Sublime Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Terminal/">Terminal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/">Zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cURL/">cURL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/float/">float</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm2/">iTerm2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reaver/">reaver</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.zhangxinxu.com/wordpress/">ZXX</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">死磕前端ing</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kylen</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/profile.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kylen</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:857137918@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Kol96" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Database/oracle11g silent install" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/01/Database/oracle11g silent install/" class="article-date">
+      <time datetime="2016-04-30T16:00:00.000Z" itemprop="datePublished">2016-05-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Centos6.5 x86_64下 静默安装Oracle 11g R2
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/database/">database</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>在linux下安装Oracle需要符合硬件和软件条件，蛮折腾的，我用的是阿里云的服务器，oneinstack一键安装包。<br><a id="more"></a></p>
+<p>安装文档<a href="http://docs.oracle.com/cd/E11882_01/install.112/e24326/toc.htm" target="_blank" rel="external">http://docs.oracle.com/cd/E11882_01/install.112/e24326/toc.htm</a><br>错误文档<a href="http://docs.oracle.com/cd/E11882_01/server.112/e17766/toc.htm#BEGIN" target="_blank" rel="external">http://docs.oracle.com/cd/E11882_01/server.112/e17766/toc.htm#BEGIN</a></p>
+<h2 id="一、使用oracle硬件要求"><a href="#一、使用oracle硬件要求" class="headerlink" title="一、使用oracle硬件要求"></a>一、使用oracle硬件要求</h2><p>1、内存要求<br>最小内存1G，推荐2G或2G以上<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">free</span> -m  <span class="comment">#查看内存和swap空间  </span></div></pre></td></tr></table></figure></p>
+<p>2、swap大小设定<br>1GB跟2GB物理内存之间的，设定swap大小为物理内存的1.5倍<br>2GB跟16GB物理内存之间的，设置swap大小与物理内存相等<br>16GB物理内存以上的，设置swap大小为16GB  </p>
+<p>增加swap空间的方法<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">①dd <span class="keyword">if</span>=<span class="regexp">/dev/</span>zero of=<span class="regexp">/mnt/</span>swap bs=<span class="number">1</span>M <span class="keyword">count</span>=<span class="number">2048</span>  </div><div class="line">②mkswap <span class="regexp">/mnt/</span>swap  </div><div class="line">③swapon <span class="regexp">/mnt/</span>swap  </div><div class="line">④如果在<span class="regexp">/etc/</span>rc.local中有swapoff -a 需要修改为swapon -a   </div><div class="line">⑤需要修改文件<span class="regexp">/etc/</span>fstab中的swap行。  </div><div class="line">  添加 <span class="regexp">/mnt/</span>swap swap swap defaults <span class="number">0</span> <span class="number">0</span>  </div></pre></td></tr></table></figure></p>
+<p>3、共享内存/dev/shm要求<br>至少比在每个oracle实例中的MEMORY_MAX_TARGET和MEMORY_TARGET要大。  </p>
+<p>4、/tmp空间大小要求<br>至少1GB空间  </p>
+<p>5、硬盘大小要求<br>存放oracle软件文件和数据文件的空间至少6GB<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">df -hT</span></div></pre></td></tr></table></figure></p>
+<p>备注:<br>保证selinux关闭<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">su - root</div><div class="line">setenforce <span class="number">0</span> 不需要重启</div><div class="line">修改/etc/selinux/<span class="built_in">config</span>文件中的SELINUX=<span class="string">""</span> 为 disabled ，需要重启</div></pre></td></tr></table></figure></p>
+<p>所需端口打开 1521<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#iptables</span> -I INPUT <span class="number">4</span> -<span class="selector-tag">p</span> tcp -m state --state NEW -m tcp --dport <span class="number">1521</span> -j ACCEPT #允许 <span class="number">1521</span> 端口</div><div class="line"><span class="selector-id">#service</span> iptables save #保存 iptables 规则</div></pre></td></tr></table></figure></p>
+<h2 id="二、安装依赖包"><a href="#二、安装依赖包" class="headerlink" title="二、安装依赖包"></a>二、安装依赖包</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum update</div><div class="line">yum -y install binutils compat-libstdc++-<span class="number">33</span> compat-libstdc++-<span class="number">33</span><span class="selector-class">.i686</span> elfutils-libelf elfutils-libelf-devel gcc gcc-c++ glibc glibc<span class="selector-class">.i686</span> glibc-common glibc-devel glibc-devel<span class="selector-class">.i686</span> glibc-headers ksh libaio libaio<span class="selector-class">.i686</span> libaio-devel libaio-devel<span class="selector-class">.i686</span> libgcc   libgcc<span class="selector-class">.i686</span> libstdc++ libstdc++<span class="selector-class">.i686</span> libstdc++-devel make sysstat unixODBC unixODBC-devel wget unzip</div><div class="line">yum clean all</div></pre></td></tr></table></figure>
+<h2 id="三、修改hostname"><a href="#三、修改hostname" class="headerlink" title="三、修改hostname"></a>三、修改hostname</h2><p>两个文件里的hostname要保持一致<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim <span class="meta-keyword">/etc/</span>sysconfig/network</div><div class="line">vim <span class="meta-keyword">/etc/</span>hosts</div><div class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> localhost  </div><div class="line"> <span class="meta"># ::1  localhost localhost.localdomain localhost6 localhost6.localdomain6  </span></div><div class="line">IP Kevin  </div></pre></td></tr></table></figure></p>
+<h2 id="四、创建所需的操作系统组和用户"><a href="#四、创建所需的操作系统组和用户" class="headerlink" title="四、创建所需的操作系统组和用户"></a>四、创建所需的操作系统组和用户</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">groupadd oinstall</div><div class="line">groupadd dba</div><div class="line">useradd -g oinstall -G dba <span class="keyword">oracle</span></div><div class="line">设置<span class="keyword">oracle用户密码</span></div><div class="line">passwd <span class="keyword">oracle </span>(建议使用<span class="keyword">oracle)</span></div></pre></td></tr></table></figure>
+<h2 id="五、修改内核参数"><a href="#五、修改内核参数" class="headerlink" title="五、修改内核参数"></a>五、修改内核参数</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysctl<span class="selector-class">.conf</span></div><div class="line"></div><div class="line">fs<span class="selector-class">.aio-max-nr</span> = <span class="number">1048576</span></div><div class="line">fs<span class="selector-class">.file-max</span> = <span class="number">6815744</span></div><div class="line">kernel<span class="selector-class">.shmall</span> = <span class="number">2097152</span></div><div class="line">kernel<span class="selector-class">.shmmax</span> = <span class="number">536870912</span></div><div class="line">kernel<span class="selector-class">.shmmni</span> = <span class="number">4096</span></div><div class="line">kernel<span class="selector-class">.sem</span> = <span class="number">250</span> <span class="number">32000</span> <span class="number">100</span> <span class="number">128</span></div><div class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.ip_local_port_range</span> = <span class="number">9000</span> <span class="number">65500</span></div><div class="line">net<span class="selector-class">.core</span><span class="selector-class">.rmem_default</span> = <span class="number">262144</span></div><div class="line">net<span class="selector-class">.core</span><span class="selector-class">.rmem_max</span> = <span class="number">4194304</span></div><div class="line">net<span class="selector-class">.core</span><span class="selector-class">.wmem_default</span> = <span class="number">262144</span></div><div class="line">net<span class="selector-class">.core</span><span class="selector-class">.wmem_max</span> = <span class="number">1048576</span></div><div class="line"></div><div class="line">/sbin/sysctl -<span class="selector-tag">p</span> </div></pre></td></tr></table></figure>
+<h2 id="六、修改用户限制"><a href="#六、修改用户限制" class="headerlink" title="六、修改用户限制"></a>六、修改用户限制</h2><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">vi /etc/security/limits.conf</div><div class="line"></div><div class="line">oracle soft nproc <span class="number">2047</span></div><div class="line">oracle hard nproc <span class="number">16384</span></div><div class="line">oracle soft nofile <span class="number">1024</span></div><div class="line">oracle hard nofile <span class="number">65536</span></div><div class="line">oracle soft stack  <span class="number">10240</span></div><div class="line"></div><div class="line">vi /etc/pam.d/login</div><div class="line"></div><div class="line">session required /<span class="class"><span class="keyword">lib</span>/<span class="title">security</span>/<span class="title">pam_limits</span>.<span class="title">so</span></span></div><div class="line">session required pam_limits.so</div><div class="line"></div><div class="line">vi /etc/profile</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ $USER = <span class="string">"oracle"</span> ]; <span class="keyword">then</span></div><div class="line"><span class="keyword">if</span> [ $SHELL = <span class="string">"/bin/ksh"</span> ]; <span class="keyword">then</span></div><div class="line">ulimit -p <span class="number">16384</span></div><div class="line">ulimit -n <span class="number">65536</span></div><div class="line"><span class="keyword">else</span></div><div class="line">ulimit -u <span class="number">16384</span> -n <span class="number">65536</span></div><div class="line">fi</div><div class="line">fi</div><div class="line"></div><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
+<h2 id="七、创建安装目录"><a href="#七、创建安装目录" class="headerlink" title="七、创建安装目录"></a>七、创建安装目录</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="title">mkdir</span> -p /<span class="class"><span class="keyword">data</span>/app/oracle/</span></div><div class="line"><span class="title">chown</span> -<span class="type">R</span> oracle:oinstall /<span class="class"><span class="keyword">data</span>/app/</span></div><div class="line"><span class="title">chmod</span> -<span class="type">R</span> <span class="number">775</span> /<span class="class"><span class="keyword">data</span>/app/</span></div></pre></td></tr></table></figure>
+<h2 id="八、创建-etc-oraInst-loc文件"><a href="#八、创建-etc-oraInst-loc文件" class="headerlink" title="八、创建/etc/oraInst.loc文件"></a>八、创建/etc/oraInst.loc文件</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">inventory_loc=<span class="regexp">/data/</span>app<span class="regexp">/oracle/</span>oraInventory</div><div class="line">inst_group=oinstall</div><div class="line">更改文件的权限</div><div class="line">chown <span class="string">oracle:</span>oinstall <span class="regexp">/etc/</span>oraInst.loc</div><div class="line">chmod <span class="number">664</span> <span class="regexp">/etc/</span>oraInst.loc</div></pre></td></tr></table></figure>
+<h2 id="九、设置oracle环境变量"><a href="#九、设置oracle环境变量" class="headerlink" title="九、设置oracle环境变量"></a>九、设置oracle环境变量</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">su - oracle </div><div class="line">vi ~/<span class="selector-class">.bash_profile</span></div><div class="line">export ORACLE_BASE=/data/app/oracle</div><div class="line">export ORACLE_SID=orcl</div><div class="line">source ~/<span class="selector-class">.bash_profile</span></div><div class="line">检查环境变量：</div><div class="line">env</div></pre></td></tr></table></figure>
+<h2 id="十、解压oracle安装文件"><a href="#十、解压oracle安装文件" class="headerlink" title="十、解压oracle安装文件"></a>十、解压oracle安装文件</h2><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">wget </span><span class="built_in">--background</span> <span class="built_in">--output-document=linux.x64_11gR2_database_2of2.zip</span> <span class="string">"http://download.oracle.com/otn/linux/oracle11g/R2/linux.x64_11gR2_database_2of2.zip?AuthParam=登陆官网下载时会给一个值"</span></div></pre></td></tr></table></figure>
+<p>unzip linux.x64_11gR2_database_1of2.zip<br>unzip linux.x64_11gR2_database_2of2.zip<br>解压后为一个database文件夹<br>设置权限为oracle oinstall</p>
+<h2 id="十、复制响应文件模板"><a href="#十、复制响应文件模板" class="headerlink" title="十、复制响应文件模板"></a>十、复制响应文件模板</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cp database<span class="regexp">/response/</span>* <span class="regexp">/data/</span>app<span class="regexp">/etc/</span></div><div class="line">设置响应文件权限 oracle.oinstall</div><div class="line">su - root</div><div class="line">chmod <span class="number">700</span> <span class="regexp">/data/</span>app<span class="regexp">/etc/</span>*.rsp</div></pre></td></tr></table></figure>
+<h2 id="十一、静默安装Oracle软件"><a href="#十一、静默安装Oracle软件" class="headerlink" title="十一、静默安装Oracle软件"></a>十一、静默安装Oracle软件</h2><p>su - oracle<br>修改安装Oracle软件的响应文件/data/app/etc/db_install.rsp<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">oracle<span class="selector-class">.install</span><span class="selector-class">.option</span>=INSTALL_DB_SWONLY <span class="comment">//29 行 安装类型  </span></div><div class="line">ORACLE_HOSTNAME=Kevin <span class="comment">//37 行 主机名称(自己对应的主机名称,可利用hostname查看)  </span></div><div class="line">UNIX_GROUP_NAME=oinstall <span class="comment">//42 行 安装组  </span></div><div class="line">INVENTORY_LOCATION=/data/app/oracle/oraInventory <span class="comment">//47 行 INVENTORY目录 必须在ORACLE_BASE路径以外  </span></div><div class="line">SELECTED_LANGUAGES=en,zh_CN <span class="comment">//78 行 选择语言  </span></div><div class="line">ORACLE_HOME=/data/app/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/dbhome_1 <span class="comment">//83 行 oracle_home  </span></div><div class="line">ORACLE_BASE=/data/app/oracle <span class="comment">//88 行 oracle_base  </span></div><div class="line">oracle<span class="selector-class">.install</span><span class="selector-class">.db</span><span class="selector-class">.InstallEdition</span>=EE <span class="comment">//99 行 oracle版本  </span></div><div class="line">oracle<span class="selector-class">.install</span><span class="selector-class">.db</span><span class="selector-class">.isCustomInstall</span>=false <span class="comment">//108行 自定义安装  </span></div><div class="line">oracle<span class="selector-class">.install</span><span class="selector-class">.db</span><span class="selector-class">.DBA_GROUP</span>=dba <span class="comment">//142行 dba用户组  </span></div><div class="line">oracle<span class="selector-class">.install</span><span class="selector-class">.db</span><span class="selector-class">.OPER_GROUP</span>=dba <span class="comment">//147行 oper用户组  </span></div><div class="line">DECLINE_SECURITY_UPDATES=true<span class="comment">//385行 设置安全更新  </span></div></pre></td></tr></table></figure></p>
+<p>进行静默安装Oracle软件<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.<span class="regexp">/runInstaller -silent -noconfig -responseFile /</span>data<span class="regexp">/app/</span>oracle<span class="regexp">/etc/</span>db_install.rsp</div></pre></td></tr></table></figure></p>
+<p>出现warning 可以忽略<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">du -sh <span class="regexp">/data/</span>app<span class="regexp">/oracle/</span>product<span class="regexp">/11.2.0 查看安装进度</span></div></pre></td></tr></table></figure><br>出现类似如下提示表示安装完成：</p>
+<p>#—————————————————–<br>…<br>/data/app/oracle/product/11.2.0/dbhome_1/root.sh<br>To execute the configuration scripts:</p>
+<ol>
+<li>Open a terminal window </li>
+<li>Log in as “root” </li>
+<li>Run the scripts </li>
+<li>Return to this window and hit “Enter” key to continue</li>
+</ol>
+<p>Successfully Setup Software.</p>
+<p>#—————————————————–</p>
+<p>使用root用户执行root.sh<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">su root</div><div class="line">.<span class="regexp">/data/</span>app<span class="regexp">/oracle/</span>product<span class="regexp">/11.2.0/</span>dbhome_1<span class="regexp">/root.sh</span></div></pre></td></tr></table></figure></p>
+<p>增加oracle环境变量<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">su - oracle</div><div class="line"> </div><div class="line">vi ~<span class="regexp">/.bash_profile</span></div><div class="line">export ORACLE_HOME=$ORACLE_BASE/product<span class="regexp">/11.2.0/dbhome</span>_1</div><div class="line">export TNS_ADMIN=$ORACLE_HOME/network/admin</div><div class="line">export PATH=.:$&#123;PATH&#125;:$HOME/<span class="symbol">bin:</span>$ORACLE_HOME/bin</div><div class="line">export PATH=$&#123;PATH&#125;:<span class="regexp">/usr/bin</span>:<span class="regexp">/bin:/usr</span><span class="regexp">/bin/</span><span class="symbol">X11:</span>/usr/local/bin</div><div class="line">export LD_LIBRARY_PATH=$&#123;LD_LIBRARY_PATH&#125;:$ORACLE_HOME/<span class="class"><span class="keyword">lib</span></span></div><div class="line">export LD_LIBRARY_PATH=$&#123;LD_LIBRARY_PATH&#125;:$ORACLE_HOME/oracm/<span class="class"><span class="keyword">lib</span></span></div><div class="line">export LD_LIBRARY_PATH=$&#123;LD_LIBRARY_PATH&#125;:<span class="regexp">/lib:/usr</span><span class="regexp">/lib:/usr</span><span class="regexp">/local/lib</span></div><div class="line">export CLASSPATH=$&#123;CLASSPATH&#125;:$ORACLE_HOME/JRE</div><div class="line">export CLASSPATH=$&#123;CLASSPATH&#125;:$ORACLE_HOME/JRE/<span class="class"><span class="keyword">lib</span></span></div><div class="line">export CLASSPATH=$&#123;CLASSPATH&#125;:$ORACLE_HOME/jlib</div><div class="line">export CLASSPATH=$&#123;CLASSPATH&#125;:$ORACLE_HOME/rdbms/jlib</div><div class="line">export CLASSPATH=$&#123;CLASSPATH&#125;:$ORACLE_HOME/network/jlib</div><div class="line">export LIBPATH=$&#123;CLASSPATH&#125;:$ORACLE_HOME/<span class="class"><span class="keyword">lib</span>:$<span class="title">ORACLE_HOME</span>/<span class="title">ctx</span>/<span class="title">lib</span></span></div><div class="line">export ORACLE_OWNER=oracle</div><div class="line">export SPFILE_PATH=$ORACLE_HOME/dbs</div><div class="line">export ORA_NLS10=$ORACLE_HOME/nls/data</div><div class="line">export DISPLAY=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">0.0</span></div><div class="line"></div><div class="line">使设置生效</div><div class="line"> </div><div class="line">source ~<span class="regexp">/.bash_profile</span></div></pre></td></tr></table></figure></p>
+<h2 id="十二、静默配置网络"><a href="#十二、静默配置网络" class="headerlink" title="十二、静默配置网络"></a>十二、静默配置网络</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">su oracle</div><div class="line"><span class="variable">$ORACLE_HOME</span><span class="regexp">/bin/</span>netca <span class="regexp">/silent /</span>responseFile <span class="regexp">/data/</span>app<span class="regexp">/etc/</span>netca.rsp</div></pre></td></tr></table></figure>
+<p>启动服务<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsnrctl <span class="literal">start</span></div></pre></td></tr></table></figure><br>查看状态<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">lsnrctl status</span></div></pre></td></tr></table></figure><br>查看监听端口<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">netstat -naptlu | <span class="keyword">grep</span> <span class="number">1521</span></div><div class="line">(Not <span class="keyword">all</span> processes could <span class="keyword">be</span> identified, non-owned processinfo</div><div class="line"> will not <span class="keyword">be</span> shown,you would have <span class="keyword">to</span> <span class="keyword">be</span> root <span class="keyword">to</span> see it <span class="keyword">all</span>.)</div><div class="line">tcp        <span class="number">0</span>      <span class="number">0</span> :::<span class="number">1521</span>                     :::*                        LISTEN      <span class="number">4898</span>/tnslsnr</div></pre></td></tr></table></figure><br>执行完后, 监听就已经启动了, 默认端口是1521, 默认是动态监听, 只要实例启动了就会监听到.</p>
+<h2 id="十三、静默安装数据库"><a href="#十三、静默安装数据库" class="headerlink" title="十三、静默安装数据库"></a>十三、静默安装数据库</h2><p>修改仅安装数据库的响应文件/data/oracle/etc/dbca.rsp<br><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">GDBNAME=<span class="string">"orcl.Kevin"</span> <span class="comment">//78 行 全局数据库的名字=SID+主机域名</span></div><div class="line">SID=<span class="string">"orcl"</span> <span class="comment">//149行 SID</span></div><div class="line">CHARACTERSET=<span class="string">"AL32UTF8"</span> <span class="comment">//415行 数据库字符集编码</span></div><div class="line">NATIONALCHARACTERSET=<span class="string">"UTF8"</span> <span class="comment">//425行 编码</span></div><div class="line">SYSPASSWORD=<span class="string">"sys"</span><span class="comment">//190行 密码可自己设置</span></div><div class="line">SYSTEMPASSWORD=<span class="string">"system"</span><span class="comment">//200行 密码可自己设置</span></div><div class="line"></div><div class="line">$ORACLE_HOME/bin/dbca -silent -responseFile /data/app/etc/dbca.rsp</div><div class="line"></div><div class="line">建库后监听检查</div><div class="line">lsnrctl status</div></pre></td></tr></table></figure></p>
+<h2 id="十四、修改oracle启动配置文件"><a href="#十四、修改oracle启动配置文件" class="headerlink" title="十四、修改oracle启动配置文件"></a>十四、修改oracle启动配置文件</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">su - oracle</div><div class="line">vi <span class="regexp">/etc/</span>oratab</div><div class="line"> </div><div class="line">orcl:<span class="regexp">/data/</span>app<span class="regexp">/oracle/</span>product<span class="regexp">/11.2.0/</span>dbhome_1:Y <span class="regexp">//</span>把“N”改成“Y”</div><div class="line"> </div><div class="line">dbstart <span class="variable">$ORACLE_HOME</span> <span class="regexp">//</span>启动此实例，监听器</div><div class="line"> </div><div class="line">dbshut <span class="variable">$ORACLE_HOME</span>  <span class="regexp">//</span>启动此实例，监听器</div></pre></td></tr></table></figure>
+<h2 id="十五、登陆sqlplus"><a href="#十五、登陆sqlplus" class="headerlink" title="十五、登陆sqlplus"></a>十五、登陆sqlplus</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sqlplus</div><div class="line">sys as sysdba</div><div class="line">password</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> dba_users //测试</div><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> scott <span class="keyword">account</span> <span class="keyword">unlock</span>;</div><div class="line">conn scott/password</div></pre></td></tr></table></figure>
+<h2 id="十六、配置监听"><a href="#十六、配置监听" class="headerlink" title="十六、配置监听"></a>十六、配置监听</h2><p>需要远程访问<br>oracle账户下，修改监听文件 /data/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora<br>HOST=”IP” //第8行，HOST默认是主机名，改为本机的ip地址<br>然后增加以下内容：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">SID_LIST_LISTENER =</div><div class="line">          (<span class="name">SID_LIST</span> =</div><div class="line">          (<span class="name">SID_DESC</span> =</div><div class="line">            (<span class="name">SID_NAME</span> = orcl)</div><div class="line">            (<span class="name">ORACLE_HOME</span> = /data/app/oracle/product/11.<span class="number">2.0</span>/dbhome_1)</div><div class="line">            (<span class="name">PROGRAM</span> = extproc)</div><div class="line">          )</div><div class="line">          (<span class="name">SID_DESC</span> =</div><div class="line">            (<span class="name">GLOBAL_DBANAME</span> = orcl)</div><div class="line">            (<span class="name">ORACLE_HOME</span> = /data/app/oracle/product/11.<span class="number">2.0</span>/dbhome_1)</div><div class="line">            (<span class="name">SID_NAME</span> = orcl)</div><div class="line">          )</div><div class="line">        )</div></pre></td></tr></table></figure></p>
+<p>oracle账户下，继续修改文件/data/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora<br>HOST=”你的IP” // 第六行，同上将HOST主机名该为本机的IP地址<br>具体查看listener.ora和tnsnames.ora两个文件。</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lsnrctl <span class="literal">stop</span></div><div class="line">lsnrctl <span class="literal">start</span></div></pre></td></tr></table></figure>
+<h2 id="十七、字符集的统一"><a href="#十七、字符集的统一" class="headerlink" title="十七、字符集的统一"></a>十七、字符集的统一</h2><p>涉及三方面的字符集，</p>
+<ol>
+<li>oracel server端的字符集;</li>
+<li>oracle client端的字符集;</li>
+<li>dmp文件的字符集。<br>在做数据导入的时候，需要这三个字符集都一致才能正确导入。<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">oracle下export NLS_LANG=<span class="string">"AMERICAN_AMERICA.ZHS16GBK"</span></div><div class="line"></div><div class="line">SQL&gt; conn /as sysdba </div><div class="line">Connected. </div><div class="line">SQ<span class="class">L&gt; shutdown immediate;</span></div><div class="line">Database closed.</div><div class="line">Database dismounted.</div><div class="line">ORACLE<span class="built_in"> instance </span>shut down.</div><div class="line">SQL&gt; startup mount</div><div class="line">ORACLE<span class="built_in"> instance </span>started.</div><div class="line">Total System Global Area  413372416 bytes</div><div class="line">Fixed Size		    2213896 bytes</div><div class="line">Variable Size		  281020408 bytes</div><div class="line">Database Buffers	  125829120 bytes</div><div class="line">Redo Buffers		    4308992 bytes</div><div class="line">Database mounted.</div><div class="line">SQ<span class="class">L&gt; ALTER SYSTEM ENABLE RESTRICTED SESSION;</span> </div><div class="line">System altered. </div><div class="line">SQ<span class="class">L&gt; ALTER SYSTEM SET JOB_QUEUE_PROCESSES=0;</span> </div><div class="line">System altered. </div><div class="line">SQ<span class="class">L&gt; ALTER SYSTEM SET AQ_TM_PROCESSES=0;</span> </div><div class="line">System altered. </div><div class="line">SQ<span class="class">L&gt; alter database open;</span> </div><div class="line">Database altered. </div><div class="line">SQ<span class="class">L&gt; ALTER DATABASE CHARACTER SET ZHS16GBK;</span> </div><div class="line">ALTER DATABASE CHARACTER SET ZHS16GBK </div><div class="line">* </div><div class="line">ERROR at line 1: </div><div class="line">ORA-12712:<span class="built_in"> new </span>character set must be a superset of old character set </div><div class="line"></div><div class="line">提示我们的字符集：新字符集必须为旧字符集的超集，这时我们可以跳过超集的检查做更改： </div><div class="line">SQ<span class="class">L&gt; ALTER DATABASE character set INTERNAL_USE ZHS16GBK;</span> </div><div class="line">Database altered. </div><div class="line">SQ<span class="class">L&gt; select * from v$nls_parameters;</span> </div><div class="line">略 </div><div class="line">19 rows selected. </div><div class="line">重启检查是否更改完成： </div><div class="line">SQ<span class="class">L&gt; shutdown immediate;</span> </div><div class="line">Database closed. </div><div class="line">Database dismounted. </div><div class="line">ORACLE<span class="built_in"> instance </span>shut down. </div><div class="line">SQL&gt; startup </div><div class="line">ORACLE<span class="built_in"> instance </span>started. </div><div class="line">Total System Global Area  236000356 bytes </div><div class="line">Fixed Size                   451684 bytes </div><div class="line">Variable Size             201326592 bytes </div><div class="line">Database Buffers           33554432 bytes </div><div class="line">Redo Buffers                 667648 bytes </div><div class="line">Database mounted. </div><div class="line">Database opened. </div><div class="line">SQ<span class="class">L&gt; select * from v$nls_parameters;</span> </div><div class="line">略 </div><div class="line">19 rows selected. </div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/10/05/Linux/java和php共用/">
+                    Java、PHP共用端口使用
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/04/25/Linux/阿里云/">
+                    阿里云服务器下的Linux配置
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、使用oracle硬件要求"><span class="toc-number">1.</span> <span class="toc-text">一、使用oracle硬件要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、安装依赖包"><span class="toc-number">2.</span> <span class="toc-text">二、安装依赖包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、修改hostname"><span class="toc-number">3.</span> <span class="toc-text">三、修改hostname</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、创建所需的操作系统组和用户"><span class="toc-number">4.</span> <span class="toc-text">四、创建所需的操作系统组和用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、修改内核参数"><span class="toc-number">5.</span> <span class="toc-text">五、修改内核参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、修改用户限制"><span class="toc-number">6.</span> <span class="toc-text">六、修改用户限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、创建安装目录"><span class="toc-number">7.</span> <span class="toc-text">七、创建安装目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、创建-etc-oraInst-loc文件"><span class="toc-number">8.</span> <span class="toc-text">八、创建/etc/oraInst.loc文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九、设置oracle环境变量"><span class="toc-number">9.</span> <span class="toc-text">九、设置oracle环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十、解压oracle安装文件"><span class="toc-number">10.</span> <span class="toc-text">十、解压oracle安装文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十、复制响应文件模板"><span class="toc-number">11.</span> <span class="toc-text">十、复制响应文件模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十一、静默安装Oracle软件"><span class="toc-number">12.</span> <span class="toc-text">十一、静默安装Oracle软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十二、静默配置网络"><span class="toc-number">13.</span> <span class="toc-text">十二、静默配置网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十三、静默安装数据库"><span class="toc-number">14.</span> <span class="toc-text">十三、静默安装数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十四、修改oracle启动配置文件"><span class="toc-number">15.</span> <span class="toc-text">十四、修改oracle启动配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十五、登陆sqlplus"><span class="toc-number">16.</span> <span class="toc-text">十五、登陆sqlplus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十六、配置监听"><span class="toc-number">17.</span> <span class="toc-text">十六、配置监听</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十七、字符集的统一"><span class="toc-number">18.</span> <span class="toc-text">十七、字符集的统一</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = '/2016/05/01/Database/oracle11g silent install/';
+            this.page.identifier = '2016/05/01/Database/oracle11g silent install/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//kol96.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/10/05/Linux/java和php共用/" title="Pre: Java、PHP共用端口使用">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/04/25/Linux/阿里云/" title="Next: 阿里云服务器下的Linux配置">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之hoist/">JavaScript学习之函数及变量hoist</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/23/Front End/JS学习之thiis/">JavaScript学习之this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/Front End/jQuery样式/">jQuery样式篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/Tools/自动化构建工具/">自动化构建工具以及打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/清除浮动/">清除浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/BFC/">理解BFC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Mac/Hexo/">How to install Hexo on Mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Database/navicat连接oracle/">Mac上用Navicat连接Oracle</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Front End/像素/">px,em,rem详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/Tools/Emmet/">Emmet</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/05/Linux/java和php共用/">Java、PHP共用端口使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Database/oracle11g silent install/">Centos6.5 x86_64下 静默安装Oracle 11g R2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/Linux/阿里云/">阿里云服务器下的Linux配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Database/oracle语法/">Oracle数据库的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Database/oracle安装/">Mac下的Oracle数据库的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/Tools/sublime/">Sublime Text的配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/PHP/cURL/">在PHP中使用cURL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/17/Linux/Linux服务器/">linux服务器的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/12/Linux/Terminator/">Kali Terminator多窗口终端的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/11/Mac/Mnmp/">Mac Yosemite 安装Lnmp环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Linux/Aircrack/">Aircrack-ng hack wireless network</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/Linux/KaliConfig/">How to config your Kali Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Mac/Mamp/">Mac Yosemite Lamp环境安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/Mac/mac工具/">Mac必备工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/Tools/git分支管理/">Git分支管理策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/Tools/git命令/">Git命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/20/PHP/PHP+Mysql分页原理/">PHP+Mysql分页原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/PHP/PHP上传原理/">PHP上传原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/10/PHP/PHP随笔记/">PHP随笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/15/Life/博客/">为什么要写博客？</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Kylen
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 2;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

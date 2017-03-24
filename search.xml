@@ -4,21 +4,55 @@
   
     
     <entry>
+      <title><![CDATA[JavaScript学习之函数及变量hoist]]></title>
+      <url>/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bhoist/</url>
+      <content type="html"><![CDATA[<p>JavaScript能够在变量和函数被声明之前使用它们。<br><a id="more"></a>  </p>
+<h2 id="一、变量声明“被提前”"><a href="#一、变量声明“被提前”" class="headerlink" title="一、变量声明“被提前”"></a>一、变量声明“被提前”</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    console.log(a); <span class="comment">//undefined</span></div><div class="line">    var a = <span class="string">"test"</span>;</div><div class="line">    console.log(a); <span class="comment">//test</span></div><div class="line">```  </div><div class="line"><span class="number">1</span>、解析器将当前作用域内声明的所有变量和函数都会放到作用域的开始处，但是，只有变量的声明被提前到作用域的开始处了，而赋值操作被保留在原处。  </div><div class="line"><span class="number">2</span>、根据 JavaScript 语法的定义，已声明而未被赋值的变量会被自动赋值为 `undefined` 。所以第一次打印`a`时，值就为`undefined`。</div></pre></td></tr></table></figure>
+<pre><code>window.name = &quot;window&quot;;
+(function () {
+    console.log(name); //undefined
+    var name = &quot;inner&quot;;
+    console.log(name); //inner
+})();
+</code></pre><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">由于局部变量的`name`被提前，导致无法在第一次打印时获取全局变量的`name`。  </div><div class="line"></div><div class="line">## 二、函数声明“被提前”</div><div class="line">函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，但对于函数表达式，则必须等到解析器执行到它所在的代码行，才会被解释执行。</div></pre></td></tr></table></figure>
+<p>sum(1, 1); //2</p>
+<p>function sum(num1, num2) {<br>    console.log(num1 + num2);<br>}<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">函数声明并不仅仅是函数名“被提前”了，整个函数的定义也“被提前”了。</div></pre></td></tr></table></figure></p>
+<p>sum(1, 1); //Uncaught TypeError: sum is not a function</p>
+<p>var sum = function sum(num1, num2) {<br>    console.log(num1 + num2);<br>}<br>```<br>函数表达式单单变量被提前了，它的赋值（函数）却没有提前。  </p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>1、变量的声明被提前到作用域顶部，赋值保留在原地<br>2、函数声明整个“被提前”<br>3、函数作为值赋给变量时只有变量“被提前”了，函数没有“被提前”  </p>
+]]></content>
+      
+        <categories>
+            
+            <category> Front End </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaScript学习之this]]></title>
-      <url>/2017/03/23/JavaScript/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bthiis/</url>
+      <url>/2017/03/23/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bthiis/</url>
       <content type="html"><![CDATA[<p>在调用函数之前，this的值是不确定的，this可能会在代码执行过程中引用不同的对象。<br><a id="more"></a></p>
 <h2 id="一、全局范围"><a href="#一、全局范围" class="headerlink" title="一、全局范围"></a>一、全局范围</h2><p>全局范围使用this指向的是全局变量，浏览器环境下就是window。strict模式下没有全局变量，这里的this是undefined。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.<span class="built_in">log</span>(<span class="keyword">this</span>); <span class="comment">//全局变量</span></div></pre></td></tr></table></figure></p>
 <h2 id="二、函数调用"><a href="#二、函数调用" class="headerlink" title="二、函数调用"></a>二、函数调用</h2><p>函数调用中的this也是指向全局变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line">test();<span class="comment">//全局变量</span></div></pre></td></tr></table></figure></p>
 <h2 id="三、对象调用方法"><a href="#三、对象调用方法" class="headerlink" title="三、对象调用方法"></a>三、对象调用方法</h2><p>对象方法调用中，this指的是调用者。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> test = &#123;</div><div class="line">    <span class="attr">foo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">test.foo(); <span class="comment">//test对象</span></div></pre></td></tr></table></figure></p>
 <p>由于this的晚绑定性，同样代码段，只有在运行时才能确定this指向。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> test = &#123;</div><div class="line">    <span class="attr">foo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> test2 = test.foo;</div><div class="line">test2(); <span class="comment">//全局变量</span></div></pre></td></tr></table></figure></p>
-<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>在构造函数内部，this指向新创建的对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); </div><div class="line">&#125;</div><div class="line"><span class="keyword">new</span> Foo(); <span class="comment">//新创建的对象</span></div></pre></td></tr></table></figure></p>
-<h2 id="显示设置this"><a href="#显示设置this" class="headerlink" title="显示设置this"></a>显示设置this</h2><p>使用Function.prototyppe的call或者apply方法时，函数内部this会被设置为传入的第一个参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar=&#123;&#125;;</div><div class="line"></div><div class="line">foo.apply(bar,[<span class="number">1</span>, <span class="number">2</span>]); <span class="comment">//bar对象</span></div><div class="line">foo.call(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">//Number对象</span></div></pre></td></tr></table></figure></p>
-<h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><p>bind后的函数不能再次bind<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function <span class="built_in">f</span>()&#123;</div><div class="line">    <span class="keyword">return</span> this.a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="keyword">g</span> = f.bind(&#123;a:<span class="string">"g"</span>&#125;);</div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">g</span>()); <span class="comment">//g  </span></div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="keyword">h</span> = <span class="keyword">g</span>.bind(&#123;a:<span class="string">"h"</span>&#125;); <span class="comment">//bind only works once;</span></div><div class="line">console.<span class="built_in">log</span>(<span class="built_in">h</span>()); <span class="comment">//g  </span></div><div class="line"></div><div class="line"><span class="keyword">var</span> i = f.bind(&#123;a:<span class="string">"i"</span>&#125;);</div><div class="line">console.<span class="built_in">log</span>(<span class="built_in">i</span>()); <span class="comment">//i  </span></div><div class="line"></div><div class="line"><span class="keyword">var</span> o=&#123;a:<span class="string">"37"</span>,<span class="keyword">g</span>:<span class="keyword">g</span>,f:f,<span class="keyword">h</span>:<span class="keyword">h</span>&#125;;</div><div class="line">console.<span class="built_in">log</span>(o.<span class="built_in">f</span>(),o.<span class="keyword">g</span>(),o.<span class="built_in">h</span>()); <span class="comment">//37 g g</span></div></pre></td></tr></table></figure></p>
+<h2 id="四、构造函数"><a href="#四、构造函数" class="headerlink" title="四、构造函数"></a>四、构造函数</h2><p>在构造函数内部，this指向新创建的对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); </div><div class="line">&#125;</div><div class="line"><span class="keyword">new</span> Foo(); <span class="comment">//新创建的对象</span></div></pre></td></tr></table></figure></p>
+<h2 id="五、显示设置this"><a href="#五、显示设置this" class="headerlink" title="五、显示设置this"></a>五、显示设置this</h2><p>使用Function.prototyppe的call或者apply方法时，函数内部this会被设置为传入的第一个参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar=&#123;&#125;;</div><div class="line"></div><div class="line">foo.apply(bar,[<span class="number">1</span>, <span class="number">2</span>]); <span class="comment">//bar对象</span></div><div class="line">foo.call(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">//Number对象</span></div></pre></td></tr></table></figure></p>
+<h2 id="六、bind"><a href="#六、bind" class="headerlink" title="六、bind"></a>六、bind</h2><p>bind后的函数不能再次bind<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function <span class="built_in">f</span>()&#123;</div><div class="line">    <span class="keyword">return</span> this.a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="keyword">g</span> = f.bind(&#123;a:<span class="string">"g"</span>&#125;);</div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">g</span>()); <span class="comment">//g  </span></div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="keyword">h</span> = <span class="keyword">g</span>.bind(&#123;a:<span class="string">"h"</span>&#125;); <span class="comment">//bind only works once;</span></div><div class="line">console.<span class="built_in">log</span>(<span class="built_in">h</span>()); <span class="comment">//g  </span></div><div class="line"></div><div class="line"><span class="keyword">var</span> i = f.bind(&#123;a:<span class="string">"i"</span>&#125;);</div><div class="line">console.<span class="built_in">log</span>(<span class="built_in">i</span>()); <span class="comment">//i  </span></div><div class="line"></div><div class="line"><span class="keyword">var</span> o=&#123;a:<span class="string">"37"</span>,<span class="keyword">g</span>:<span class="keyword">g</span>,f:f,<span class="keyword">h</span>:<span class="keyword">h</span>&#125;;</div><div class="line">console.<span class="built_in">log</span>(o.<span class="built_in">f</span>(),o.<span class="keyword">g</span>(),o.<span class="built_in">h</span>()); <span class="comment">//37 g g</span></div></pre></td></tr></table></figure></p>
 ]]></content>
       
         <categories>
             
-            <category> JavaScript </category>
+            <category> Front End </category>
             
         </categories>
         
@@ -33,7 +67,7 @@
     
     <entry>
       <title><![CDATA[jQuery样式篇]]></title>
-      <url>/2017/03/21/JavaScript/jQuery%E6%A0%B7%E5%BC%8F/</url>
+      <url>/2017/03/21/Front%20End/jQuery%E6%A0%B7%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>jQuery样式学习篇<br><a id="more"></a></p>
 <h2 id="一、jQuery对象与Dom对象"><a href="#一、jQuery对象与Dom对象" class="headerlink" title="一、jQuery对象与Dom对象"></a>一、jQuery对象与Dom对象</h2><p>1、jQuery对象与DOM对象是不一样的<br>2、通过jQuery方法包装后的对象，是一个类数组对象。这个对象里面包含了DOM对象的信息，然后封装了很多操作方法，调用自己的方法html与css，得到的效果与标准的JavaScript处理结果是一致的。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。 </p>
 <h2 id="二、jQuery对象转化成DOM对象"><a href="#二、jQuery对象转化成DOM对象" class="headerlink" title="二、jQuery对象转化成DOM对象"></a>二、jQuery对象转化成DOM对象</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;元素一&lt;/div&gt;</div><div class="line">&lt;div&gt;元素二&lt;/div&gt;</div><div class="line">&lt;div&gt;元素三&lt;/div&gt; </div><div class="line"></div><div class="line"><span class="selector-tag">var</span> <span class="variable">$div</span> = $(<span class="string">'div'</span>) <span class="comment">//jQuery对象</span></div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = <span class="variable">$div</span>[<span class="number">0</span>] <span class="comment">//转化成DOM对象</span></div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.style</span><span class="selector-class">.color</span> = <span class="string">'red'</span> <span class="comment">//操作dom对象的属性 </span></div><div class="line"></div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = <span class="variable">$div</span>.get(<span class="number">0</span>)</div></pre></td></tr></table></figure>
@@ -61,7 +95,7 @@
       
         <categories>
             
-            <category> JavaScript </category>
+            <category> Front End </category>
             
         </categories>
         
@@ -76,7 +110,7 @@
     
     <entry>
       <title><![CDATA[自动化构建工具以及打包工具]]></title>
-      <url>/2017/03/13/%E5%B7%A5%E5%85%B7/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/</url>
+      <url>/2017/03/13/Tools/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/</url>
       <content type="html"><![CDATA[<p>1、Gulp<br>2、Grunt<br>3、Webpack<br><a id="more"></a></p>
 <h2 id="一、Gulp"><a href="#一、Gulp" class="headerlink" title="一、Gulp"></a>一、Gulp</h2><p>1、全局下载<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo <span class="built_in">npm</span> install --<span class="built_in">global</span> gulp</div></pre></td></tr></table></figure></p>
 <p>2、在项目根目录下创建一个名为 <code>gulpfile.js</code> 的文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 将你的默认的任务代码放在这</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
@@ -90,14 +124,14 @@
       
         <categories>
             
-            <category> 工具 </category>
+            <category> Tools </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> 工具 </tag>
+            <tag> Gulp </tag>
             
         </tags>
         
@@ -105,7 +139,7 @@
     
     <entry>
       <title><![CDATA[清除浮动]]></title>
-      <url>/2017/03/11/CSS/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</url>
+      <url>/2017/03/11/Front%20End/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</url>
       <content type="html"><![CDATA[<p>当子元素设置为float后，父元素会出现高度塌陷，本文则是介绍如何解决浮动带来的影响<br><a id="more"></a></p>
 <h2 id="一、增加一个无意义的空标签"><a href="#一、增加一个无意义的空标签" class="headerlink" title="一、增加一个无意义的空标签"></a>一、增加一个无意义的空标签</h2><p>在浮动元素后加一个div</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"float-content"</span>&gt;</div><div class="line">    Lorem ipsum dolor sit amet, consectetur </div><div class="line">    adipisicing elit. Distinctio, sapiente.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> style=<span class="string">"clear: both"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
@@ -119,7 +153,7 @@
       
         <categories>
             
-            <category> CSS </category>
+            <category> Front End </category>
             
         </categories>
         
@@ -136,7 +170,7 @@
     
     <entry>
       <title><![CDATA[理解BFC]]></title>
-      <url>/2017/03/11/CSS/BFC/</url>
+      <url>/2017/03/11/Front%20End/BFC/</url>
       <content type="html"><![CDATA[<p>BFC深入理解<br><a id="more"></a><br><a href="http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html" target="_blank" rel="external">BFC原理</a><br><a href="http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/" target="_blank" rel="external">BFC特性</a></p>
 <h2 id="Box"><a href="#Box" class="headerlink" title="Box"></a>Box</h2><p>CSS布局的基本单位<br>block-level box:display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context;<br>inline-level box:display 属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context; </p>
 <h2 id="Formatting-context"><a href="#Formatting-context" class="headerlink" title="Formatting context"></a>Formatting context</h2><p>它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。<br>CSS3还有GFC,FFC. </p>
@@ -148,7 +182,7 @@
       
         <categories>
             
-            <category> CSS </category>
+            <category> Front End </category>
             
         </categories>
         
@@ -158,68 +192,6 @@
             <tag> CSS </tag>
             
             <tag> BFC </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Mac上用Navicat连接Oracle]]></title>
-      <url>/2017/03/10/Oracle/navicat%E8%BF%9E%E6%8E%A5oracle/</url>
-      <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Oracle </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Oracle </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[px,em,rem详解]]></title>
-      <url>/2017/03/10/CSS/%E5%83%8F%E7%B4%A0/</url>
-      <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
-<a id="more"></a>
-<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。 </p>
-<ol>
-<li>IE无法调整那些使用px作为单位的字体大小； </li>
-<li>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位； </li>
-<li>Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。 </li>
-</ol>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。 </p>
-<ol>
-<li>em的值并不是固定的； </li>
-<li>em会继承父级元素的字体大小。 </li>
-</ol>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 </p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般浏览器默认为16px。<br>但为了使用方便会让html的font-size: 62.5%; 即1rem=10px;</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h2><p>1、发现chrome支持的最小px为12px。即使设置了62.5%的font-size，浏览器显示出来的字体大小1rem=12px。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-webkit-<span class="attribute">font-size</span>: <span class="number">12px</span>;</div><div class="line">-webkit-<span class="attribute">transform</span>: scale(<span class="number">0.84</span>);</div></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> CSS </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> CSS </tag>
             
         </tags>
         
@@ -278,8 +250,70 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Mac上用Navicat连接Oracle]]></title>
+      <url>/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/</url>
+      <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+      
+        <categories>
+            
+            <category> database </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Oracle </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[px,em,rem详解]]></title>
+      <url>/2017/03/10/Front%20End/%E5%83%8F%E7%B4%A0/</url>
+      <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
+<a id="more"></a>
+<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。 </p>
+<ol>
+<li>IE无法调整那些使用px作为单位的字体大小； </li>
+<li>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位； </li>
+<li>Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。 </li>
+</ol>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。 </p>
+<ol>
+<li>em的值并不是固定的； </li>
+<li>em会继承父级元素的字体大小。 </li>
+</ol>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 </p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般浏览器默认为16px。<br>但为了使用方便会让html的font-size: 62.5%; 即1rem=10px;</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h2><p>1、发现chrome支持的最小px为12px。即使设置了62.5%的font-size，浏览器显示出来的字体大小1rem=12px。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-webkit-<span class="attribute">font-size</span>: <span class="number">12px</span>;</div><div class="line">-webkit-<span class="attribute">transform</span>: scale(<span class="number">0.84</span>);</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Front End </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> CSS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Emmet]]></title>
-      <url>/2017/03/09/%E5%B7%A5%E5%85%B7/Emmet/</url>
+      <url>/2017/03/09/Tools/Emmet/</url>
       <content type="html"><![CDATA[<p>Emmet is a plugin for many popular text editors which greatly improves HTML &amp; CSS workflow<br><a id="more"></a></p>
 <h2 id="一、-gt-用法"><a href="#一、-gt-用法" class="headerlink" title="一、&gt; 用法"></a>一、&gt; 用法</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">div</span>&gt;ul&gt;li</div><div class="line"><span class="section">&lt;div&gt;</span></div><div class="line">    <span class="section">&lt;ul&gt;</span></div><div class="line">        <span class="section">&lt;li&gt;</span><span class="section">&lt;/li&gt;</span></div><div class="line">    <span class="section">&lt;/ul&gt;</span></div><div class="line"><span class="section">&lt;/div&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="二、-用法"><a href="#二、-用法" class="headerlink" title="二、* 用法"></a>二、* 用法</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">div</span>&gt;ul&gt;li*3</div><div class="line"><span class="section">&lt;div&gt;</span></div><div class="line">    <span class="section">&lt;ul&gt;</span></div><div class="line">        <span class="section">&lt;li&gt;</span><span class="section">&lt;/li&gt;</span></div><div class="line">        <span class="section">&lt;li&gt;</span><span class="section">&lt;/li&gt;</span></div><div class="line">        <span class="section">&lt;li&gt;</span><span class="section">&lt;/li&gt;</span></div><div class="line">    <span class="section">&lt;/ul&gt;</span></div><div class="line"><span class="section">&lt;/div&gt;</span></div></pre></td></tr></table></figure>
@@ -296,7 +330,7 @@
       
         <categories>
             
-            <category> tools </category>
+            <category> Tools </category>
             
         </categories>
         
@@ -339,7 +373,7 @@
     
     <entry>
       <title><![CDATA[Centos6.5 x86_64下 静默安装Oracle 11g R2]]></title>
-      <url>/2016/05/01/Oracle/oracle11g%20silent%20install/</url>
+      <url>/2016/05/01/Database/oracle11g%20silent%20install/</url>
       <content type="html"><![CDATA[<p>在linux下安装Oracle需要符合硬件和软件条件，蛮折腾的，我用的是阿里云的服务器，oneinstack一键安装包。<br><a id="more"></a></p>
 <p>安装文档<a href="http://docs.oracle.com/cd/E11882_01/install.112/e24326/toc.htm" target="_blank" rel="external">http://docs.oracle.com/cd/E11882_01/install.112/e24326/toc.htm</a><br>错误文档<a href="http://docs.oracle.com/cd/E11882_01/server.112/e17766/toc.htm#BEGIN" target="_blank" rel="external">http://docs.oracle.com/cd/E11882_01/server.112/e17766/toc.htm#BEGIN</a></p>
 <h2 id="一、使用oracle硬件要求"><a href="#一、使用oracle硬件要求" class="headerlink" title="一、使用oracle硬件要求"></a>一、使用oracle硬件要求</h2><p>1、内存要求<br>最小内存1G，推荐2G或2G以上<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">free</span> -m  <span class="comment">#查看内存和swap空间  </span></div></pre></td></tr></table></figure></p>
@@ -349,7 +383,7 @@
 <p>4、/tmp空间大小要求<br>至少1GB空间  </p>
 <p>5、硬盘大小要求<br>存放oracle软件文件和数据文件的空间至少6GB<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">df -hT</span></div></pre></td></tr></table></figure></p>
 <p>备注:<br>保证selinux关闭<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">su - root</div><div class="line">setenforce <span class="number">0</span> 不需要重启</div><div class="line">修改/etc/selinux/<span class="built_in">config</span>文件中的SELINUX=<span class="string">""</span> 为 disabled ，需要重启</div></pre></td></tr></table></figure></p>
-<p>所需端口打开 1521<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#iptables</span> -I INPUT <span class="number">4</span> -<span class="selector-tag">p</span> tcp -m state --state NEW -m tcp --dport <span class="number">1521</span> -j ACCEPT #允许 <span class="number">1521</span> 端口<span class="selector-id">#service</span> iptables save #保存 iptables 规则</div></pre></td></tr></table></figure></p>
+<p>所需端口打开 1521<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#iptables</span> -I INPUT <span class="number">4</span> -<span class="selector-tag">p</span> tcp -m state --state NEW -m tcp --dport <span class="number">1521</span> -j ACCEPT #允许 <span class="number">1521</span> 端口</div><div class="line"><span class="selector-id">#service</span> iptables save #保存 iptables 规则</div></pre></td></tr></table></figure></p>
 <h2 id="二、安装依赖包"><a href="#二、安装依赖包" class="headerlink" title="二、安装依赖包"></a>二、安装依赖包</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum update</div><div class="line">yum -y install binutils compat-libstdc++-<span class="number">33</span> compat-libstdc++-<span class="number">33</span><span class="selector-class">.i686</span> elfutils-libelf elfutils-libelf-devel gcc gcc-c++ glibc glibc<span class="selector-class">.i686</span> glibc-common glibc-devel glibc-devel<span class="selector-class">.i686</span> glibc-headers ksh libaio libaio<span class="selector-class">.i686</span> libaio-devel libaio-devel<span class="selector-class">.i686</span> libgcc   libgcc<span class="selector-class">.i686</span> libstdc++ libstdc++<span class="selector-class">.i686</span> libstdc++-devel make sysstat unixODBC unixODBC-devel wget unzip</div><div class="line">yum clean all</div></pre></td></tr></table></figure>
 <h2 id="三、修改hostname"><a href="#三、修改hostname" class="headerlink" title="三、修改hostname"></a>三、修改hostname</h2><p>两个文件里的hostname要保持一致<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim <span class="meta-keyword">/etc/</span>sysconfig/network</div><div class="line">vim <span class="meta-keyword">/etc/</span>hosts</div><div class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> localhost  </div><div class="line"> <span class="meta"># ::1  localhost localhost.localdomain localhost6 localhost6.localdomain6  </span></div><div class="line">IP Kevin  </div></pre></td></tr></table></figure></p>
 <h2 id="四、创建所需的操作系统组和用户"><a href="#四、创建所需的操作系统组和用户" class="headerlink" title="四、创建所需的操作系统组和用户"></a>四、创建所需的操作系统组和用户</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">groupadd oinstall</div><div class="line">groupadd dba</div><div class="line">useradd -g oinstall -G dba <span class="keyword">oracle</span></div><div class="line">设置<span class="keyword">oracle用户密码</span></div><div class="line">passwd <span class="keyword">oracle </span>(建议使用<span class="keyword">oracle)</span></div></pre></td></tr></table></figure>
@@ -394,7 +428,7 @@
       
         <categories>
             
-            <category> Oracle </category>
+            <category> database </category>
             
         </categories>
         
@@ -421,28 +455,28 @@
 <li>Memcached1.4.25  </li>
 <li>Jemalloc4.0.4  </li>
 <li>Pure-FTPd1.0.42  </li>
-<li>phpMyAdmin4.4.15.4<br>源码安装目录:  <figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">PHP:</span><span class="meta-keyword">/usr/</span>local/php  <span class="symbol">JDK:</span> <span class="meta-keyword">/usr/</span>java  <span class="symbol">Tomcat:</span><span class="meta-keyword">/usr/</span>local/tomcat  <span class="symbol">MySQL:</span><span class="meta-keyword">/usr/</span>local/mysql Pureftpd:<span class="meta-keyword">/usr/</span>local/pureftpd  <span class="symbol">Redis:</span> <span class="meta-keyword">/usr/</span>local/redis Memcached:<span class="meta-keyword">/usr/</span>local/memcached   </div><div class="line"><span class="symbol">phpMyAdmin:</span><span class="meta-keyword">/data/</span>wwwroot<span class="meta-keyword">/default/</span>phpMyAdmin  </div></pre></td></tr></table></figure>
+<li>phpMyAdmin4.4.15.4<br>源码安装目录:  <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">PHP:</span><span class="regexp">/usr/</span>local/php  </div><div class="line"><span class="string">JDK:</span> <span class="regexp">/usr/</span>java  </div><div class="line"><span class="string">Tomcat:</span><span class="regexp">/usr/</span>local/tomcat  </div><div class="line"><span class="string">MySQL:</span><span class="regexp">/usr/</span>local<span class="regexp">/mysql Pureftpd:/</span>usr<span class="regexp">/local/</span>pureftpd  </div><div class="line"><span class="string">Redis:</span> <span class="regexp">/usr/</span>local<span class="regexp">/redis Memcached:/</span>usr<span class="regexp">/local/</span>memcached   </div><div class="line"><span class="string">phpMyAdmin:</span><span class="regexp">/data/</span>wwwroot<span class="regexp">/default/</span>phpMyAdmin  </div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="一-参数优化"><a href="#一-参数优化" class="headerlink" title="一.参数优化"></a>一.参数优化</h2><p>由于镜像制作是下 2 核 2G 内存配置完成,Nginx、MySQL、PHP、JDK 参数 还是该配置的参数,强烈建议如果不是这个配置,请执行下面优化脚本:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /root/oneinstack #必须进入 oneinstack 目录下执行./optimize.<span class="keyword">sh</span> #请勿 bash ./optimize.<span class="keyword">sh</span>(或者 <span class="keyword">sh</span>)这样执行</div></pre></td></tr></table></figure></p>
-<h2 id="二-PHP-版本切换"><a href="#二-PHP-版本切换" class="headerlink" title="二.PHP 版本切换"></a>二.PHP 版本切换</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /root/oneinstack <span class="comment">#必须进入 oneinstack 目录下执行 </span></div><div class="line">./change_php_version.sh <span class="comment">#请勿 bash (或者 sh)这样执行</span></div></pre></td></tr></table></figure>
+<h2 id="一-参数优化"><a href="#一-参数优化" class="headerlink" title="一.参数优化"></a>一.参数优化</h2><p>由于镜像制作是下 2 核 2G 内存配置完成,Nginx、MySQL、PHP、JDK 参数 还是该配置的参数,强烈建议如果不是这个配置,请执行下面优化脚本:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /root/oneinstack #必须进入 oneinstack 目录下执行</div><div class="line">./optimize.<span class="keyword">sh</span> #请勿 bash ./optimize.<span class="keyword">sh</span>(或者 <span class="keyword">sh</span>)这样执行</div></pre></td></tr></table></figure></p>
+<h2 id="二-PHP-版本切换"><a href="#二-PHP-版本切换" class="headerlink" title="二.PHP 版本切换"></a>二.PHP 版本切换</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /root/oneinstack <span class="comment">#必须进入 oneinstack 目录下执行 </span></div><div class="line">./change_php_version.sh <span class="comment">#请勿 bash (或者 sh)这样执行</span></div></pre></td></tr></table></figure>
 <h2 id="三-JDK-版本切换"><a href="#三-JDK-版本切换" class="headerlink" title="三.JDK 版本切换"></a>三.JDK 版本切换</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /root/oneinstack <span class="comment">#必须进入 oneinstack 目录下执行 </span></div><div class="line">./change_php_version.sh <span class="comment">#请勿 bash (或者 sh)这样执行</span></div></pre></td></tr></table></figure>
 <h2 id="四-数据库默认-root-密码"><a href="#四-数据库默认-root-密码" class="headerlink" title="四.数据库默认 root 密码"></a>四.数据库默认 root 密码</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /root/oneinstack #必须进入 oneinstack 目录下执行 </div><div class="line"><span class="keyword">grep</span> dbrootpwd <span class="keyword">options</span>.<span class="keyword">conf</span> #显示数据库 root 密码</div></pre></td></tr></table></figure>
 <h2 id="五-更改数据库-root-密码"><a href="#五-更改数据库-root-密码" class="headerlink" title="五.更改数据库 root 密码"></a>五.更改数据库 root 密码</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd <span class="regexp">/root/</span>oneinstack <span class="comment">#必须进入 oneinstack 目录下执行 </span></div><div class="line">.<span class="regexp">/reset_db_root_password.sh</span></div></pre></td></tr></table></figure>
-<h2 id="六-创建数据库用户"><a href="#六-创建数据库用户" class="headerlink" title="六.创建数据库用户"></a>六.创建数据库用户</h2><p>如:添加一个用户名为 db_user,密码为 123456,授权为本机 localhost 对 database 数据库所有权限,命令如下<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -uroot –pMySQL [(none)]&gt; grant all privileges on database.* to db_user@<span class="string">'localhost'</span> identified by <span class="string">'123456'</span>; <span class="comment">#授权语句,特别注意有分号</span>MySQL [(none)]&gt; flush privileges; <span class="comment">#权限立即生效</span>MySQL [(none)]&gt; <span class="keyword">exit</span>; <span class="comment">#退出数据库控制台,特别注意有分号</span></div></pre></td></tr></table></figure></p>
-<h2 id="七-配置-MySQL-远程连接"><a href="#七-配置-MySQL-远程连接" class="headerlink" title="七.配置 MySQL 远程连接"></a>七.配置 MySQL 远程连接</h2><p>①打开 iptables 3306 端口<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -I INPUT <span class="number">4</span> -p tcp -m <span class="keyword">state</span> --state NEW -m tcp --dport <span class="number">3306</span> -j ACCEPTservice iptables save <span class="comment">#保存 iptables 规则</span></div></pre></td></tr></table></figure></p>
-<p>②数据库授权<br>如:添加一个用户名为 linuxeye,密码为 123456,授权为% (%表示所有 ip 能连接,可以设置指定 ip)对 oneinstack 数据库所有权限,命令如下<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql –uroot –pMySQL [(none)]&gt; grant all privileges on oneinstack.* to linuxeye@<span class="string">'%'</span> identified by <span class="string">'123456'</span>; <span class="comment">#授权语句,特别注意有分号</span>MySQL [(none)]&gt; flush privileges;MySQL [(none)]&gt; <span class="keyword">exit</span>; <span class="comment">#退出数据库控制台,特别注意有分号</span></div></pre></td></tr></table></figure></p>
-<h2 id="八-管理-FTP-账号"><a href="#八-管理-FTP-账号" class="headerlink" title="八.管理 FTP 账号"></a>八.管理 FTP 账号</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /root/oneinstack #必须进入 oneinstack 目录下执行./pureftpd_vhost.<span class="keyword">sh</span> #请勿 bash ./pureftpd_vhost.<span class="keyword">sh</span>(或者 <span class="keyword">sh</span>)这样执行</div></pre></td></tr></table></figure>
-<h2 id="九-如何管理服务"><a href="#九-如何管理服务" class="headerlink" title="九.如何管理服务"></a>九.如何管理服务</h2><p>Nginx:<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service nginx &#123;start|<span class="type">stop</span>|<span class="type">status</span>|<span class="type">restart</span>|<span class="type">reload</span>|<span class="type">configtest</span>&#125; 注:如手工更改配置文件,强烈建议 reload</div></pre></td></tr></table></figure><br>MySQL:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service <span class="keyword">mysqld</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">restart</span>|reload|<span class="literal">status</span>&#125;</div></pre></td></tr></table></figure><br>PHP:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service php-<span class="keyword">fpm</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">restart</span>|reload|<span class="literal">status</span>&#125;</div></pre></td></tr></table></figure><br>Tomcat:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service <span class="keyword">tomcat</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">status</span>|<span class="literal">restart</span>&#125;</div></pre></td></tr></table></figure><br>Pure-Ftpd:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service <span class="keyword">pureftpd</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">restart</span>|<span class="literal">status</span>&#125;</div></pre></td></tr></table></figure><br>Redis:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service redis-<span class="keyword">server</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">status</span>|<span class="literal">restart</span>|reload&#125;</div></pre></td></tr></table></figure><br>Memcached:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service <span class="keyword">memcached</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">status</span>|<span class="literal">restart</span>|reload&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="十-关于网站根目录权限"><a href="#十-关于网站根目录权限" class="headerlink" title="十.关于网站根目录权限"></a>十.关于网站根目录权限</h2><p>网站根目录权限遵循:<br>文件 644, 文件夹 755 ,权限用户和用户组 www 如出现文件权限问题时,请执行下面 3 条命令:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">chown</span> -<span class="type">R</span> www.www /<span class="class"><span class="keyword">data</span>/wwwroot/</span><span class="title">find</span> /<span class="class"><span class="keyword">data</span>/wwwroot/ -<span class="keyword">type</span> d -exec chmod 755 &#123;&#125; \; </span></div><div class="line"><span class="title">find</span> /<span class="class"><span class="keyword">data</span>/wwwroot/ -<span class="keyword">type</span> f -exec chmod 644 &#123;&#125; \;</span></div></pre></td></tr></table></figure></p>
-<h2 id="十一、关于防火墙-iptables"><a href="#十一、关于防火墙-iptables" class="headerlink" title="十一、关于防火墙(iptables)"></a>十一、关于防火墙(iptables)</h2><p>默认情况下开通 22(ssh)80、443(Nginx) 21、20000:30000(FTP) 其它端口都拒绝,如下需要允许其它端口,请如下操作(如开启 8080 端口)<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># iptables -I INPUT <span class="number">4</span> -p tcp -m <span class="section">state</span> --<span class="section">state</span> NEW -m tcp --dport <span class="number">8080</span> -j ACCEPT #允许 <span class="number">8080</span> 端口#service iptables save #保存 iptables 规则</div></pre></td></tr></table></figure></p>
+<h2 id="六-创建数据库用户"><a href="#六-创建数据库用户" class="headerlink" title="六.创建数据库用户"></a>六.创建数据库用户</h2><p>如:添加一个用户名为 db_user,密码为 123456,授权为本机 localhost 对 database 数据库所有权限,命令如下<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql -uroot –p</div><div class="line">MySQL [(none)]&gt; grant all privileges on database.* to db_user@<span class="string">'localhost'</span> identified by <span class="string">'123456'</span>; <span class="comment">#授权语句,特别注意有分号</span></div><div class="line">MySQL [(none)]&gt; flush privileges; <span class="comment">#权限立即生效</span></div><div class="line">MySQL [(none)]&gt; <span class="keyword">exit</span>; <span class="comment">#退出数据库控制台,特别注意有分号</span></div></pre></td></tr></table></figure></p>
+<h2 id="七-配置-MySQL-远程连接"><a href="#七-配置-MySQL-远程连接" class="headerlink" title="七.配置 MySQL 远程连接"></a>七.配置 MySQL 远程连接</h2><p>①打开 iptables 3306 端口<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">iptables -I INPUT <span class="number">4</span> -p tcp -m <span class="keyword">state</span> --state NEW -m tcp --dport <span class="number">3306</span> -j ACCEPT</div><div class="line">service iptables save <span class="comment">#保存 iptables 规则</span></div></pre></td></tr></table></figure></p>
+<p>②数据库授权<br>如:添加一个用户名为 linuxeye,密码为 123456,授权为% (%表示所有 ip 能连接,可以设置指定 ip)对 oneinstack 数据库所有权限,命令如下<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql –uroot –p</div><div class="line">MySQL [(none)]&gt; grant all privileges on oneinstack.* to linuxeye@<span class="string">'%'</span> identified by <span class="string">'123456'</span>; <span class="comment">#授权语句,特别注意有分号</span></div><div class="line">MySQL [(none)]&gt; flush privileges;</div><div class="line">MySQL [(none)]&gt; <span class="keyword">exit</span>; <span class="comment">#退出数据库控制台,特别注意有分号</span></div></pre></td></tr></table></figure></p>
+<h2 id="八-管理-FTP-账号"><a href="#八-管理-FTP-账号" class="headerlink" title="八.管理 FTP 账号"></a>八.管理 FTP 账号</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /root/oneinstack #必须进入 oneinstack 目录下执行</div><div class="line">./pureftpd_vhost.<span class="keyword">sh</span> #请勿 bash ./pureftpd_vhost.<span class="keyword">sh</span>(或者 <span class="keyword">sh</span>)这样执行</div></pre></td></tr></table></figure>
+<h2 id="九-如何管理服务"><a href="#九-如何管理服务" class="headerlink" title="九.如何管理服务"></a>九.如何管理服务</h2><p>Nginx:<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service nginx &#123;start|<span class="type">stop</span>|<span class="type">status</span>|<span class="type">restart</span>|<span class="type">reload</span>|<span class="type">configtest</span>&#125; 注:如手工更改配置文件,强烈建议 reload</div></pre></td></tr></table></figure><br>MySQL:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service <span class="keyword">mysqld</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">restart</span>|reload|<span class="literal">status</span>&#125;</div></pre></td></tr></table></figure><br>PHP:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service php-<span class="keyword">fpm</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">restart</span>|reload|<span class="literal">status</span>&#125;</div></pre></td></tr></table></figure><br>Tomcat:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service <span class="keyword">tomcat</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">status</span>|<span class="literal">restart</span>&#125;</div></pre></td></tr></table></figure><br>Pure-Ftpd:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service <span class="keyword">pureftpd</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">restart</span>|<span class="literal">status</span>&#125;</div></pre></td></tr></table></figure><br>Redis:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service redis-<span class="keyword">server</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">status</span>|<span class="literal">restart</span>|reload&#125;</div></pre></td></tr></table></figure><br>Memcached:<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service <span class="keyword">memcached</span> &#123;<span class="literal">start</span>|<span class="literal">stop</span>|<span class="literal">status</span>|<span class="literal">restart</span>|reload&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="十-关于网站根目录权限"><a href="#十-关于网站根目录权限" class="headerlink" title="十.关于网站根目录权限"></a>十.关于网站根目录权限</h2><p>网站根目录权限遵循:<br>文件 644, 文件夹 755 ,权限用户和用户组 www 如出现文件权限问题时,请执行下面 3 条命令:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="title">chown</span> -<span class="type">R</span> www.www /<span class="class"><span class="keyword">data</span>/wwwroot/</span></div><div class="line"><span class="title">find</span> /<span class="class"><span class="keyword">data</span>/wwwroot/ -<span class="keyword">type</span> d -exec chmod 755 &#123;&#125; \; </span></div><div class="line"><span class="title">find</span> /<span class="class"><span class="keyword">data</span>/wwwroot/ -<span class="keyword">type</span> f -exec chmod 644 &#123;&#125; \;</span></div></pre></td></tr></table></figure></p>
+<h2 id="十一、关于防火墙-iptables"><a href="#十一、关于防火墙-iptables" class="headerlink" title="十一、关于防火墙(iptables)"></a>十一、关于防火墙(iptables)</h2><p>默认情况下开通 22(ssh)80、443(Nginx) 21、20000:30000(FTP) 其它端口都拒绝,如下需要允许其它端口,请如下操作(如开启 8080 端口)<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># iptables -I INPUT <span class="number">4</span> -p tcp -m <span class="section">state</span> --<span class="section">state</span> NEW -m tcp --dport <span class="number">8080</span> -j ACCEPT #允许 <span class="number">8080</span> 端口</div><div class="line">#service iptables save #保存 iptables 规则</div></pre></td></tr></table></figure></p>
 <p>删除规则<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">iptables -L -n  --<span class="built_in">line</span>-number</div><div class="line">iptables -D <span class="literal">INPUT</span> <span class="number">4</span></div></pre></td></tr></table></figure></p>
 <h2 id="十二、查看端口"><a href="#十二、查看端口" class="headerlink" title="十二、查看端口"></a>十二、查看端口</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">netstat -ntlp   <span class="comment">//查看当前所有tcp端口·</span></div><div class="line">netstat -ntulp |<span class="keyword">grep</span> <span class="number">80</span>   <span class="comment">//查看所有80端口使用情况·</span></div><div class="line">netstat -an | <span class="keyword">grep</span> <span class="number">3306</span>   <span class="comment">//查看所有3306端口使用情况·</span></div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
             
-            <category> Oracle </category>
+            <category> Linux </category>
             
         </categories>
         
@@ -457,7 +491,7 @@
     
     <entry>
       <title><![CDATA[Oracle数据库的操作]]></title>
-      <url>/2016/03/15/Oracle/oracle%E8%AF%AD%E6%B3%95/</url>
+      <url>/2016/03/15/Database/oracle%E8%AF%AD%E6%B3%95/</url>
       <content type="html"><![CDATA[<p>Oracle数据库中有一个Sql Plus，可以使用命令行进行一系列的数据库操作，学习导入数据，增删改查的基本命令。<br><a id="more"></a></p>
 <h2 id="一、导入dmp文件"><a href="#一、导入dmp文件" class="headerlink" title="一、导入dmp文件"></a>一、导入dmp文件</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sys as sysdba</div><div class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> scott;</div><div class="line"><span class="keyword">commit</span>;</div><div class="line">host imp username/pwd file=filename.dmp full=y;</div></pre></td></tr></table></figure>
 <h2 id="二、各种操作"><a href="#二、各种操作" class="headerlink" title="二、各种操作"></a>二、各种操作</h2><p>创建表空间<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create tablespace tablespace_name datafile (<span class="name">filename</span>.dpf) size (<span class="name">xx</span>)</div></pre></td></tr></table></figure></p>
@@ -467,7 +501,7 @@
 <p>表空间的脱机和开机<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> tablespacename <span class="keyword">online</span>/<span class="keyword">offline</span>;</div></pre></td></tr></table></figure></p>
 <p>删除表空间中的文件<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> tablespace_name <span class="keyword">drop</span> <span class="keyword">datafile</span> ‘filename.dpf’;</div></pre></td></tr></table></figure></p>
 <p>删除表空间<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">tablespace</span> tablespace_name <span class="keyword">including</span> <span class="keyword">contents</span>;</div></pre></td></tr></table></figure></p>
-<p>建表<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">create table userinfo</div><div class="line">(  <span class="name">id</span> number(<span class="number">6</span>,<span class="number">0</span>),  username varchar2(<span class="number">20</span>),  userpwd varchar2(<span class="number">20</span>),  email varchar2(<span class="number">20</span>),  regdate date</div><div class="line">)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<p>建表<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">create table userinfo</div><div class="line">(</div><div class="line">  <span class="name">id</span> number(<span class="number">6</span>,<span class="number">0</span>),</div><div class="line">  username varchar2(<span class="number">20</span>),</div><div class="line">  userpwd varchar2(<span class="number">20</span>),</div><div class="line">  email varchar2(<span class="number">20</span>),</div><div class="line">  regdate date</div><div class="line">)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
 <p>展示表<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">desc userinfo<span class="comment">;</span></div></pre></td></tr></table></figure></p>
 <p>增加字段<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">add</span> column_name datatype;</div></pre></td></tr></table></figure></p>
 <p>更改字段数据类型<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">modify</span> column_name datatype;</div></pre></td></tr></table></figure></p>
@@ -481,7 +515,7 @@
       
         <categories>
             
-            <category> Oracle </category>
+            <category> database </category>
             
         </categories>
         
@@ -498,13 +532,13 @@
     
     <entry>
       <title><![CDATA[Mac下的Oracle数据库的安装]]></title>
-      <url>/2016/03/06/Oracle/oracle%E5%AE%89%E8%A3%85/</url>
+      <url>/2016/03/06/Database/oracle%E5%AE%89%E8%A3%85/</url>
       <content type="html"><![CDATA[<p>不知不觉的已经大二下了，在今后的旅途中依旧迷茫，在创新实践这门课上选了Java Web，不知能走多远，且行且珍惜吧。课题是对大数据的可视化分析，首先需要学习oracle数据库，发现oracle自从10g版本后再也不提供对mac支持的版本了，只好回windows的坑，寻找解决办法。<br><a id="more"></a></p>
 <h2 id="一、安装windows"><a href="#一、安装windows" class="headerlink" title="一、安装windows"></a>一、安装windows</h2><p>从网上了解到java web开发可以在mac下进行，不需要双系统，装个类似于parallels desktop的虚拟机就可以啦，找个win10镜像，然后就解决环境问题了。大致思路是在windows环境下使用oracle数据库，而在mac环境下进行开发，像navicat、sql developer都可以通过访问虚拟机来获取数据库信息.  </p>
 <h2 id="二、下载oracle安装包"><a href="#二、下载oracle安装包" class="headerlink" title="二、下载oracle安装包"></a>二、下载oracle安装包</h2><p>我装的是11g，直接在oracle官网上下载，一共有两个文件，解压之后需要合并在一起，之后是傻瓜式安装，在口令管理处，解锁SCOTT账户，默认密码是tiger。安装成功，可以通过sql plus来进入数据库。接下来是一些具体的设置来实现oracle与mac的对接。  </p>
 <h2 id="三、oracle与mac的连接"><a href="#三、oracle与mac的连接" class="headerlink" title="三、oracle与mac的连接"></a>三、oracle与mac的连接</h2><p>1、打开Net Manager,在服务命名的orcl中更改localhost为你当前的虚拟机的ip，监听程序下的LISTENER也更改ip。<br><img src="/images/NetManager.png" alt="NetManager">  </p>
-<p>在C:\app\Kevin\product\11.2.0\dbhome_1\NETWORK\ADMIN路径下查看listener.ora和tnsnames.ora<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> #listener.ora Network Configuration File: C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin<span class="symbol">\p</span>roduct<span class="symbol">\1</span>1.2.0<span class="symbol">\d</span>bhome_1<span class="symbol">\N</span>ETWORK<span class="symbol">\A</span>DMIN<span class="symbol">\l</span>istener.ora   #Generated by Oracle configuration tools.  SID_LIST_LISTENER =  (SID_LIST =    (SID_DESC =      (SID_NAME = CLRExtProc)      (ORACLE_HOME = C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin<span class="symbol">\p</span>roduct<span class="symbol">\1</span>1.2.0<span class="symbol">\d</span>bhome_1)      (PROGRAM = extproc)      (ENVS = "EXTPROC_DLLS=ONLY:C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin<span class="symbol">\p</span>roduct<span class="symbol">\1</span>1.2.0<span class="symbol">\d</span>bhome_1<span class="symbol">\b</span>in<span class="symbol">\o</span>raclr11.dll")    )    (SID_DESC =      (SID_NAME = ORCL)      (ORACLE_HOME = C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin<span class="symbol">\p</span>roduct<span class="symbol">\1</span>1.2.0<span class="symbol">\d</span>bhome_1)      (GLOBAL_DBNAME = ORCL)    )  )LISTENER =  (DESCRIPTION_LIST =    (DESCRIPTION =      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))    )    (DESCRIPTION =      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.211.55.24)(PORT = 1521))    )  )ADR_BASE_LISTENER = C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin</div></pre></td></tr></table></figure></p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#tnsnames.ora Network Configuration File: C:\app\Kevin\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora</span> <span class="comment">#Generated by Oracle configuration tools.</span><span class="attr">ORACLR_CONNECTION_DATA</span> =  (<span class="attr">DESCRIPTION</span> =    (<span class="attr">ADDRESS_LIST</span> =      (<span class="attr">ADDRESS</span> = (<span class="attr">PROTOCOL</span> = IPC)(<span class="attr">KEY</span> = EXTPROC1521))    )    (<span class="attr">CONNECT_DATA</span> =      (<span class="attr">SID</span> = CLRExtProc)      (<span class="attr">PRESENTATION</span> = RO)    )  )<span class="attr">LISTENER_ORCL</span> =  (<span class="attr">ADDRESS</span> = (<span class="attr">PROTOCOL</span> = TCP)(<span class="attr">HOST</span> = localhost)(<span class="attr">PORT</span> = <span class="number">1521</span>))<span class="attr">ORCL</span> =  (<span class="attr">DESCRIPTION</span> =    (<span class="attr">ADDRESS_LIST</span> =      (<span class="attr">ADDRESS</span> = (<span class="attr">PROTOCOL</span> = TCP)(<span class="attr">HOST</span> = <span class="number">10.211</span>.<span class="number">55.24</span>)(<span class="attr">PORT</span> = <span class="number">1521</span>))    )    (<span class="attr">CONNECT_DATA</span> =      (<span class="attr">SERVER</span> = DEDICATED)      (<span class="attr">SERVICE_NAME</span> = orcl)    )  )</div></pre></td></tr></table></figure>
+<p>在C:\app\Kevin\product\11.2.0\dbhome_1\NETWORK\ADMIN路径下查看listener.ora和tnsnames.ora<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"> #listener.ora Network Configuration File: C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin<span class="symbol">\p</span>roduct<span class="symbol">\1</span>1.2.0<span class="symbol">\d</span>bhome_1<span class="symbol">\N</span>ETWORK<span class="symbol">\A</span>DMIN<span class="symbol">\l</span>istener.ora  </div><div class="line"> #Generated by Oracle configuration tools.  </div><div class="line"></div><div class="line">SID_LIST_LISTENER =</div><div class="line">  (SID_LIST =</div><div class="line">    (SID_DESC =</div><div class="line">      (SID_NAME = CLRExtProc)</div><div class="line">      (ORACLE_HOME = C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin<span class="symbol">\p</span>roduct<span class="symbol">\1</span>1.2.0<span class="symbol">\d</span>bhome_1)</div><div class="line">      (PROGRAM = extproc)</div><div class="line">      (ENVS = "EXTPROC_DLLS=ONLY:C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin<span class="symbol">\p</span>roduct<span class="symbol">\1</span>1.2.0<span class="symbol">\d</span>bhome_1<span class="symbol">\b</span>in<span class="symbol">\o</span>raclr11.dll")</div><div class="line">    )</div><div class="line">    (SID_DESC =</div><div class="line">      (SID_NAME = ORCL)</div><div class="line">      (ORACLE_HOME = C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin<span class="symbol">\p</span>roduct<span class="symbol">\1</span>1.2.0<span class="symbol">\d</span>bhome_1)</div><div class="line">      (GLOBAL_DBNAME = ORCL)</div><div class="line">    )</div><div class="line">  )</div><div class="line"></div><div class="line">LISTENER =</div><div class="line">  (DESCRIPTION_LIST =</div><div class="line">    (DESCRIPTION =</div><div class="line">      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))</div><div class="line">    )</div><div class="line">    (DESCRIPTION =</div><div class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.211.55.24)(PORT = 1521))</div><div class="line">    )</div><div class="line">  )</div><div class="line"></div><div class="line">ADR_BASE_LISTENER = C:<span class="symbol">\a</span>pp<span class="symbol">\K</span>evin</div><div class="line"></div></pre></td></tr></table></figure></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#tnsnames.ora Network Configuration File: C:\app\Kevin\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora</span></div><div class="line"> <span class="comment">#Generated by Oracle configuration tools.</span></div><div class="line"></div><div class="line"><span class="attr">ORACLR_CONNECTION_DATA</span> =</div><div class="line">  (<span class="attr">DESCRIPTION</span> =</div><div class="line">    (<span class="attr">ADDRESS_LIST</span> =</div><div class="line">      (<span class="attr">ADDRESS</span> = (<span class="attr">PROTOCOL</span> = IPC)(<span class="attr">KEY</span> = EXTPROC1521))</div><div class="line">    )</div><div class="line">    (<span class="attr">CONNECT_DATA</span> =</div><div class="line">      (<span class="attr">SID</span> = CLRExtProc)</div><div class="line">      (<span class="attr">PRESENTATION</span> = RO)</div><div class="line">    )</div><div class="line">  )</div><div class="line"></div><div class="line"><span class="attr">LISTENER_ORCL</span> =</div><div class="line">  (<span class="attr">ADDRESS</span> = (<span class="attr">PROTOCOL</span> = TCP)(<span class="attr">HOST</span> = localhost)(<span class="attr">PORT</span> = <span class="number">1521</span>))</div><div class="line"></div><div class="line"></div><div class="line"><span class="attr">ORCL</span> =</div><div class="line">  (<span class="attr">DESCRIPTION</span> =</div><div class="line">    (<span class="attr">ADDRESS_LIST</span> =</div><div class="line">      (<span class="attr">ADDRESS</span> = (<span class="attr">PROTOCOL</span> = TCP)(<span class="attr">HOST</span> = <span class="number">10.211</span>.<span class="number">55.24</span>)(<span class="attr">PORT</span> = <span class="number">1521</span>))</div><div class="line">    )</div><div class="line">    (<span class="attr">CONNECT_DATA</span> =</div><div class="line">      (<span class="attr">SERVER</span> = DEDICATED)</div><div class="line">      (<span class="attr">SERVICE_NAME</span> = orcl)</div><div class="line">    )</div><div class="line">  )</div><div class="line"></div></pre></td></tr></table></figure>
 <p>2、将windows的防火墙关闭  </p>
 <p>3、在虚拟机上设置为共享网络，网上说是桥接，自己尝试吧  </p>
 <p>4、在mac上下载navicat或sql developer对oracle数据库进行连接<br><img src="/images/Navicat.png" alt="Navicat"><br><img src="/images/Sqldeveloper.png" alt="SqlDeveloper"></p>
@@ -512,7 +546,7 @@
       
         <categories>
             
-            <category> Oracle </category>
+            <category> database </category>
             
         </categories>
         
@@ -527,7 +561,7 @@
     
     <entry>
       <title><![CDATA[Sublime Text的配置]]></title>
-      <url>/2015/11/09/%E5%B7%A5%E5%85%B7/sublime/</url>
+      <url>/2015/11/09/Tools/sublime/</url>
       <content type="html"><![CDATA[<p>Sublime Text：一款具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，不仅具有华丽的界面，还支持插件扩展机制，用她来写代码，绝对是一种享受。<br><a id="more"></a>  </p>
 <h2 id="一、安装package-control"><a href="#一、安装package-control" class="headerlink" title="一、安装package control"></a>一、安装package control</h2><p>按Ctrl+`调出console<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request,os; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); <span class="built_in">open</span>(os.path.join(ipp, pf), <span class="string">'wb'</span>).<span class="built_in">write</span>(urllib.request.urlopen( <span class="string">'http://sublime.wbond.net/'</span> + pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).<span class="built_in">read</span>())</div></pre></td></tr></table></figure></p>
 <h2 id="二、修改个人配置"><a href="#二、修改个人配置" class="headerlink" title="二、修改个人配置"></a>二、修改个人配置</h2><p>字体大小<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"><span class="string">"font_size"</span>: <span class="number">17</span>  </div></pre></td></tr></table></figure>  </p>
@@ -557,7 +591,7 @@
       
         <categories>
             
-            <category> tools </category>
+            <category> Tools </category>
             
         </categories>
         
@@ -782,7 +816,7 @@
 <h2 id="五、安装无线网卡驱动"><a href="#五、安装无线网卡驱动" class="headerlink" title="五、安装无线网卡驱动"></a>五、安装无线网卡驱动</h2><p>设备菜单下选择自己的无线网卡一栏，使用的是360免费wifi，驱动需要从网上找，这里放个<a href="https://github.com/kuba-moo/mt7601u" target="_blank" rel="external">github</a>上的资源。    </p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">lsusb</span></div></pre></td></tr></table></figure>
 <p>返回  </p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Bus </span><span class="number">004</span> Device <span class="number">004</span>: ID <span class="number">148</span>f:<span class="number">760</span>b Ralink Technology, Corp. MT7601U Wireless Adapter</div></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Bus </span><span class="number">004</span> Device <span class="number">004</span>: ID <span class="number">148</span>f:<span class="number">760</span>b Ralink Technology, Corp. MT7601U Wireless Adapter</div></pre></td></tr></table></figure>
 <p>可知USB ID号为：148f:760b 谷歌后了解到该序列号对应的Mt7601U芯片组，最后一个“U”指的即是USB接口，搜索适合该驱动，可以到gtihub上找，要让驱动匹配linux的核心。</p>
 ]]></content>
       
@@ -851,9 +885,9 @@
             
             <tag> Mac </tag>
             
-            <tag> Mysql </tag>
-            
             <tag> Apache </tag>
+            
+            <tag> Mysql </tag>
             
         </tags>
         
@@ -907,7 +941,7 @@
     
     <entry>
       <title><![CDATA[Git分支管理策略]]></title>
-      <url>/2015/07/27/Git/git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
+      <url>/2015/07/27/Tools/git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
       <content type="html"><![CDATA[<p>Git有很多优点。其中很显著的一点，就是版本的分支（branch）和合并（merge）十分方便。Git只生成一个指向当前版本（又称”快照”）的指针.  </p>
 <a id="more"></a>
 <h2 id="一、主分支Master"><a href="#一、主分支Master" class="headerlink" title="一、主分支Master"></a>一、主分支Master</h2><p>首先，代码库应该有一个、且仅有一个主分支。所有提供给用户使用的正式版本，都在这个主分支上发布。Git主分支的名字，默认叫做Master。它是自动建立的，版本库初始化以后，默认就是在主分支在进行开发。<br><img src="/images/master.png" alt="master"></p>
@@ -926,7 +960,7 @@
       
         <categories>
             
-            <category> Git </category>
+            <category> Tools </category>
             
         </categories>
         
@@ -941,7 +975,7 @@
     
     <entry>
       <title><![CDATA[Git命令]]></title>
-      <url>/2015/07/26/Git/git%E5%91%BD%E4%BB%A4/</url>
+      <url>/2015/07/26/Tools/git%E5%91%BD%E4%BB%A4/</url>
       <content type="html"><![CDATA[<p>速度 简单的设计 完全分布式<br>对非线性开发模式的强力支持（允许上千个并行开发的分支）<br>有能力高效管理超大规模项目（速度和数据量）  </p>
 <a id="more"></a>
 <h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><p>使用homebrew下载<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span><span class="keyword">install </span>git</div></pre></td></tr></table></figure></p>
@@ -961,7 +995,7 @@
       
         <categories>
             
-            <category> Git </category>
+            <category> Tools </category>
             
         </categories>
         
@@ -981,7 +1015,7 @@
 <a id="more"></a>
 <h2 id="一、limit用法"><a href="#一、limit用法" class="headerlink" title="一、limit用法"></a>一、limit用法</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">limit</span> 开始位置 , 操作条数</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">20</span></div></pre></td></tr></table></figure>
 <h2 id="二、分页公式"><a href="#二、分页公式" class="headerlink" title="二、分页公式"></a>二、分页公式</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">10</span></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">limit</span> <span class="number">10</span>,<span class="number">10</span></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">limit</span> <span class="number">20</span>,<span class="number">10</span></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">limit</span> ($page<span class="number">-1</span>)*$pagesize,$pagesize</div></pre></td></tr></table></figure>
-<h2 id="三、parse-url-解析URL函数"><a href="#三、parse-url-解析URL函数" class="headerlink" title="三、parse_url()解析URL函数"></a>三、parse_url()解析URL函数</h2><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ua</span>=parse_url(<span class="string">"http://username:password@hostname/path?arg=value#anchor"</span>); </div><div class="line">print_r(<span class="variable">$ua</span>);结果:Array([scheme] =&gt; http </div><div class="line">[host] =&gt; hostname </div><div class="line">[<span class="keyword">user</span>] =&gt; username </div><div class="line">[<span class="built_in">pass</span>] =&gt; password </div><div class="line">[path] =&gt; /path </div><div class="line">[query] =&gt; arg=value </div><div class="line">[<span class="keyword">fragment</span>] =&gt; <span class="built_in">anchor</span>)</div></pre></td></tr></table></figure>
+<h2 id="三、parse-url-解析URL函数"><a href="#三、parse-url-解析URL函数" class="headerlink" title="三、parse_url()解析URL函数"></a>三、parse_url()解析URL函数</h2><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ua</span>=parse_url(<span class="string">"http://username:password@hostname/path?arg=value#anchor"</span>); </div><div class="line">print_r(<span class="variable">$ua</span>);</div><div class="line">结果:</div><div class="line">Array</div><div class="line">(</div><div class="line">[scheme] =&gt; http </div><div class="line">[host] =&gt; hostname </div><div class="line">[<span class="keyword">user</span>] =&gt; username </div><div class="line">[<span class="built_in">pass</span>] =&gt; password </div><div class="line">[path] =&gt; /path </div><div class="line">[query] =&gt; arg=value </div><div class="line">[<span class="keyword">fragment</span>] =&gt; <span class="built_in">anchor</span></div><div class="line">)</div></pre></td></tr></table></figure>
 <h2 id="四、简单分页效果"><a href="#四、简单分页效果" class="headerlink" title="四、简单分页效果"></a>四、简单分页效果</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$pagesize</span>=5;</div><div class="line"><span class="variable">$url</span>=<span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>];</div><div class="line"><span class="variable">$url</span>=parse_url(<span class="variable">$url</span>);</div><div class="line"><span class="variable">$url</span>=<span class="variable">$url</span>[path];</div><div class="line"></div><div class="line"><span class="variable">$numq</span>=mysql_query(<span class="string">"SELECT * FROM `test`"</span>);</div><div class="line"><span class="variable">$num</span> = mysql_num_rows(<span class="variable">$numq</span>);</div><div class="line"></div><div class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[page])&#123;</div><div class="line"><span class="variable">$pageval</span>=<span class="variable">$_GET</span>[page];</div><div class="line"><span class="variable">$page</span>=(<span class="variable">$pageval</span>-1)*<span class="variable">$pagesize</span>;</div><div class="line"><span class="variable">$page</span>.=<span class="string">','</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(<span class="variable">$num</span> &gt; <span class="variable">$pagesize</span>)&#123;</div><div class="line">	<span class="keyword">if</span>(<span class="variable">$pageval</span>&lt;=1)</div><div class="line">	<span class="variable">$pageval</span>=1;</div><div class="line">	<span class="built_in">echo</span> <span class="string">"第 <span class="variable">$num</span> 条"</span>.<span class="string">" &lt;a href=<span class="variable">$url</span>?page="</span>.(<span class="variable">$pageval</span>-1).<span class="string">"&gt;前一页&lt;/a&gt; &lt;a href=<span class="variable">$url</span>?page="</span>.(<span class="variable">$pageval</span>+1).<span class="string">"&gt;后一页&lt;/a&gt;"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">echo</span>  <span class="variable">$SQL</span>=<span class="string">"SELECT * FROM `test` limit <span class="variable">$page</span> <span class="variable">$pagesize</span> "</span>;</div><div class="line"><span class="variable">$query</span>=mysql_query(<span class="variable">$SQL</span>);</div><div class="line"><span class="keyword">while</span>(<span class="variable">$row</span>=mysql_fetch_array(<span class="variable">$query</span>))&#123;</div><div class="line">	<span class="built_in">echo</span> <span class="string">"&lt;hr&gt;&lt;b&gt;"</span>.<span class="variable">$row</span>[name].<span class="string">" | "</span>.<span class="variable">$row</span>[sex];</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
       
         <categories>
@@ -1006,9 +1040,9 @@
 <a id="more"></a>  
 <h2 id="一、form标签"><a href="#一、form标签" class="headerlink" title="一、form标签"></a>一、form标签</h2><p>表单中enctype=”multipart/form-data”的意思,是设置表单的MIME编码。默认情况, 这个编码格式是application/x-www-form-urlencoded,不能用于文件上传; 只有使⽤用了multipart/form-data,才能完整的传递⽂件数据<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">form</span> enctype=<span class="string">"multipart/form-data"</span> &gt;</div><div class="line">&lt;<span class="selector-tag">input</span> type=<span class="string">"file"</span>&gt;</div></pre></td></tr></table></figure></p>
 <h2 id="二、-FILES-系统函数"><a href="#二、-FILES-系统函数" class="headerlink" title="二、$_FILES 系统函数"></a>二、$_FILES 系统函数</h2><p>1、$_FILES[‘myFile’][‘name’] 客户端文件的原名称。  </p>
-<p>2、$_FILES[‘myFile’][‘type’] 文件的 MIME 类型。<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">image</span>/jpg<span class="built_in">image</span>/jpeg<span class="built_in">image</span>/png<span class="built_in">image</span>/pjpeg<span class="built_in">image</span>/gif<span class="built_in">image</span>/bmp<span class="built_in">image</span>/x-png application/x-zip-compressed</div></pre></td></tr></table></figure><br>3、$_FILES[‘myFile’][‘size’] 已上传文件的⼤⼩,单位为字节。</p>
+<p>2、$_FILES[‘myFile’][‘type’] 文件的 MIME 类型。<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">image</span>/jpg</div><div class="line"><span class="built_in">image</span>/jpeg</div><div class="line"><span class="built_in">image</span>/png</div><div class="line"><span class="built_in">image</span>/pjpeg</div><div class="line"><span class="built_in">image</span>/gif</div><div class="line"><span class="built_in">image</span>/bmp</div><div class="line"><span class="built_in">image</span>/x-png application/x-zip-compressed</div></pre></td></tr></table></figure><br>3、$_FILES[‘myFile’][‘size’] 已上传文件的⼤⼩,单位为字节。</p>
 <p>4、$_FILES[‘myFile’][‘tmp_name’] 储存的临时文件名,⼀一般是系统默认。  </p>
-<p>5、$_FILES[‘myFile’][‘error’] 文件上传相关的错误代码。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>; 文件上传成功。  <span class="number">1</span>; 超过了⽂件⼤⼩php.ini中。   </div><div class="line"><span class="number">2</span>; 超过了⽂件大小MAX_FILE_SIZE 选项指定的值。   </div><div class="line"><span class="number">3</span>; ⽂件只有部分被上传。  <span class="number">4</span>; 没有文件被上传。  <span class="number">5</span>; 上传⽂件大小为<span class="number">0</span>。  </div></pre></td></tr></table></figure></p>
+<p>5、$_FILES[‘myFile’][‘error’] 文件上传相关的错误代码。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>; 文件上传成功。  </div><div class="line"><span class="number">1</span>; 超过了⽂件⼤⼩php.ini中。   </div><div class="line"><span class="number">2</span>; 超过了⽂件大小MAX_FILE_SIZE 选项指定的值。   </div><div class="line"><span class="number">3</span>; ⽂件只有部分被上传。  </div><div class="line"><span class="number">4</span>; 没有文件被上传。  </div><div class="line"><span class="number">5</span>; 上传⽂件大小为<span class="number">0</span>。  </div></pre></td></tr></table></figure></p>
 <h2 id="三、move-uploaded-file函数"><a href="#三、move-uploaded-file函数" class="headerlink" title="三、move_uploaded_file函数"></a>三、move_uploaded_file函数</h2><p>上传后移动⽂件到目标位置的函数<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">move_uploaded_file<span class="comment">(临时⽂件,⽬标位置和文件名)</span>;</div></pre></td></tr></table></figure></p>
 <h2 id="四、is-uploaded-file函数"><a href="#四、is-uploaded-file函数" class="headerlink" title="四、is_uploaded_file函数"></a>四、is_uploaded_file函数</h2><p>判断上传MIME类型的文件函数<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">is_uploaded_file(<span class="name">MIME</span>)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
 <h2 id="五、简单上传"><a href="#五、简单上传" class="headerlink" title="五、简单上传"></a>五、简单上传</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (is_uploaded_file(<span class="variable">$_FILES</span>[<span class="string">'upfile'</span>][<span class="string">'tmp_name'</span>]))&#123;</div><div class="line"></div><div class="line"><span class="variable">$upfile</span>=<span class="variable">$_FILES</span>[<span class="string">"upfile"</span>];</div><div class="line"></div><div class="line"><span class="variable">$name</span> = <span class="variable">$upfile</span>[<span class="string">"name"</span>];</div><div class="line"><span class="variable">$type</span> = <span class="variable">$upfile</span>[<span class="string">"type"</span>];</div><div class="line"><span class="variable">$size</span> = <span class="variable">$upfile</span>[<span class="string">"size"</span>];</div><div class="line"><span class="variable">$tmp_name</span> = <span class="variable">$upfile</span>[<span class="string">"tmp_name"</span>];</div><div class="line"><span class="variable">$error</span> = <span class="variable">$upfile</span>[<span class="string">"error"</span>];</div><div class="line"></div><div class="line"></div><div class="line">switch (<span class="variable">$type</span>) &#123;</div><div class="line">	<span class="keyword">case</span> <span class="string">'image/pjpeg'</span> : <span class="variable">$ok</span>=1;</div><div class="line">		<span class="built_in">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="string">'image/jpeg'</span> : <span class="variable">$ok</span>=1;</div><div class="line">		<span class="built_in">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="string">'image/gif'</span> : <span class="variable">$ok</span>=1;</div><div class="line">		<span class="built_in">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="string">'image/png'</span> : <span class="variable">$ok</span>=1;</div><div class="line">		<span class="built_in">break</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(<span class="variable">$ok</span> &amp;&amp; <span class="variable">$error</span>==<span class="string">'0'</span>)&#123;</div><div class="line"> move_uploaded_file(<span class="variable">$tmp_name</span>,<span class="string">'up/'</span>.<span class="variable">$name</span>);</div><div class="line"> <span class="built_in">echo</span> <span class="string">"上传成功"</span>;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;form action=<span class="string">""</span> enctype=<span class="string">"multipart/form-data"</span> method=<span class="string">"post"</span> name=<span class="string">"upform"</span>&gt;</div><div class="line">  上传文件:</div><div class="line">  &lt;input name=<span class="string">"upfile"</span> <span class="built_in">type</span>=<span class="string">"file"</span>&gt;</div><div class="line">  &lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"上传"</span>&gt;&lt;br&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
@@ -1063,7 +1097,7 @@
     
     <entry>
       <title><![CDATA[为什么要写博客？]]></title>
-      <url>/2015/02/15/%E7%94%9F%E6%B4%BB/%E5%8D%9A%E5%AE%A2/</url>
+      <url>/2015/02/15/Life/%E5%8D%9A%E5%AE%A2/</url>
       <content type="html"><![CDATA[<p>If you can quit,then quit.If you can’t quit,you’re a writer.  </p>
 <a id="more"></a>  
 <h2 id="一、博客的内容"><a href="#一、博客的内容" class="headerlink" title="一、博客的内容"></a>一、博客的内容</h2><p>1、不是生活杂记、不是流水账、不是牢骚、不是抱怨、不是心情琐记……  </p>
@@ -1100,7 +1134,7 @@
       
         <categories>
             
-            <category> 生活 </category>
+            <category> Life </category>
             
         </categories>
         
