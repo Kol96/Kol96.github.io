@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-03-25T04:22:04.000Z</updated>
+  <updated>2017-03-25T04:26:00.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,14 +20,17 @@
     <link href="/2017/03/25/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/"/>
     <id>/2017/03/25/Front End/JS学习之执行上下文/</id>
     <published>2017-03-24T16:00:00.000Z</published>
-    <updated>2017-03-25T04:22:04.000Z</updated>
+    <updated>2017-03-25T04:26:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>javascript引擎内部在执行代码以前到底做了些什么？<br><a id="more"></a></p>
 <h2 id="执行上下文（Execution-Context）"><a href="#执行上下文（Execution-Context）" class="headerlink" title="执行上下文（Execution Context）"></a>执行上下文（Execution Context）</h2><p>1、每次当控制器转到可执行代码的时候，就会进入一个执行上下文。执行上下文可以理解为当前代码的执行环境，它会形成一个作用域。JavaScript中的运行环境大概包括三种情况。  </p>
 <ul>
 <li>全局级别的代码 - 这个是默认的代码运行环境，一旦代码被载入，引擎最先进入的就是这个环境。  </li>
 <li>函数级别的代码 - 当执行一个函数时，运行函数体中的代码。  </li>
-<li>Eval的代码 - 在Eval函数内运行的代码。<br>2、JavaScript引擎会以栈的方式来处理它们，这个栈，我们称其为函数调用栈(call stack)。栈底永远都是全局上下文，而栈顶就是当前正在执行的上下文。<br>3、当javascript代码文件被浏览器载入后，默认最先进入的是一个全局的执行上下文。当在全局上下文中调用执行一个函数时，程序流就进入该被调用函数内，此时引擎就会为该函数创建一个新的执行上下文，并且将其压入到执行上下文堆栈的顶部。浏览器总是执行当前在堆栈顶部的上下文，一旦执行完毕，该上下文就会从堆栈顶部被弹出，然后，进入其下的上下文执行代码。这样，堆栈中的上下文就会被依次执行并且弹出堆栈，直到回到全局的上下文。<br>4、执行上下文的特点  </li>
+<li>Eval的代码 - 在Eval函数内运行的代码。  </li>
+</ul>
+<p>2、JavaScript引擎会以栈的方式来处理它们，这个栈，我们称其为函数调用栈(call stack)。栈底永远都是全局上下文，而栈顶就是当前正在执行的上下文。<br>3、当javascript代码文件被浏览器载入后，默认最先进入的是一个全局的执行上下文。当在全局上下文中调用执行一个函数时，程序流就进入该被调用函数内，此时引擎就会为该函数创建一个新的执行上下文，并且将其压入到执行上下文堆栈的顶部。浏览器总是执行当前在堆栈顶部的上下文，一旦执行完毕，该上下文就会从堆栈顶部被弹出，然后，进入其下的上下文执行代码。这样，堆栈中的上下文就会被依次执行并且弹出堆栈，直到回到全局的上下文。<br>4、执行上下文的特点  </p>
+<ul>
 <li>单线程  </li>
 <li>同步执行，栈顶的上下文在执行中，其他的在等待  </li>
 <li>唯一的一个全局上下文，在浏览器关闭时出栈  </li>
@@ -293,32 +296,6 @@
   </entry>
   
   <entry>
-    <title>Mac上用Navicat连接Oracle</title>
-    <link href="/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
-    <id>/2017/03/10/Database/navicat连接oracle/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-24T07:15:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="database" scheme="/categories/database/"/>
-    
-    
-      <category term="Oracle" scheme="/tags/Oracle/"/>
-    
-  </entry>
-  
-  <entry>
     <title>How to install Hexo on Mac</title>
     <link href="/2017/03/10/Mac/Hexo/"/>
     <id>/2017/03/10/Mac/Hexo/</id>
@@ -409,6 +386,32 @@
     
     
       <category term="CSS" scheme="/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac上用Navicat连接Oracle</title>
+    <link href="/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
+    <id>/2017/03/10/Database/navicat连接oracle/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-24T07:15:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="database" scheme="/categories/database/"/>
+    
+    
+      <category term="Oracle" scheme="/tags/Oracle/"/>
     
   </entry>
   
