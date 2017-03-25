@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title><![CDATA[JavaScript学习之执行上下文]]></title>
+      <url>/2017/03/25/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/</url>
+      <content type="html"><![CDATA[<p>javascript引擎内部在执行代码以前到底做了些什么？<br><a id="more"></a></p>
+<h2 id="执行上下文（Execution-Context）"><a href="#执行上下文（Execution-Context）" class="headerlink" title="执行上下文（Execution Context）"></a>执行上下文（Execution Context）</h2><p>1、每次当控制器转到可执行代码的时候，就会进入一个执行上下文。执行上下文可以理解为当前代码的执行环境，它会形成一个作用域。JavaScript中的运行环境大概包括三种情况。  </p>
+<ul>
+<li>全局级别的代码 - 这个是默认的代码运行环境，一旦代码被载入，引擎最先进入的就是这个环境。  </li>
+<li>函数级别的代码 - 当执行一个函数时，运行函数体中的代码。  </li>
+<li>Eval的代码 - 在Eval函数内运行的代码。<br>2、JavaScript引擎会以栈的方式来处理它们，这个栈，我们称其为函数调用栈(call stack)。栈底永远都是全局上下文，而栈顶就是当前正在执行的上下文。<br>3、当javascript代码文件被浏览器载入后，默认最先进入的是一个全局的执行上下文。当在全局上下文中调用执行一个函数时，程序流就进入该被调用函数内，此时引擎就会为该函数创建一个新的执行上下文，并且将其压入到执行上下文堆栈的顶部。浏览器总是执行当前在堆栈顶部的上下文，一旦执行完毕，该上下文就会从堆栈顶部被弹出，然后，进入其下的上下文执行代码。这样，堆栈中的上下文就会被依次执行并且弹出堆栈，直到回到全局的上下文。<br>4、执行上下文的特点  </li>
+<li>单线程  </li>
+<li>同步执行，栈顶的上下文在执行中，其他的在等待  </li>
+<li>唯一的一个全局上下文，在浏览器关闭时出栈  </li>
+<li>函数的执行上下文的个数没有限制  </li>
+<li>每次某个函数被调用，就会有个新的执行上下文为其创建，即使是调用的自身函数，也是如此。  </li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"Kol"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name = <span class="string">"Kylen"</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">var</span> name = <span class="string">"Kevin"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">c</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">var</span> name = <span class="string">"Katherine"</span>;</div><div class="line">    &#125;</div><div class="line">    b();</div><div class="line">    c();</div><div class="line">&#125;</div><div class="line">a();</div></pre></td></tr></table></figure>
+<p><img src="/images/执行上下文栈操作.png" alt="栈操作">  </p>
+]]></content>
+      
+        <categories>
+            
+            <category> Front End </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaScript学习之函数及变量hoist]]></title>
       <url>/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bhoist/</url>
       <content type="html"><![CDATA[<p>JavaScript能够在变量和函数被声明之前使用它们。<br><a id="more"></a>  </p>
@@ -16,7 +50,13 @@
 <p>函数声明并不仅仅是函数名“被提前”了，整个函数的定义也“被提前”了。  </p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span>(<span class="number">1</span>, <span class="number">1</span>); //Uncaught TypeError: <span class="built_in">sum</span> is not a <span class="function"><span class="keyword">function</span></span></div><div class="line"></div><div class="line">var <span class="built_in">sum</span> = <span class="function"><span class="keyword">function</span><span class="params">(num1, num2)</span></span> &#123;</div><div class="line">    console.<span class="built_in">log</span>(num1 + num2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>函数表达式单单变量被提前了，它的赋值（函数）却没有提前。  </p>
-<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>1、变量的声明被提前到作用域顶部，赋值保留在原地<br>2、函数声明整个“被提前”<br>3、函数作为值赋给变量时只有变量“被提前”了，函数没有“被提前”  </p>
+<h2 id="三、不用var声明的变量"><a href="#三、不用var声明的变量" class="headerlink" title="三、不用var声明的变量"></a>三、不用var声明的变量</h2><figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">console.log(a)<span class="comment">; //a is not defined</span></div><div class="line"><span class="attribute">a</span> = <span class="number">10</span><span class="comment">;</span></div><div class="line">console.log(a)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>由于变量a没有用<code>var</code>声明，则认为它是个全局变量并且没有被提前。  </p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">a</span> = <span class="number">10</span><span class="comment">;</span></div><div class="line">console.log(a)<span class="comment">; //10</span></div><div class="line">delete a<span class="comment">;</span></div><div class="line">console.log(a)<span class="comment">; //a is not defined</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//10</span></div><div class="line"><span class="keyword">delete</span> a;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//10</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    a = <span class="number">10</span>;</div><div class="line">    <span class="built_in">console</span>.log(a); <span class="comment">//10</span></div><div class="line"></div><div class="line">&#125;</div><div class="line">test();</div><div class="line"><span class="keyword">delete</span> a;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//a is not defined</span></div></pre></td></tr></table></figure>
+<p>没有var声明的变量，可以使用delete</p>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>1、变量的声明被提前到作用域顶部，赋值保留在原地<br>2、函数声明整个“被提前”<br>3、函数作为值赋给变量时只有变量“被提前”了，函数没有“被提前”  </p>
 ]]></content>
       
         <categories>
