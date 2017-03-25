@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-03-25T04:26:00.000Z</updated>
+  <updated>2017-03-25T05:13:09.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="/2017/03/25/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/"/>
     <id>/2017/03/25/Front End/JS学习之执行上下文/</id>
     <published>2017-03-24T16:00:00.000Z</published>
-    <updated>2017-03-25T04:26:00.000Z</updated>
+    <updated>2017-03-25T05:13:09.000Z</updated>
     
     <content type="html"><![CDATA[<p>javascript引擎内部在执行代码以前到底做了些什么？<br><a id="more"></a></p>
-<h2 id="执行上下文（Execution-Context）"><a href="#执行上下文（Execution-Context）" class="headerlink" title="执行上下文（Execution Context）"></a>执行上下文（Execution Context）</h2><p>1、每次当控制器转到可执行代码的时候，就会进入一个执行上下文。执行上下文可以理解为当前代码的执行环境，它会形成一个作用域。JavaScript中的运行环境大概包括三种情况。  </p>
+<h2 id="一、执行上下文（Execution-Context）"><a href="#一、执行上下文（Execution-Context）" class="headerlink" title="一、执行上下文（Execution Context）"></a>一、执行上下文（Execution Context）</h2><p>1、每次当控制器转到可执行代码的时候，就会进入一个执行上下文。执行上下文可以理解为当前代码的执行环境，它会形成一个作用域。JavaScript中的运行环境大概包括三种情况。  </p>
 <ul>
 <li>全局级别的代码 - 这个是默认的代码运行环境，一旦代码被载入，引擎最先进入的就是这个环境。  </li>
 <li>函数级别的代码 - 当执行一个函数时，运行函数体中的代码。  </li>
@@ -39,6 +39,18 @@
 </ul>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"Kol"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name = <span class="string">"Kylen"</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">var</span> name = <span class="string">"Kevin"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">c</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">var</span> name = <span class="string">"Katherine"</span>;</div><div class="line">    &#125;</div><div class="line">    b();</div><div class="line">    c();</div><div class="line">&#125;</div><div class="line">a();</div></pre></td></tr></table></figure>
 <p><img src="/images/执行上下文栈操作.png" alt="栈操作">  </p>
+<h2 id="二、执行上下文的生命周期"><a href="#二、执行上下文的生命周期" class="headerlink" title="二、执行上下文的生命周期"></a>二、执行上下文的生命周期</h2><p>我们已经知道，当控制器遇到可执行代码后，一个新的执行上下文就会被创建。而一个执行上下文的生命周期可以分为两个阶段。</p>
+<ul>
+<li>创建阶段: 在这个阶段中，执行上下文会分别创建变量对象，建立作用域链，以及确定this的指向  </li>
+<li>代码执行阶段: 创建完成之后，就会开始执行代码，这个时候，会完成变量赋值，函数引用，以及执行其他代码。  </li>
+</ul>
+<p><img src="/images/EC生命周期.png" alt="EC生命周期">  </p>
+<h2 id="三、变量对象的创建"><a href="#三、变量对象的创建" class="headerlink" title="三、变量对象的创建"></a>三、变量对象的创建</h2><p>变量对象的创建依次有三个步骤。<br>1、建立arguments对象。<br>2、检测使用function关键字声明的函数，在变量对象中以函数名建立一个属性，属性值是该函数的引用。如果检查到函数名已经存在，则会覆盖。<br>3、检测使用var关键字声明的变量，在变量对象中以变量名建立一个属性，属性值为undefined。如果检查到变量名已经存在，则跳过。  </p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">test();</div></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//test()执行上下文的创建过程</span></div><div class="line">EC = &#123;</div><div class="line"><span class="symbol">    VO:</span> &#123;&#125;, <span class="comment">// 变量对象</span></div><div class="line"><span class="symbol">    scopeChain:</span> &#123;&#125;, <span class="comment">//作用域链</span></div><div class="line"><span class="symbol">    this:</span> &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// VO 为 Variable Object的缩写，即变量对象</span></div><div class="line">VO = &#123;</div><div class="line"><span class="symbol">    arguments:</span> &#123;...&#125;,</div><div class="line"><span class="symbol">    foo:</span> <span class="params">&lt;foo reference&gt;</span>  <span class="comment">// 表示foo的地址引用</span></div><div class="line"><span class="symbol">    a:</span> undefined</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>未进入执行阶段之前，变量对象中的属性都不能访问！但是进入执行阶段之后，变量对象转变为了活动对象，里面的属性都能被访问了，然后开始进行执行阶段的操作。<br>这两个对象其实是同一个对象，只是处于执行上下文的不同生命周期。  </p>
+<p>全局上下文的变量对象(以浏览器为例),它的变量对象，就是window对象。而这个特殊，在this指向上也同样适用，this也是指向window。  </p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 以浏览器中为例，全局对象为window</span></div><div class="line"><span class="comment">// 全局上下文</span></div><div class="line">windowEC = &#123;</div><div class="line">    VO: <span class="built_in">window</span>,</div><div class="line">    scopeChain: &#123;&#125;,</div><div class="line">    <span class="keyword">this</span>: <span class="built_in">window</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -59,9 +71,9 @@
     <link href="/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bhoist/"/>
     <id>/2017/03/24/Front End/JS学习之hoist/</id>
     <published>2017-03-23T16:00:00.000Z</published>
-    <updated>2017-03-25T02:48:07.000Z</updated>
+    <updated>2017-03-25T05:09:50.000Z</updated>
     
-    <content type="html"><![CDATA[<p>JavaScript能够在变量和函数被声明之前使用它们。<br><a id="more"></a>  </p>
+    <content type="html"><![CDATA[<p>JavaScript能够在变量和函数被声明之前使用它们。hoist是在变量对象创建时发生的。可以参考另一篇文章JavaScript的执行上下文。<br><a id="more"></a>  </p>
 <h2 id="一、变量声明“被提前”"><a href="#一、变量声明“被提前”" class="headerlink" title="一、变量声明“被提前”"></a>一、变量声明“被提前”</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//undefined</span></div><div class="line"><span class="keyword">var</span> a = <span class="string">"test"</span>;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//test</span></div></pre></td></tr></table></figure>
 <p>1、解析器将当前作用域内声明的所有变量和函数都会放到作用域的开始处，但是，只有变量的声明被提前到作用域的开始处了，而赋值操作被保留在原处。<br>2、根据 JavaScript 语法的定义，已声明而未被赋值的变量会被自动赋值为 <code>undefined</code> 。所以第一次打印<code>a</code>时，值就为<code>undefined</code>。  </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.name = <span class="string">"window"</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(name); <span class="comment">//undefined</span></div><div class="line">    <span class="keyword">var</span> name = <span class="string">"inner"</span>;</div><div class="line">    <span class="built_in">console</span>.log(name); <span class="comment">//inner</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
@@ -76,13 +88,17 @@
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">a</span> = <span class="number">10</span><span class="comment">;</span></div><div class="line">console.log(a)<span class="comment">; //10</span></div><div class="line">delete a<span class="comment">;</span></div><div class="line">console.log(a)<span class="comment">; //a is not defined</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//10</span></div><div class="line"><span class="keyword">delete</span> a;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//10</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    a = <span class="number">10</span>;</div><div class="line">    <span class="built_in">console</span>.log(a); <span class="comment">//10</span></div><div class="line"></div><div class="line">&#125;</div><div class="line">test();</div><div class="line"><span class="keyword">delete</span> a;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//a is not defined</span></div></pre></td></tr></table></figure>
-<p>没有var声明的变量，可以使用delete</p>
-<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>1、变量的声明被提前到作用域顶部，赋值保留在原地<br>2、函数声明整个“被提前”<br>3、函数作为值赋给变量时只有变量“被提前”了，函数没有“被提前”  </p>
+<p>没有var声明的变量，可以使用delete  </p>
+<h2 id="四、function与var的优先级"><a href="#四、function与var的优先级" class="headerlink" title="四、function与var的优先级"></a>四、function与var的优先级</h2><p>1、function声明的函数在遇到相同函数名时会覆盖之前的属性值。<br>2、var声明的变量在遇到相同变量名时会跳过，不进行覆盖。<br>3、function比var早提升。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(foo); <span class="comment">//function foo()&#123;return 'hello';&#125;</span></div><div class="line">    <span class="built_in">console</span>.log(bar); <span class="comment">//undefined</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> foo = <span class="string">'Hello'</span>;</div><div class="line">    <span class="built_in">console</span>.log(foo); <span class="comment">//Hello</span></div><div class="line">    <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'world'</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'hello'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">test();</div></pre></td></tr></table></figure>
+<p>下面是正确的顺序  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'hello'</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> bar;</div><div class="line">    </div><div class="line">    <span class="built_in">console</span>.log(foo); <span class="comment">//function foo()&#123;return 'hello';&#125;</span></div><div class="line">    <span class="built_in">console</span>.log(bar); <span class="comment">//undefined</span></div><div class="line"></div><div class="line">    foo = <span class="string">'Hello'</span>;</div><div class="line">    <span class="built_in">console</span>.log(foo); <span class="comment">//Hello</span></div><div class="line">    </div><div class="line">    bar = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'world'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>1、变量的声明被提前到作用域顶部，赋值保留在原地<br>2、函数声明整个“被提前”<br>3、函数作为值赋给变量时只有变量“被提前”了，函数没有“被提前”<br>4、function声明会比var声明优先级更高一点  </p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;JavaScript能够在变量和函数被声明之前使用它们。&lt;br&gt;
+      &lt;p&gt;JavaScript能够在变量和函数被声明之前使用它们。hoist是在变量对象创建时发生的。可以参考另一篇文章JavaScript的执行上下文。&lt;br&gt;
     
     </summary>
     
@@ -350,6 +366,32 @@
   </entry>
   
   <entry>
+    <title>Mac上用Navicat连接Oracle</title>
+    <link href="/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
+    <id>/2017/03/10/Database/navicat连接oracle/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-24T07:15:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="database" scheme="/categories/database/"/>
+    
+    
+      <category term="Oracle" scheme="/tags/Oracle/"/>
+    
+  </entry>
+  
+  <entry>
     <title>px,em,rem详解</title>
     <link href="/2017/03/10/Front%20End/%E5%83%8F%E7%B4%A0/"/>
     <id>/2017/03/10/Front End/像素/</id>
@@ -386,32 +428,6 @@
     
     
       <category term="CSS" scheme="/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac上用Navicat连接Oracle</title>
-    <link href="/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
-    <id>/2017/03/10/Database/navicat连接oracle/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-24T07:15:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="database" scheme="/categories/database/"/>
-    
-    
-      <category term="Oracle" scheme="/tags/Oracle/"/>
     
   </entry>
   
