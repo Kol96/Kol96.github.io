@@ -35,6 +35,40 @@
     </entry>
     
     <entry>
+      <title><![CDATA[切图]]></title>
+      <url>/2017/04/10/Front%20End/%E5%88%87%E5%9B%BE/</url>
+      <content type="html"><![CDATA[<p>从设计稿中切除网页的素材并在代码中引入图片<br><a id="more"></a></p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>内容性图片: 指的是图片在页面是作为内容存在，如页面中的海报。(jpg)<br>修饰性图片: 指的是图片在页面中起修饰作用，如页面中的背景和图标。(png8,png24)  </p>
+<p>jpg: 保存色彩丰富的内容性图片,对图片没有透明度要求,保存品质建议60-80<br>png8: 支持256种颜色,支持透明,设置无仿色,无杂边<br>png24: 支持半透明(ie6不支持半透明,改png8),对图片不进行压缩  </p>
+<h2 id="隐藏文字"><a href="#隐藏文字" class="headerlink" title="隐藏文字"></a>隐藏文字</h2><p>1、直接在图层中隐藏文字图层<br>2、纯色背景时，通过选框工具+自由变换清除文字<br>3、不是纯色时，通过选框工具+移动工具+alt shift 拖动覆盖文字  </p>
+<h2 id="PNG24切图方法"><a href="#PNG24切图方法" class="headerlink" title="PNG24切图方法"></a>PNG24切图方法</h2><ul>
+<li>移动工具选中所需图层  </li>
+<li>右键合并图层  </li>
+<li>复制图层  </li>
+</ul>
+<h2 id="PNG8带背景切图方法"><a href="#PNG8带背景切图方法" class="headerlink" title="PNG8带背景切图方法"></a>PNG8带背景切图方法</h2><ul>
+<li>合并可见图层  </li>
+<li>矩形选框选择内容  </li>
+<li>魔棒工具去除多余部分(alt)  </li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Front End </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 切图 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaScript学习之浏览器宽高]]></title>
       <url>/2017/04/07/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E9%AB%98/</url>
       <content type="html"><![CDATA[<p>Web中各种窗口宽高千奇百怪，不同浏览器对同一个属性解释又不尽相同，本文针对这些做一个粗略的总结。<br><a id="more"></a></p>
@@ -187,36 +221,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[JavaScript学习之内存]]></title>
-      <url>/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%85%E5%AD%98/</url>
-      <content type="html"><![CDATA[<p>初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。<br><a id="more"></a></p>
-<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>JavaScript中的基本类型有五种:<code>Undefined</code>,<code>Null</code>,<code>Number</code>,<code>String</code>,<code>Boolean</code>。它们是按值访问，可以操作保存在变量中实际的值。这些基本类型是存放在变量对象中的，而变量对象也是存放在堆内存中。只是由于变量对象的特殊性，我们在理解时才把变量对象与堆内存区分开来。<br>下面我们用代码与图更好的理解这个过程  </p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var a</span> = <span class="string">"5"</span>;</div><div class="line"><span class="attribute">var b</span> = a;</div><div class="line"><span class="attribute">a</span> = 10;</div></pre></td></tr></table></figure>
-<p>基本类型进行赋值操作时，会为新的变量分配一个值，这两个变量相互独立，互不影响。即使改变了a的值，b的值也不会变。<br><img src="/images/JS基本类型操作.png" alt="JS基本类型">  </p>
-<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用数据类型的值是保存在堆内存中的对象。在操作对象时，实际上是在操作对象的引用而不是实际的对象。因此，引用类型的值都是按引用访问的。这里的引用，我们可以粗浅地理解为保存在变量对象中的一个地址，该地址与堆内存的实际值相关联。  </p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: <span class="string">"Kol"</span>&#125;<span class="comment">;</span></div><div class="line">var <span class="keyword">b </span>= a<span class="comment">;</span></div><div class="line"><span class="keyword">b.name </span>= <span class="string">"Kylen"</span><span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>引用类型的复制同样也会为新的变量自动分配一个新的值保存在变量对象中，但不同的是，这个新的值，仅仅只是引用类型的一个地址指针。当地址指针相同时，尽管他们相互独立，但是在变量对象中访问到的具体对象实际上是同一个。<br><img src="/images/JS引用类型操作.png" alt="JS引用类型">  </p>
-<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript的垃圾收集有两种:标记清除、引用计数。<br>在局部作用域中，当函数执行结束，离开作用域的值就会被标记为可回收，在垃圾收集期间就会被删除。但是全局变量和全局对象的属性需要我们手动将其值设置为null来释放其引用（解除引用）  </p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">a</span> = <span class="number">1</span>;<span class="comment"> //在内存中给数值变量分配空间</span></div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>);<span class="comment"> //使用内存</span></div><div class="line"><span class="keyword">a</span> = <span class="literal">null</span>;<span class="comment"> //使用完毕之后，释放内存空间</span></div></pre></td></tr></table></figure>
-<p>但解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。  </p>
-]]></content>
-      
-        <categories>
-            
-            <category> Front End </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> JavaScript </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[JavaScript学习之函数及变量hoist]]></title>
       <url>/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bhoist/</url>
       <content type="html"><![CDATA[<p>JavaScript能够在变量和函数被声明之前使用它们。hoist是在变量对象创建时发生的。可以参考另一篇文章JavaScript的执行上下文。<br><a id="more"></a>  </p>
@@ -240,6 +244,36 @@
 <p>下面是正确的顺序  </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'hello'</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> bar;</div><div class="line">    </div><div class="line">    <span class="built_in">console</span>.log(foo); <span class="comment">//function foo()&#123;return 'hello';&#125;</span></div><div class="line">    <span class="built_in">console</span>.log(bar); <span class="comment">//undefined</span></div><div class="line"></div><div class="line">    foo = <span class="string">'Hello'</span>;</div><div class="line">    <span class="built_in">console</span>.log(foo); <span class="comment">//Hello</span></div><div class="line">    </div><div class="line">    bar = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'world'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>1、变量的声明被提前到作用域顶部，赋值保留在原地<br>2、函数声明整个“被提前”<br>3、函数作为值赋给变量时只有变量“被提前”了，函数没有“被提前”<br>4、function声明会比var声明优先级更高一点  </p>
+]]></content>
+      
+        <categories>
+            
+            <category> Front End </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JavaScript学习之内存]]></title>
+      <url>/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%85%E5%AD%98/</url>
+      <content type="html"><![CDATA[<p>初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。<br><a id="more"></a></p>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>JavaScript中的基本类型有五种:<code>Undefined</code>,<code>Null</code>,<code>Number</code>,<code>String</code>,<code>Boolean</code>。它们是按值访问，可以操作保存在变量中实际的值。这些基本类型是存放在变量对象中的，而变量对象也是存放在堆内存中。只是由于变量对象的特殊性，我们在理解时才把变量对象与堆内存区分开来。<br>下面我们用代码与图更好的理解这个过程  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var a</span> = <span class="string">"5"</span>;</div><div class="line"><span class="attribute">var b</span> = a;</div><div class="line"><span class="attribute">a</span> = 10;</div></pre></td></tr></table></figure>
+<p>基本类型进行赋值操作时，会为新的变量分配一个值，这两个变量相互独立，互不影响。即使改变了a的值，b的值也不会变。<br><img src="/images/JS基本类型操作.png" alt="JS基本类型">  </p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用数据类型的值是保存在堆内存中的对象。在操作对象时，实际上是在操作对象的引用而不是实际的对象。因此，引用类型的值都是按引用访问的。这里的引用，我们可以粗浅地理解为保存在变量对象中的一个地址，该地址与堆内存的实际值相关联。  </p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: <span class="string">"Kol"</span>&#125;<span class="comment">;</span></div><div class="line">var <span class="keyword">b </span>= a<span class="comment">;</span></div><div class="line"><span class="keyword">b.name </span>= <span class="string">"Kylen"</span><span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>引用类型的复制同样也会为新的变量自动分配一个新的值保存在变量对象中，但不同的是，这个新的值，仅仅只是引用类型的一个地址指针。当地址指针相同时，尽管他们相互独立，但是在变量对象中访问到的具体对象实际上是同一个。<br><img src="/images/JS引用类型操作.png" alt="JS引用类型">  </p>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript的垃圾收集有两种:标记清除、引用计数。<br>在局部作用域中，当函数执行结束，离开作用域的值就会被标记为可回收，在垃圾收集期间就会被删除。但是全局变量和全局对象的属性需要我们手动将其值设置为null来释放其引用（解除引用）  </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">a</span> = <span class="number">1</span>;<span class="comment"> //在内存中给数值变量分配空间</span></div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>);<span class="comment"> //使用内存</span></div><div class="line"><span class="keyword">a</span> = <span class="literal">null</span>;<span class="comment"> //使用完毕之后，释放内存空间</span></div></pre></td></tr></table></figure>
+<p>但解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。  </p>
 ]]></content>
       
         <categories>
@@ -418,58 +452,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[How to install Hexo on Mac]]></title>
-      <url>/2017/03/10/Mac/Hexo/</url>
-      <content type="html"><![CDATA[<p>This is a brand new Hexo built in Mac OS X 10.10.<br>Get Started.  </p>
-<a id="more"></a>  
-<p>搭建步骤如下<br>1、注册GitHub账户<br>2、创建仓库<br>3、安装nodejs<br>4、安装git<br>5、安装Hexo<br>6、相关配置  </p>
-<h2 id="一、注册GitHub账户"><a href="#一、注册GitHub账户" class="headerlink" title="一、注册GitHub账户"></a>一、注册GitHub账户</h2><p>1、如果你已经拥有GitHub账户，请跳过此步骤。<br>2、打开 <a href="https://github.com" target="_blank" rel="external">github</a> 点击 [Sign up fo GitHub] 按钮。注册成功后请牢记您的用户名和密码<br>3、登录GitHub。  </p>
-<h2 id="二、创建仓库"><a href="#二、创建仓库" class="headerlink" title="二、创建仓库"></a>二、创建仓库</h2><p>1、登录GitHub之后点击 [ + New repository ] 按钮新建一个仓库，用来存储博客内容，这里Repository name 填写 [你的登录名].github.io 不能用别的名字。<br><img src="/images/github.png" alt="仓库创建"><br>2、填写完信息之后，点击[Create repository]按钮，完成创建。  </p>
-<h2 id="三、安装nodejs"><a href="#三、安装nodejs" class="headerlink" title="三、安装nodejs"></a>三、安装nodejs</h2><p>1、因为Hexo是基于nodejs的，所以必须安装nodejs。<br>2、用homebrew安装</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install <span class="keyword">node</span> <span class="title"></span></div></pre></td></tr></table></figure>
-<h2 id="四、安装git"><a href="#四、安装git" class="headerlink" title="四、安装git"></a>四、安装git</h2><p>1、如果你已经安装了XCode，就不需要安装git了。<br>2、打开 <a href="http://git-scm.com/download/mac" target="_blank" rel="external">git</a> 下载git,并安装。  </p>
-<h2 id="五、安装Hexo"><a href="#五、安装Hexo" class="headerlink" title="五、安装Hexo"></a>五、安装Hexo</h2><p>获得root权限</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>sudo passwd root</div><div class="line"><span class="variable">$ </span>su root</div></pre></td></tr></table></figure>
-<p>1、在电脑中任意位置创建一个文件夹,用来存放博客文件。<br>2、打开终端输入 <code>npm install hexo-cli -g</code><br>3、建议使用安装 <code>npm install hexo --no-optional</code><br>4、Once Hexo is installed, run the following commands to initialise Hexo in the target <folder>.  </folder></p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo init &lt;folder&gt;</div><div class="line"><span class="variable">$ </span>cd &lt;folder&gt;</div><div class="line"><span class="variable">$ </span>npm install</div><div class="line"><span class="variable">$ </span>hexo g</div><div class="line"><span class="variable">$ </span>npm install hexo-server --save</div><div class="line"><span class="variable">$ </span>hexo s</div></pre></td></tr></table></figure>    
-<h2 id="六、连接github"><a href="#六、连接github" class="headerlink" title="六、连接github"></a>六、连接github</h2><p>1、设置个人信息  </p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">"username"</span></div><div class="line">$ git config --global user<span class="selector-class">.email</span> <span class="string">"youremail"</span></div></pre></td></tr></table></figure>    
-<p>2、在hexo根目录下_config.yml文件（xxxx为你的github账户名称）  </p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: github</div><div class="line">  <span class="attribute">repo</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:xxxx/xxxx.github.io.git</div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
-<p>3、检查SSH key  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.ssh</div></pre></td></tr></table></figure>
-<p>4、生成SSH key</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C <span class="string">"xxxx@xxxx.com”</span></div></pre></td></tr></table></figure>
-<p>5、复制SSH key</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span> cd ~/.ssh</div><div class="line"><span class="symbol">$</span> ls</div><div class="line"><span class="symbol">$</span> cat id_rsa.pub</div></pre></td></tr></table></figure>
-<p>6、将SSH key添加到github上并验证</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>ssh -T git<span class="variable">@github</span>.com</div></pre></td></tr></table></figure>
-<p>7、上传hexo文件</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install hexo-deployer-git --save</div><div class="line"><span class="variable">$ </span>hexo d</div></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> Mac </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Mac </tag>
-            
-            <tag> Hexo </tag>
-            
-            <tag> Github </tag>
-            
-            <tag> Nodejs </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[px,em,rem详解]]></title>
       <url>/2017/03/10/Front%20End/%E5%83%8F%E7%B4%A0/</url>
       <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
@@ -532,6 +514,58 @@
     </entry>
     
     <entry>
+      <title><![CDATA[How to install Hexo on Mac]]></title>
+      <url>/2017/03/10/Mac/Hexo/</url>
+      <content type="html"><![CDATA[<p>This is a brand new Hexo built in Mac OS X 10.10.<br>Get Started.  </p>
+<a id="more"></a>  
+<p>搭建步骤如下<br>1、注册GitHub账户<br>2、创建仓库<br>3、安装nodejs<br>4、安装git<br>5、安装Hexo<br>6、相关配置  </p>
+<h2 id="一、注册GitHub账户"><a href="#一、注册GitHub账户" class="headerlink" title="一、注册GitHub账户"></a>一、注册GitHub账户</h2><p>1、如果你已经拥有GitHub账户，请跳过此步骤。<br>2、打开 <a href="https://github.com" target="_blank" rel="external">github</a> 点击 [Sign up fo GitHub] 按钮。注册成功后请牢记您的用户名和密码<br>3、登录GitHub。  </p>
+<h2 id="二、创建仓库"><a href="#二、创建仓库" class="headerlink" title="二、创建仓库"></a>二、创建仓库</h2><p>1、登录GitHub之后点击 [ + New repository ] 按钮新建一个仓库，用来存储博客内容，这里Repository name 填写 [你的登录名].github.io 不能用别的名字。<br><img src="/images/github.png" alt="仓库创建"><br>2、填写完信息之后，点击[Create repository]按钮，完成创建。  </p>
+<h2 id="三、安装nodejs"><a href="#三、安装nodejs" class="headerlink" title="三、安装nodejs"></a>三、安装nodejs</h2><p>1、因为Hexo是基于nodejs的，所以必须安装nodejs。<br>2、用homebrew安装</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install <span class="keyword">node</span> <span class="title"></span></div></pre></td></tr></table></figure>
+<h2 id="四、安装git"><a href="#四、安装git" class="headerlink" title="四、安装git"></a>四、安装git</h2><p>1、如果你已经安装了XCode，就不需要安装git了。<br>2、打开 <a href="http://git-scm.com/download/mac" target="_blank" rel="external">git</a> 下载git,并安装。  </p>
+<h2 id="五、安装Hexo"><a href="#五、安装Hexo" class="headerlink" title="五、安装Hexo"></a>五、安装Hexo</h2><p>获得root权限</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>sudo passwd root</div><div class="line"><span class="variable">$ </span>su root</div></pre></td></tr></table></figure>
+<p>1、在电脑中任意位置创建一个文件夹,用来存放博客文件。<br>2、打开终端输入 <code>npm install hexo-cli -g</code><br>3、建议使用安装 <code>npm install hexo --no-optional</code><br>4、Once Hexo is installed, run the following commands to initialise Hexo in the target <folder>.  </folder></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo init &lt;folder&gt;</div><div class="line"><span class="variable">$ </span>cd &lt;folder&gt;</div><div class="line"><span class="variable">$ </span>npm install</div><div class="line"><span class="variable">$ </span>hexo g</div><div class="line"><span class="variable">$ </span>npm install hexo-server --save</div><div class="line"><span class="variable">$ </span>hexo s</div></pre></td></tr></table></figure>    
+<h2 id="六、连接github"><a href="#六、连接github" class="headerlink" title="六、连接github"></a>六、连接github</h2><p>1、设置个人信息  </p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">"username"</span></div><div class="line">$ git config --global user<span class="selector-class">.email</span> <span class="string">"youremail"</span></div></pre></td></tr></table></figure>    
+<p>2、在hexo根目录下_config.yml文件（xxxx为你的github账户名称）  </p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: github</div><div class="line">  <span class="attribute">repo</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:xxxx/xxxx.github.io.git</div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
+<p>3、检查SSH key  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.ssh</div></pre></td></tr></table></figure>
+<p>4、生成SSH key</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C <span class="string">"xxxx@xxxx.com”</span></div></pre></td></tr></table></figure>
+<p>5、复制SSH key</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span> cd ~/.ssh</div><div class="line"><span class="symbol">$</span> ls</div><div class="line"><span class="symbol">$</span> cat id_rsa.pub</div></pre></td></tr></table></figure>
+<p>6、将SSH key添加到github上并验证</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>ssh -T git<span class="variable">@github</span>.com</div></pre></td></tr></table></figure>
+<p>7、上传hexo文件</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install hexo-deployer-git --save</div><div class="line"><span class="variable">$ </span>hexo d</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Mac </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Mac </tag>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Github </tag>
+            
+            <tag> Nodejs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Emmet]]></title>
       <url>/2017/03/09/Tools/Emmet/</url>
       <content type="html"><![CDATA[<p>Emmet is a plugin for many popular text editors which greatly improves HTML &amp; CSS workflow<br><a id="more"></a></p>
@@ -581,11 +615,11 @@
         
         <tags>
             
+            <tag> PHP </tag>
+            
             <tag> Linux </tag>
             
             <tag> Java </tag>
-            
-            <tag> PHP </tag>
             
         </tags>
         
@@ -937,9 +971,9 @@
         
         <tags>
             
-            <tag> PHP </tag>
-            
             <tag> Mac </tag>
+            
+            <tag> PHP </tag>
             
             <tag> Mysql </tag>
             
@@ -1101,13 +1135,13 @@
         
         <tags>
             
-            <tag> PHP </tag>
-            
             <tag> Mac </tag>
             
-            <tag> Apache </tag>
+            <tag> PHP </tag>
             
             <tag> Mysql </tag>
+            
+            <tag> Apache </tag>
             
         </tags>
         
