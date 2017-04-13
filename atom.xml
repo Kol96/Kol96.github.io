@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-04-12T09:42:31.000Z</updated>
+  <updated>2017-04-13T10:32:33.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2017/04/12/Front%20End/%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/"/>
     <id>/2017/04/12/Front End/小玩意儿/</id>
     <published>2017-04-11T16:00:00.000Z</published>
-    <updated>2017-04-12T09:42:31.000Z</updated>
+    <updated>2017-04-13T10:32:33.000Z</updated>
     
     <content type="html"><![CDATA[<p>学习中的一些小技巧。<br><a id="more"></a></p>
 <h2 id="表格边框设计"><a href="#表格边框设计" class="headerlink" title="表格边框设计"></a>表格边框设计</h2><p>1、table标签设置border=”0”，cellspacing=”1”，之后设置table，td(th)的背景颜色。  </p>
@@ -29,6 +29,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">  <span class="selector-tag">table</span> &#123;</div><div class="line">    <span class="attribute">border-top</span>:<span class="number">1px</span> solid <span class="number">#bbb</span>;</div><div class="line">    <span class="attribute">border-left</span>:<span class="number">1px</span> solid <span class="number">#bbb</span>;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="selector-tag">td</span>,<span class="selector-tag">th</span> &#123;</div><div class="line">    <span class="attribute">border-right</span>:<span class="number">1px</span> solid <span class="number">#bbb</span>;</div><div class="line">    <span class="attribute">border-bottom</span>:<span class="number">1px</span> solid <span class="number">#bbb</span>; </div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">caption</span>&gt;</span>运费详情<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>区域<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>寄达地<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>首重（元/1000g）<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>续重（元/1000g）<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span>一区<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>浙江、上海、江苏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>6<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>江西、安徽<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>7<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>二区<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>吉林、黑龙江、云南<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>10<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>6<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>三区<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>新疆、西藏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>15<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>10<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>3、css设置border为none，border-collapse为collapse  </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">  <span class="selector-tag">table</span> &#123;</div><div class="line">    <span class="attribute">border</span>: none;</div><div class="line">    <span class="attribute">border-collapse</span>: collapse;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="selector-tag">td</span>,<span class="selector-tag">th</span> &#123;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#bbb</span>;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">caption</span>&gt;</span>运费详情<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>区域<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>寄达地<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>首重（元/1000g）<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>续重（元/1000g）<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span>一区<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>浙江、上海、江苏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>6<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>江西、安徽<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>7<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>二区<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>吉林、黑龙江、云南<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>10<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>6<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>三区<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>新疆、西藏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>15<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>10<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="获取css属性"><a href="#获取css属性" class="headerlink" title="获取css属性"></a>获取css属性</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj, styleName)</span> </span>&#123; <span class="comment">//获取属性</span></div><div class="line">    <span class="keyword">if</span> (obj.currentStyle) &#123;</div><div class="line">        <span class="keyword">return</span> obj.currentStyle[styleName];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">null</span>)[styleName];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -243,6 +244,38 @@
   </entry>
   
   <entry>
+    <title>JavaScript学习之内存</title>
+    <link href="/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%85%E5%AD%98/"/>
+    <id>/2017/03/24/Front End/JS学习之内存/</id>
+    <published>2017-03-23T16:00:00.000Z</published>
+    <updated>2017-03-24T09:52:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。<br><a id="more"></a></p>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>JavaScript中的基本类型有五种:<code>Undefined</code>,<code>Null</code>,<code>Number</code>,<code>String</code>,<code>Boolean</code>。它们是按值访问，可以操作保存在变量中实际的值。这些基本类型是存放在变量对象中的，而变量对象也是存放在堆内存中。只是由于变量对象的特殊性，我们在理解时才把变量对象与堆内存区分开来。<br>下面我们用代码与图更好的理解这个过程  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var a</span> = <span class="string">"5"</span>;</div><div class="line"><span class="attribute">var b</span> = a;</div><div class="line"><span class="attribute">a</span> = 10;</div></pre></td></tr></table></figure>
+<p>基本类型进行赋值操作时，会为新的变量分配一个值，这两个变量相互独立，互不影响。即使改变了a的值，b的值也不会变。<br><img src="/images/JS基本类型操作.png" alt="JS基本类型">  </p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用数据类型的值是保存在堆内存中的对象。在操作对象时，实际上是在操作对象的引用而不是实际的对象。因此，引用类型的值都是按引用访问的。这里的引用，我们可以粗浅地理解为保存在变量对象中的一个地址，该地址与堆内存的实际值相关联。  </p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: <span class="string">"Kol"</span>&#125;<span class="comment">;</span></div><div class="line">var <span class="keyword">b </span>= a<span class="comment">;</span></div><div class="line"><span class="keyword">b.name </span>= <span class="string">"Kylen"</span><span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>引用类型的复制同样也会为新的变量自动分配一个新的值保存在变量对象中，但不同的是，这个新的值，仅仅只是引用类型的一个地址指针。当地址指针相同时，尽管他们相互独立，但是在变量对象中访问到的具体对象实际上是同一个。<br><img src="/images/JS引用类型操作.png" alt="JS引用类型">  </p>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript的垃圾收集有两种:标记清除、引用计数。<br>在局部作用域中，当函数执行结束，离开作用域的值就会被标记为可回收，在垃圾收集期间就会被删除。但是全局变量和全局对象的属性需要我们手动将其值设置为null来释放其引用（解除引用）  </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">a</span> = <span class="number">1</span>;<span class="comment"> //在内存中给数值变量分配空间</span></div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>);<span class="comment"> //使用内存</span></div><div class="line"><span class="keyword">a</span> = <span class="literal">null</span>;<span class="comment"> //使用完毕之后，释放内存空间</span></div></pre></td></tr></table></figure>
+<p>但解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="/categories/Front-End/"/>
+    
+    
+      <category term="JavaScript" scheme="/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaScript学习之函数及变量hoist</title>
     <link href="/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bhoist/"/>
     <id>/2017/03/24/Front End/JS学习之hoist/</id>
@@ -275,38 +308,6 @@
     <summary type="html">
     
       &lt;p&gt;JavaScript能够在变量和函数被声明之前使用它们。hoist是在变量对象创建时发生的。可以参考另一篇文章JavaScript的执行上下文。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Front End" scheme="/categories/Front-End/"/>
-    
-    
-      <category term="JavaScript" scheme="/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript学习之内存</title>
-    <link href="/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%85%E5%AD%98/"/>
-    <id>/2017/03/24/Front End/JS学习之内存/</id>
-    <published>2017-03-23T16:00:00.000Z</published>
-    <updated>2017-03-24T09:52:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。<br><a id="more"></a></p>
-<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>JavaScript中的基本类型有五种:<code>Undefined</code>,<code>Null</code>,<code>Number</code>,<code>String</code>,<code>Boolean</code>。它们是按值访问，可以操作保存在变量中实际的值。这些基本类型是存放在变量对象中的，而变量对象也是存放在堆内存中。只是由于变量对象的特殊性，我们在理解时才把变量对象与堆内存区分开来。<br>下面我们用代码与图更好的理解这个过程  </p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var a</span> = <span class="string">"5"</span>;</div><div class="line"><span class="attribute">var b</span> = a;</div><div class="line"><span class="attribute">a</span> = 10;</div></pre></td></tr></table></figure>
-<p>基本类型进行赋值操作时，会为新的变量分配一个值，这两个变量相互独立，互不影响。即使改变了a的值，b的值也不会变。<br><img src="/images/JS基本类型操作.png" alt="JS基本类型">  </p>
-<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用数据类型的值是保存在堆内存中的对象。在操作对象时，实际上是在操作对象的引用而不是实际的对象。因此，引用类型的值都是按引用访问的。这里的引用，我们可以粗浅地理解为保存在变量对象中的一个地址，该地址与堆内存的实际值相关联。  </p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: <span class="string">"Kol"</span>&#125;<span class="comment">;</span></div><div class="line">var <span class="keyword">b </span>= a<span class="comment">;</span></div><div class="line"><span class="keyword">b.name </span>= <span class="string">"Kylen"</span><span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>引用类型的复制同样也会为新的变量自动分配一个新的值保存在变量对象中，但不同的是，这个新的值，仅仅只是引用类型的一个地址指针。当地址指针相同时，尽管他们相互独立，但是在变量对象中访问到的具体对象实际上是同一个。<br><img src="/images/JS引用类型操作.png" alt="JS引用类型">  </p>
-<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript的垃圾收集有两种:标记清除、引用计数。<br>在局部作用域中，当函数执行结束，离开作用域的值就会被标记为可回收，在垃圾收集期间就会被删除。但是全局变量和全局对象的属性需要我们手动将其值设置为null来释放其引用（解除引用）  </p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">a</span> = <span class="number">1</span>;<span class="comment"> //在内存中给数值变量分配空间</span></div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>);<span class="comment"> //使用内存</span></div><div class="line"><span class="keyword">a</span> = <span class="literal">null</span>;<span class="comment"> //使用完毕之后，释放内存空间</span></div></pre></td></tr></table></figure>
-<p>但解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。  </p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。&lt;br&gt;
     
     </summary>
     
@@ -488,46 +489,6 @@
   </entry>
   
   <entry>
-    <title>px,em,rem详解</title>
-    <link href="/2017/03/10/Front%20End/%E5%83%8F%E7%B4%A0/"/>
-    <id>/2017/03/10/Front End/像素/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-24T07:19:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
-<a id="more"></a>
-<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。 </p>
-<ol>
-<li>IE无法调整那些使用px作为单位的字体大小； </li>
-<li>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位； </li>
-<li>Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。 </li>
-</ol>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。 </p>
-<ol>
-<li>em的值并不是固定的； </li>
-<li>em会继承父级元素的字体大小。 </li>
-</ol>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 </p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般浏览器默认为16px。<br>但为了使用方便会让html的font-size: 62.5%; 即1rem=10px;</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h2><p>1、发现chrome支持的最小px为12px。即使设置了62.5%的font-size，浏览器显示出来的字体大小1rem=12px。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-webkit-<span class="attribute">font-size</span>: <span class="number">12px</span>;</div><div class="line">-webkit-<span class="attribute">transform</span>: scale(<span class="number">0.84</span>);</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;px,em,rem使用介绍&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Front End" scheme="/categories/Front-End/"/>
-    
-    
-      <category term="CSS" scheme="/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mac上用Navicat连接Oracle</title>
     <link href="/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
     <id>/2017/03/10/Database/navicat连接oracle/</id>
@@ -608,6 +569,46 @@
   </entry>
   
   <entry>
+    <title>px,em,rem详解</title>
+    <link href="/2017/03/10/Front%20End/%E5%83%8F%E7%B4%A0/"/>
+    <id>/2017/03/10/Front End/像素/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-24T07:19:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>px,em,rem使用介绍</p>
+<a id="more"></a>
+<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。 </p>
+<ol>
+<li>IE无法调整那些使用px作为单位的字体大小； </li>
+<li>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位； </li>
+<li>Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。 </li>
+</ol>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。 </p>
+<ol>
+<li>em的值并不是固定的； </li>
+<li>em会继承父级元素的字体大小。 </li>
+</ol>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 </p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般浏览器默认为16px。<br>但为了使用方便会让html的font-size: 62.5%; 即1rem=10px;</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h2><p>1、发现chrome支持的最小px为12px。即使设置了62.5%的font-size，浏览器显示出来的字体大小1rem=12px。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-webkit-<span class="attribute">font-size</span>: <span class="number">12px</span>;</div><div class="line">-webkit-<span class="attribute">transform</span>: scale(<span class="number">0.84</span>);</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;px,em,rem使用介绍&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="/categories/Front-End/"/>
+    
+    
+      <category term="CSS" scheme="/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Emmet</title>
     <link href="/2017/03/09/Tools/Emmet/"/>
     <id>/2017/03/09/Tools/Emmet/</id>
@@ -663,11 +664,11 @@
       <category term="Linux" scheme="/categories/Linux/"/>
     
     
-      <category term="PHP" scheme="/tags/PHP/"/>
-    
       <category term="Linux" scheme="/tags/Linux/"/>
     
       <category term="Java" scheme="/tags/Java/"/>
+    
+      <category term="PHP" scheme="/tags/PHP/"/>
     
   </entry>
   
@@ -1037,9 +1038,9 @@
       <category term="Mac" scheme="/categories/Mac/"/>
     
     
-      <category term="Mac" scheme="/tags/Mac/"/>
-    
       <category term="PHP" scheme="/tags/PHP/"/>
+    
+      <category term="Mac" scheme="/tags/Mac/"/>
     
       <category term="Mysql" scheme="/tags/Mysql/"/>
     
@@ -1207,13 +1208,13 @@
       <category term="Mac" scheme="/categories/Mac/"/>
     
     
-      <category term="Mac" scheme="/tags/Mac/"/>
-    
       <category term="PHP" scheme="/tags/PHP/"/>
     
-      <category term="Mysql" scheme="/tags/Mysql/"/>
+      <category term="Mac" scheme="/tags/Mac/"/>
     
       <category term="Apache" scheme="/tags/Apache/"/>
+    
+      <category term="Mysql" scheme="/tags/Mysql/"/>
     
   </entry>
   
