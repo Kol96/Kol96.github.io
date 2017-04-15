@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Kylen" />
+
+
+
+<meta name="description" content="一直找不到好的方法在mac下使用oracle，偶然间发现docker可以配置oracle，于是乎就玩玩。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac下使用docker安装oracle">
+<meta property="og:url" content="/2017/04/15/Database/oracle_via_docker/index.html">
+<meta property="og:site_name" content="Kylen's Blog">
+<meta property="og:description" content="一直找不到好的方法在mac下使用oracle，偶然间发现docker可以配置oracle，于是乎就玩玩。">
+<meta property="og:updated_time" content="2017-04-15T12:17:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac下使用docker安装oracle">
+<meta name="twitter:description" content="一直找不到好的方法在mac下使用oracle，偶然间发现docker可以配置oracle，于是乎就玩玩。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Kylen&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img//favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Mac下使用docker安装oracle | Kylen&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: false,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/profile.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kylen</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:857137918@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/Kol96" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Aircrack-ng/">Aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFC/">BFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emmet/">Emmet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp/">Gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew/">Homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sql/">Sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text/">Sublime Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Terminal/">Terminal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/">Zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cURL/">cURL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/float/">float</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm2/">iTerm2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reaver/">reaver</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切图/">切图</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.zhangxinxu.com/wordpress/">ZXX</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jianshu.com/u/10ae59f49b13">波同学</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">死磕前端ing</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kylen</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/profile.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kylen</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:857137918@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Kol96" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Database/oracle_via_docker" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/15/Database/oracle_via_docker/" class="article-date">
+      <time datetime="2017-04-14T16:00:00.000Z" itemprop="datePublished">2017-04-15</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mac下使用docker安装oracle
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Database/">Database</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>一直找不到好的方法在mac下使用oracle，偶然间发现docker可以配置oracle，于是乎就玩玩。<br><a id="more"></a></p>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p><a href="https://www.docker.com" target="_blank" rel="external">Docker官网</a><br>1、<code>docker images</code><br>可以查看已安装的镜像<br>2、<code>docker ps</code><br>可以查看当前运行中的容器<br>3、<code>docker ps -a</code><br>可以查看所有的容器<br>4、<code>docker rm -f container-name</code><br>删除docker中的容器<br>5、<code>docker rmi images-name</code><br>删除镜像<br>6、<code>docker cp foo.txt container-name:/foo.txt</code><br>将本地文件复制到容器中<br>7、<code>docker cp container-name:/foo.txt foo.txt</code><br>将容器中的文件复制到本地<br>8、<code>docker run --name container-name images-name</code><br>安装运行镜像<br>9、<code>docker start container-name</code><br>启动容器<br>10、<code>docker stop container-name</code><br>关闭容器</p>
+<h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2><p><a href="https://store.docker.com/community/images/wnameless/oracle-xe-11g" target="_blank" rel="external">Oracle</a><br>用docker run安装时记得取一个容器的名字。<br>用这个装好之后发现没有scott用户，也没用vim。<br>1、安装vim<br><code>apt-get install vim</code><br>2、进入oracle目录<br><code>cd /u01/app/oracle/product/11.2.0/xe/rdbms/admin</code><br>3、创建scott.sql文件<br><code>vim scott.sql</code><br>4、添加内容  </p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="comment">Rem Copyright (c) 1990 by Oracle Corporation</span></div><div class="line"><span class="comment">Rem NAME</span></div><div class="line"><span class="comment">REM    UTLSAMPL.SQL</span></div><div class="line"><span class="comment">Rem  FUNCTION</span></div><div class="line"><span class="comment">Rem  NOTES</span></div><div class="line"><span class="comment">Rem  MODIFIED</span></div><div class="line"><span class="comment">Rem gdudey   06/28/95 -  Modified for desktop seed database</span></div><div class="line"><span class="comment">Rem glumpkin   10/21/92 -  Renamed from SQLBLD.SQL</span></div><div class="line"><span class="comment">Rem blinden   07/27/92 -  Added primary and foreign keys to EMP and DEPT</span></div><div class="line"><span class="comment">Rem rlim   04/29/91 -      change char to varchar2</span></div><div class="line"><span class="comment">Rem mmoore   04/08/91 -      use unlimited tablespace priv</span></div><div class="line"><span class="comment">Rem pritto   04/04/91 -      change SYSDATE to 13-JUL-87</span></div><div class="line"><span class="comment">Rem   Mendels 12/07/90 - bug 30123;add to_date calls so language independent</span></div><div class="line"><span class="comment">Rem</span></div><div class="line"><span class="comment">rem</span></div><div class="line"><span class="comment">rem $Header: utlsampl.sql 7020100.1 94/09/23 22:14:24 cli Generic&lt;base&gt; $ sqlbld.sql</span></div><div class="line"><span class="comment">rem</span></div><div class="line"><span class="built_in">SET</span> TERMOUT OFF</div><div class="line"><span class="built_in">SET</span> <span class="built_in">ECHO</span> OFF</div><div class="line"><span class="comment"></span></div><div class="line">rem CONGDON    Invoked in RDBMS at build time. 29-DEC-1988</div><div class="line"><span class="comment">rem OATES:     Created: 16-Feb-83</span></div><div class="line"></div><div class="line">GRANT CONNECT,RESOURCE,UNLIMITED TABLESPACE TO SCOTT IDENTIFIED BY TIGER;</div><div class="line">ALTER USER SCOTT DEFAULT TABLESPACE USERS;</div><div class="line">ALTER USER SCOTT TEMPORARY TABLESPACE TEMP;</div><div class="line">CONNECT SCOTT/TIGER</div><div class="line">DROP TABLE DEPT;</div><div class="line">CREATE TABLE DEPT</div><div class="line">       (DEPTNO NUMBER(<span class="number">2</span>) CONSTRAINT PK_DEPT PRIMARY KEY,</div><div class="line">DNAME VARCHAR2(<span class="number">14</span>) ,</div><div class="line">LOC VARCHAR2(<span class="number">13</span>) ) ;</div><div class="line">DROP TABLE EMP;</div><div class="line">CREATE TABLE EMP</div><div class="line">       (EMPNO NUMBER(<span class="number">4</span>) CONSTRAINT PK_EMP PRIMARY KEY,</div><div class="line">ENAME VARCHAR2(<span class="number">10</span>),</div><div class="line">JOB VARCHAR2(<span class="number">9</span>),</div><div class="line">MGR NUMBER(<span class="number">4</span>),</div><div class="line">HIREDATE <span class="built_in">DATE</span>,</div><div class="line">SAL NUMBER(<span class="number">7</span>,<span class="number">2</span>),</div><div class="line">COMM NUMBER(<span class="number">7</span>,<span class="number">2</span>),</div><div class="line">DEPTNO NUMBER(<span class="number">2</span>) CONSTRAINT FK_DEPTNO REFERENCES DEPT);</div><div class="line">INSERT INTO DEPT VALUES</div><div class="line">(<span class="number">10</span>,'ACCOUNTING','NEW YORK');</div><div class="line">INSERT INTO DEPT VALUES (<span class="number">20</span>,'RESEARCH','DALLAS');</div><div class="line">INSERT INTO DEPT VALUES</div><div class="line">(<span class="number">30</span>,'SALES','CHICAGO');</div><div class="line">INSERT INTO DEPT VALUES</div><div class="line">(<span class="number">40</span>,'OPERATIONS','BOSTON');</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7369</span>,'SMITH','CLERK',<span class="number">7902</span>,to_date('<span class="number">17</span>-<span class="number">12</span>-<span class="number">1980</span>','dd-mm-yyyy'),<span class="number">800</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7499</span>,'ALLEN','SALESMAN',<span class="number">7698</span>,to_date('<span class="number">20</span>-<span class="number">2</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">1600</span>,<span class="number">300</span>,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7521</span>,'WARD','SALESMAN',<span class="number">7698</span>,to_date('<span class="number">22</span>-<span class="number">2</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">1250</span>,<span class="number">500</span>,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7566</span>,'JONES','MANAGER',<span class="number">7839</span>,to_date('<span class="number">2</span>-<span class="number">4</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">2975</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7654</span>,'MARTIN','SALESMAN',<span class="number">7698</span>,to_date('<span class="number">28</span>-<span class="number">9</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">1250</span>,<span class="number">1400</span>,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7698</span>,'BLAKE','MANAGER',<span class="number">7839</span>,to_date('<span class="number">1</span>-<span class="number">5</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">2850</span>,NULL,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7782</span>,'CLARK','MANAGER',<span class="number">7839</span>,to_date('<span class="number">9</span>-<span class="number">6</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">2450</span>,NULL,<span class="number">10</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7788</span>,'SCOTT','ANALYST',<span class="number">7566</span>,to_date('<span class="number">13</span>-JUL-<span class="number">87</span>')-<span class="number">85</span>,<span class="number">3000</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7839</span>,'KING','PRESIDENT',NULL,to_date('<span class="number">17</span>-<span class="number">11</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">5000</span>,NULL,<span class="number">10</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7844</span>,'TURNER','SALESMAN',<span class="number">7698</span>,to_date('<span class="number">8</span>-<span class="number">9</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">1500</span>,<span class="number">0</span>,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7876</span>,'ADAMS','CLERK',<span class="number">7788</span>,to_date('<span class="number">13</span>-JUL-<span class="number">87</span>')-<span class="number">51</span>,<span class="number">1100</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7900</span>,'JAMES','CLERK',<span class="number">7698</span>,to_date('<span class="number">3</span>-<span class="number">12</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">950</span>,NULL,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7902</span>,'FORD','ANALYST',<span class="number">7566</span>,to_date('<span class="number">3</span>-<span class="number">12</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">3000</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7934</span>,'MILLER','CLERK',<span class="number">7782</span>,to_date('<span class="number">23</span>-<span class="number">1</span>-<span class="number">1982</span>','dd-mm-yyyy'),<span class="number">1300</span>,NULL,<span class="number">10</span>);</div><div class="line">DROP TABLE BONUS;</div><div class="line">CREATE TABLE BONUS</div><div class="line">(</div><div class="line">ENAME VARCHAR2(<span class="number">10</span>) ,</div><div class="line">JOB VARCHAR2(<span class="number">9</span>)  ,</div><div class="line">SAL NUMBER,</div><div class="line">COMM NUMBER</div><div class="line">) ;</div><div class="line">DROP TABLE SALGRADE;</div><div class="line">CREATE TABLE SALGRADE</div><div class="line">      ( GRADE NUMBER,</div><div class="line">LOSAL NUMBER,</div><div class="line">HISAL NUMBER );</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">1</span>,<span class="number">700</span>,<span class="number">1200</span>);</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">2</span>,<span class="number">1201</span>,<span class="number">1400</span>);</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">3</span>,<span class="number">1401</span>,<span class="number">2000</span>);</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">4</span>,<span class="number">2001</span>,<span class="number">3000</span>);</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">5</span>,<span class="number">3001</span>,<span class="number">9999</span>);</div><div class="line">COMMIT;</div><div class="line"></div><div class="line"><span class="built_in">SET</span> TERMOUT ON</div><div class="line"><span class="built_in">SET</span> <span class="built_in">ECHO</span> ON</div></pre></td></tr></table></figure>
+<p>5、进入sqlplus  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sqlplus //输入sys/oracle</div><div class="line">@/u01/app/oracle/product/11.2.0/xe/rdbms/admin/scott.sql  //添加scott账户</div><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> scott <span class="keyword">identified</span> <span class="keyword">by</span> tiger;  //修改scott账号密码为tiger</div><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> scott <span class="keyword">account</span> <span class="keyword">unlock</span>;  //如果账户锁定，可以用来解锁scott账户</div><div class="line">conn scott/tiger //连接到scott账户</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/04/15/Database/docker/">
+                    
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/04/15/Front End/CSS属性语法/">
+                    CSS属性值语法解析
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-number">1.</span> <span class="toc-text">Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Oracle"><span class="toc-number">2.</span> <span class="toc-text">Oracle</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = '/2017/04/15/Database/oracle_via_docker/';
+            this.page.identifier = '2017/04/15/Database/oracle_via_docker/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//kol96.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/04/15/Database/docker/" title="Pre: ">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/04/15/Front End/CSS属性语法/" title="Next: CSS属性值语法解析">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/15/Database/docker/">Database/docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/15/Database/oracle_via_docker/">Mac下使用docker安装oracle</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/15/Front End/CSS属性语法/">CSS属性值语法解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/12/Front End/小玩意儿/">小玩意儿</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/10/Front End/切图/">切图</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/07/Front End/JS学习之浏览器宽高/">JavaScript学习之浏览器宽高</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/30/Front End/JS学习之面向对象/">JavaScript学习之面向对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/25/Front End/JS学习之执行上下文/">JavaScript学习之执行上下文</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之hoist/">JavaScript学习之函数及变量hoist</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之内存/">JavaScript学习之内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/23/Front End/JS学习之thiis/">JavaScript学习之this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/Front End/jQuery样式/">jQuery样式篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/Tools/自动化构建工具/">自动化构建工具以及打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/清除浮动/">清除浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/BFC/">理解BFC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Mac/Hexo/">How to install Hexo on Mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Front End/像素/">px,em,rem详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Database/navicat连接oracle/">Mac上用Navicat连接Oracle</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/Tools/Emmet/">Emmet</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/05/Linux/java和php共用/">Java、PHP共用端口使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Database/oracle11g silent install/">Centos6.5 x86_64下 静默安装Oracle 11g R2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/Linux/阿里云/">阿里云服务器下的Linux配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Database/oracle语法/">Oracle数据库的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Database/oracle安装/">Mac下的Oracle数据库的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/Tools/sublime/">Sublime Text的配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/PHP/cURL/">在PHP中使用cURL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/17/Linux/Linux服务器/">linux服务器的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/12/Linux/Terminator/">Kali Terminator多窗口终端的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/11/Mac/Mnmp/">Mac Yosemite 安装Lnmp环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Linux/Aircrack/">Aircrack-ng hack wireless network</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/Linux/KaliConfig/">How to config your Kali Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Mac/Mamp/">Mac Yosemite Lamp环境安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/Mac/mac工具/">Mac必备工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/Tools/git分支管理/">Git分支管理策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/Tools/git命令/">Git命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/20/PHP/PHP+Mysql分页原理/">PHP+Mysql分页原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/PHP/PHP上传原理/">PHP上传原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/10/PHP/PHP随笔记/">PHP随笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/15/Life/博客/">为什么要写博客？</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Kylen
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 2;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

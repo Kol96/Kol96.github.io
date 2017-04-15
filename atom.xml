@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-04-13T10:32:33.000Z</updated>
+  <updated>2017-04-15T11:51:58.000Z</updated>
   <id>/</id>
   
   <author>
@@ -14,6 +14,126 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="/2017/04/15/Database/docker/"/>
+    <id>/2017/04/15/Database/docker/</id>
+    <published>2017-04-15T11:51:58.000Z</published>
+    <updated>2017-04-15T11:51:58.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下使用docker安装oracle</title>
+    <link href="/2017/04/15/Database/oracle_via_docker/"/>
+    <id>/2017/04/15/Database/oracle_via_docker/</id>
+    <published>2017-04-14T16:00:00.000Z</published>
+    <updated>2017-04-15T12:17:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直找不到好的方法在mac下使用oracle，偶然间发现docker可以配置oracle，于是乎就玩玩。<br><a id="more"></a></p>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p><a href="https://www.docker.com" target="_blank" rel="external">Docker官网</a><br>1、<code>docker images</code><br>可以查看已安装的镜像<br>2、<code>docker ps</code><br>可以查看当前运行中的容器<br>3、<code>docker ps -a</code><br>可以查看所有的容器<br>4、<code>docker rm -f container-name</code><br>删除docker中的容器<br>5、<code>docker rmi images-name</code><br>删除镜像<br>6、<code>docker cp foo.txt container-name:/foo.txt</code><br>将本地文件复制到容器中<br>7、<code>docker cp container-name:/foo.txt foo.txt</code><br>将容器中的文件复制到本地<br>8、<code>docker run --name container-name images-name</code><br>安装运行镜像<br>9、<code>docker start container-name</code><br>启动容器<br>10、<code>docker stop container-name</code><br>关闭容器</p>
+<h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2><p><a href="https://store.docker.com/community/images/wnameless/oracle-xe-11g" target="_blank" rel="external">Oracle</a><br>用docker run安装时记得取一个容器的名字。<br>用这个装好之后发现没有scott用户，也没用vim。<br>1、安装vim<br><code>apt-get install vim</code><br>2、进入oracle目录<br><code>cd /u01/app/oracle/product/11.2.0/xe/rdbms/admin</code><br>3、创建scott.sql文件<br><code>vim scott.sql</code><br>4、添加内容  </p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="comment">Rem Copyright (c) 1990 by Oracle Corporation</span></div><div class="line"><span class="comment">Rem NAME</span></div><div class="line"><span class="comment">REM    UTLSAMPL.SQL</span></div><div class="line"><span class="comment">Rem  FUNCTION</span></div><div class="line"><span class="comment">Rem  NOTES</span></div><div class="line"><span class="comment">Rem  MODIFIED</span></div><div class="line"><span class="comment">Rem gdudey   06/28/95 -  Modified for desktop seed database</span></div><div class="line"><span class="comment">Rem glumpkin   10/21/92 -  Renamed from SQLBLD.SQL</span></div><div class="line"><span class="comment">Rem blinden   07/27/92 -  Added primary and foreign keys to EMP and DEPT</span></div><div class="line"><span class="comment">Rem rlim   04/29/91 -      change char to varchar2</span></div><div class="line"><span class="comment">Rem mmoore   04/08/91 -      use unlimited tablespace priv</span></div><div class="line"><span class="comment">Rem pritto   04/04/91 -      change SYSDATE to 13-JUL-87</span></div><div class="line"><span class="comment">Rem   Mendels 12/07/90 - bug 30123;add to_date calls so language independent</span></div><div class="line"><span class="comment">Rem</span></div><div class="line"><span class="comment">rem</span></div><div class="line"><span class="comment">rem $Header: utlsampl.sql 7020100.1 94/09/23 22:14:24 cli Generic&lt;base&gt; $ sqlbld.sql</span></div><div class="line"><span class="comment">rem</span></div><div class="line"><span class="built_in">SET</span> TERMOUT OFF</div><div class="line"><span class="built_in">SET</span> <span class="built_in">ECHO</span> OFF</div><div class="line"><span class="comment"></span></div><div class="line">rem CONGDON    Invoked in RDBMS at build time. 29-DEC-1988</div><div class="line"><span class="comment">rem OATES:     Created: 16-Feb-83</span></div><div class="line"></div><div class="line">GRANT CONNECT,RESOURCE,UNLIMITED TABLESPACE TO SCOTT IDENTIFIED BY TIGER;</div><div class="line">ALTER USER SCOTT DEFAULT TABLESPACE USERS;</div><div class="line">ALTER USER SCOTT TEMPORARY TABLESPACE TEMP;</div><div class="line">CONNECT SCOTT/TIGER</div><div class="line">DROP TABLE DEPT;</div><div class="line">CREATE TABLE DEPT</div><div class="line">       (DEPTNO NUMBER(<span class="number">2</span>) CONSTRAINT PK_DEPT PRIMARY KEY,</div><div class="line">DNAME VARCHAR2(<span class="number">14</span>) ,</div><div class="line">LOC VARCHAR2(<span class="number">13</span>) ) ;</div><div class="line">DROP TABLE EMP;</div><div class="line">CREATE TABLE EMP</div><div class="line">       (EMPNO NUMBER(<span class="number">4</span>) CONSTRAINT PK_EMP PRIMARY KEY,</div><div class="line">ENAME VARCHAR2(<span class="number">10</span>),</div><div class="line">JOB VARCHAR2(<span class="number">9</span>),</div><div class="line">MGR NUMBER(<span class="number">4</span>),</div><div class="line">HIREDATE <span class="built_in">DATE</span>,</div><div class="line">SAL NUMBER(<span class="number">7</span>,<span class="number">2</span>),</div><div class="line">COMM NUMBER(<span class="number">7</span>,<span class="number">2</span>),</div><div class="line">DEPTNO NUMBER(<span class="number">2</span>) CONSTRAINT FK_DEPTNO REFERENCES DEPT);</div><div class="line">INSERT INTO DEPT VALUES</div><div class="line">(<span class="number">10</span>,'ACCOUNTING','NEW YORK');</div><div class="line">INSERT INTO DEPT VALUES (<span class="number">20</span>,'RESEARCH','DALLAS');</div><div class="line">INSERT INTO DEPT VALUES</div><div class="line">(<span class="number">30</span>,'SALES','CHICAGO');</div><div class="line">INSERT INTO DEPT VALUES</div><div class="line">(<span class="number">40</span>,'OPERATIONS','BOSTON');</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7369</span>,'SMITH','CLERK',<span class="number">7902</span>,to_date('<span class="number">17</span>-<span class="number">12</span>-<span class="number">1980</span>','dd-mm-yyyy'),<span class="number">800</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7499</span>,'ALLEN','SALESMAN',<span class="number">7698</span>,to_date('<span class="number">20</span>-<span class="number">2</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">1600</span>,<span class="number">300</span>,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7521</span>,'WARD','SALESMAN',<span class="number">7698</span>,to_date('<span class="number">22</span>-<span class="number">2</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">1250</span>,<span class="number">500</span>,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7566</span>,'JONES','MANAGER',<span class="number">7839</span>,to_date('<span class="number">2</span>-<span class="number">4</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">2975</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7654</span>,'MARTIN','SALESMAN',<span class="number">7698</span>,to_date('<span class="number">28</span>-<span class="number">9</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">1250</span>,<span class="number">1400</span>,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7698</span>,'BLAKE','MANAGER',<span class="number">7839</span>,to_date('<span class="number">1</span>-<span class="number">5</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">2850</span>,NULL,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7782</span>,'CLARK','MANAGER',<span class="number">7839</span>,to_date('<span class="number">9</span>-<span class="number">6</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">2450</span>,NULL,<span class="number">10</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7788</span>,'SCOTT','ANALYST',<span class="number">7566</span>,to_date('<span class="number">13</span>-JUL-<span class="number">87</span>')-<span class="number">85</span>,<span class="number">3000</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7839</span>,'KING','PRESIDENT',NULL,to_date('<span class="number">17</span>-<span class="number">11</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">5000</span>,NULL,<span class="number">10</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7844</span>,'TURNER','SALESMAN',<span class="number">7698</span>,to_date('<span class="number">8</span>-<span class="number">9</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">1500</span>,<span class="number">0</span>,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7876</span>,'ADAMS','CLERK',<span class="number">7788</span>,to_date('<span class="number">13</span>-JUL-<span class="number">87</span>')-<span class="number">51</span>,<span class="number">1100</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7900</span>,'JAMES','CLERK',<span class="number">7698</span>,to_date('<span class="number">3</span>-<span class="number">12</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">950</span>,NULL,<span class="number">30</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7902</span>,'FORD','ANALYST',<span class="number">7566</span>,to_date('<span class="number">3</span>-<span class="number">12</span>-<span class="number">1981</span>','dd-mm-yyyy'),<span class="number">3000</span>,NULL,<span class="number">20</span>);</div><div class="line">INSERT INTO EMP VALUES</div><div class="line">(<span class="number">7934</span>,'MILLER','CLERK',<span class="number">7782</span>,to_date('<span class="number">23</span>-<span class="number">1</span>-<span class="number">1982</span>','dd-mm-yyyy'),<span class="number">1300</span>,NULL,<span class="number">10</span>);</div><div class="line">DROP TABLE BONUS;</div><div class="line">CREATE TABLE BONUS</div><div class="line">(</div><div class="line">ENAME VARCHAR2(<span class="number">10</span>) ,</div><div class="line">JOB VARCHAR2(<span class="number">9</span>)  ,</div><div class="line">SAL NUMBER,</div><div class="line">COMM NUMBER</div><div class="line">) ;</div><div class="line">DROP TABLE SALGRADE;</div><div class="line">CREATE TABLE SALGRADE</div><div class="line">      ( GRADE NUMBER,</div><div class="line">LOSAL NUMBER,</div><div class="line">HISAL NUMBER );</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">1</span>,<span class="number">700</span>,<span class="number">1200</span>);</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">2</span>,<span class="number">1201</span>,<span class="number">1400</span>);</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">3</span>,<span class="number">1401</span>,<span class="number">2000</span>);</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">4</span>,<span class="number">2001</span>,<span class="number">3000</span>);</div><div class="line">INSERT INTO SALGRADE VALUES (<span class="number">5</span>,<span class="number">3001</span>,<span class="number">9999</span>);</div><div class="line">COMMIT;</div><div class="line"></div><div class="line"><span class="built_in">SET</span> TERMOUT ON</div><div class="line"><span class="built_in">SET</span> <span class="built_in">ECHO</span> ON</div></pre></td></tr></table></figure>
+<p>5、进入sqlplus  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sqlplus //输入sys/oracle</div><div class="line">@/u01/app/oracle/product/11.2.0/xe/rdbms/admin/scott.sql  //添加scott账户</div><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> scott <span class="keyword">identified</span> <span class="keyword">by</span> tiger;  //修改scott账号密码为tiger</div><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> scott <span class="keyword">account</span> <span class="keyword">unlock</span>;  //如果账户锁定，可以用来解锁scott账户</div><div class="line">conn scott/tiger //连接到scott账户</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直找不到好的方法在mac下使用oracle，偶然间发现docker可以配置oracle，于是乎就玩玩。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Database" scheme="/categories/Database/"/>
+    
+    
+      <category term="Oracle" scheme="/tags/Oracle/"/>
+    
+      <category term="Docker" scheme="/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS属性值语法解析</title>
+    <link href="/2017/04/15/Front%20End/CSS%E5%B1%9E%E6%80%A7%E8%AF%AD%E6%B3%95/"/>
+    <id>/2017/04/15/Front End/CSS属性语法/</id>
+    <published>2017-04-14T16:00:00.000Z</published>
+    <updated>2017-04-15T07:37:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>margin: [ <length> | <percentage> | auto ]{1,4}<br>基本元素：<length>, <percentage>, auto<br>组合符号：[], |<br>数量符号：{1,4}<br><a id="more"></a></percentage></length></percentage></length></p>
+<h2 id="基本元素"><a href="#基本元素" class="headerlink" title="基本元素"></a>基本元素</h2><p>1、关键字</p>
+<ul>
+<li>auto  </li>
+<li>solid  </li>
+<li>bold  </li>
+</ul>
+<p>2、基本类型  </p>
+<ul>
+<li><code>&lt;length&gt;</code>: 1px、1em  </li>
+<li><code>&lt;percentage&gt;</code>: 50%  </li>
+<li><code>&lt;color&gt;</code>: #FFF000、rgb(0,0,0)  </li>
+</ul>
+<p>3、其他类型  </p>
+<ul>
+<li><code>&lt;&#39;padding-width&#39;&gt;</code>:可以是<code>&lt;length&gt;</code> 也可以是<code>&lt;percentage&gt;</code>  </li>
+<li><code>&lt;color-stop&gt;</code>:<code>&lt;color&gt;</code>后面选择性跟<code>&lt;length&gt;</code>或<code>&lt;percentage&gt;</code>,也可以不跟. red 30%,green   </li>
+</ul>
+<p>4、符号  </p>
+<ul>
+<li>/  </li>
+<li>,  </li>
+</ul>
+<p>5、其他(默认自带)  </p>
+<ul>
+<li><code>inherit</code>  </li>
+<li><code>initial</code>  </li>
+</ul>
+<h2 id="组合符号"><a href="#组合符号" class="headerlink" title="组合符号"></a>组合符号</h2><p>1、空格（两项必存，顺序固定）<br><code>&lt;&#39;font-size&#39;&gt; &lt;&#39;font-family&#39;&gt;</code>  </p>
+<ul>
+<li>合法：12px arial  </li>
+<li>不合法：arial 12px  </li>
+</ul>
+<p>2、&amp;&amp;（两项必存，顺序不定）<br><code>&lt;length&gt;&amp;&amp;&lt;color&gt;</code>  </p>
+<ul>
+<li>合法：red 12px  </li>
+<li>不合法：red  </li>
+</ul>
+<p>3、||（至少一个，顺序不定）<br><code>underline || overline || line-through || blink</code>  </p>
+<ul>
+<li>合法：underline blink  </li>
+<li>合法：underline  </li>
+</ul>
+<p>4、|（只选一个）<br><code>&lt;color&gt; | transparent</code>  </p>
+<ul>
+<li>合法：transparent  </li>
+<li>不合法：red transparent  </li>
+</ul>
+<p>5、[]（分组，作为整体）<br><code>bold [thin || &lt;length&gt;]</code>  </p>
+<ul>
+<li>合法：bold thin  </li>
+<li>合法：bold 12px  </li>
+</ul>
+<h2 id="数量符号"><a href="#数量符号" class="headerlink" title="数量符号"></a>数量符号</h2><p>1、无（只能出现一次）<br>2、+（一次或者多次）<br>3、？（表示可选）<br>4、{m，n}（出现m到n次）<br>5、*（出现0次或多次）<br>6、#（出现一次或多次，并以逗号分隔）  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;margin: [ &lt;length&gt; | &lt;percentage&gt; | auto ]{1,4}&lt;br&gt;基本元素：&lt;length&gt;, &lt;percentage&gt;, auto&lt;br&gt;组合符号：[], |&lt;br&gt;数量符号：{1,4}&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="/categories/Front-End/"/>
+    
+    
+      <category term="CSS" scheme="/tags/CSS/"/>
+    
+  </entry>
   
   <entry>
     <title>小玩意儿</title>
@@ -244,38 +364,6 @@
   </entry>
   
   <entry>
-    <title>JavaScript学习之内存</title>
-    <link href="/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%85%E5%AD%98/"/>
-    <id>/2017/03/24/Front End/JS学习之内存/</id>
-    <published>2017-03-23T16:00:00.000Z</published>
-    <updated>2017-03-24T09:52:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。<br><a id="more"></a></p>
-<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>JavaScript中的基本类型有五种:<code>Undefined</code>,<code>Null</code>,<code>Number</code>,<code>String</code>,<code>Boolean</code>。它们是按值访问，可以操作保存在变量中实际的值。这些基本类型是存放在变量对象中的，而变量对象也是存放在堆内存中。只是由于变量对象的特殊性，我们在理解时才把变量对象与堆内存区分开来。<br>下面我们用代码与图更好的理解这个过程  </p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var a</span> = <span class="string">"5"</span>;</div><div class="line"><span class="attribute">var b</span> = a;</div><div class="line"><span class="attribute">a</span> = 10;</div></pre></td></tr></table></figure>
-<p>基本类型进行赋值操作时，会为新的变量分配一个值，这两个变量相互独立，互不影响。即使改变了a的值，b的值也不会变。<br><img src="/images/JS基本类型操作.png" alt="JS基本类型">  </p>
-<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用数据类型的值是保存在堆内存中的对象。在操作对象时，实际上是在操作对象的引用而不是实际的对象。因此，引用类型的值都是按引用访问的。这里的引用，我们可以粗浅地理解为保存在变量对象中的一个地址，该地址与堆内存的实际值相关联。  </p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: <span class="string">"Kol"</span>&#125;<span class="comment">;</span></div><div class="line">var <span class="keyword">b </span>= a<span class="comment">;</span></div><div class="line"><span class="keyword">b.name </span>= <span class="string">"Kylen"</span><span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>引用类型的复制同样也会为新的变量自动分配一个新的值保存在变量对象中，但不同的是，这个新的值，仅仅只是引用类型的一个地址指针。当地址指针相同时，尽管他们相互独立，但是在变量对象中访问到的具体对象实际上是同一个。<br><img src="/images/JS引用类型操作.png" alt="JS引用类型">  </p>
-<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript的垃圾收集有两种:标记清除、引用计数。<br>在局部作用域中，当函数执行结束，离开作用域的值就会被标记为可回收，在垃圾收集期间就会被删除。但是全局变量和全局对象的属性需要我们手动将其值设置为null来释放其引用（解除引用）  </p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">a</span> = <span class="number">1</span>;<span class="comment"> //在内存中给数值变量分配空间</span></div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>);<span class="comment"> //使用内存</span></div><div class="line"><span class="keyword">a</span> = <span class="literal">null</span>;<span class="comment"> //使用完毕之后，释放内存空间</span></div></pre></td></tr></table></figure>
-<p>但解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。  </p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Front End" scheme="/categories/Front-End/"/>
-    
-    
-      <category term="JavaScript" scheme="/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
     <title>JavaScript学习之函数及变量hoist</title>
     <link href="/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8Bhoist/"/>
     <id>/2017/03/24/Front End/JS学习之hoist/</id>
@@ -308,6 +396,38 @@
     <summary type="html">
     
       &lt;p&gt;JavaScript能够在变量和函数被声明之前使用它们。hoist是在变量对象创建时发生的。可以参考另一篇文章JavaScript的执行上下文。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="/categories/Front-End/"/>
+    
+    
+      <category term="JavaScript" scheme="/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript学习之内存</title>
+    <link href="/2017/03/24/Front%20End/JS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%85%E5%AD%98/"/>
+    <id>/2017/03/24/Front End/JS学习之内存/</id>
+    <published>2017-03-23T16:00:00.000Z</published>
+    <updated>2017-03-24T09:52:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。<br><a id="more"></a></p>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>JavaScript中的基本类型有五种:<code>Undefined</code>,<code>Null</code>,<code>Number</code>,<code>String</code>,<code>Boolean</code>。它们是按值访问，可以操作保存在变量中实际的值。这些基本类型是存放在变量对象中的，而变量对象也是存放在堆内存中。只是由于变量对象的特殊性，我们在理解时才把变量对象与堆内存区分开来。<br>下面我们用代码与图更好的理解这个过程  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var a</span> = <span class="string">"5"</span>;</div><div class="line"><span class="attribute">var b</span> = a;</div><div class="line"><span class="attribute">a</span> = 10;</div></pre></td></tr></table></figure>
+<p>基本类型进行赋值操作时，会为新的变量分配一个值，这两个变量相互独立，互不影响。即使改变了a的值，b的值也不会变。<br><img src="/images/JS基本类型操作.png" alt="JS基本类型">  </p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用数据类型的值是保存在堆内存中的对象。在操作对象时，实际上是在操作对象的引用而不是实际的对象。因此，引用类型的值都是按引用访问的。这里的引用，我们可以粗浅地理解为保存在变量对象中的一个地址，该地址与堆内存的实际值相关联。  </p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: <span class="string">"Kol"</span>&#125;<span class="comment">;</span></div><div class="line">var <span class="keyword">b </span>= a<span class="comment">;</span></div><div class="line"><span class="keyword">b.name </span>= <span class="string">"Kylen"</span><span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>引用类型的复制同样也会为新的变量自动分配一个新的值保存在变量对象中，但不同的是，这个新的值，仅仅只是引用类型的一个地址指针。当地址指针相同时，尽管他们相互独立，但是在变量对象中访问到的具体对象实际上是同一个。<br><img src="/images/JS引用类型操作.png" alt="JS引用类型">  </p>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript的垃圾收集有两种:标记清除、引用计数。<br>在局部作用域中，当函数执行结束，离开作用域的值就会被标记为可回收，在垃圾收集期间就会被删除。但是全局变量和全局对象的属性需要我们手动将其值设置为null来释放其引用（解除引用）  </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">a</span> = <span class="number">1</span>;<span class="comment"> //在内存中给数值变量分配空间</span></div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>);<span class="comment"> //使用内存</span></div><div class="line"><span class="keyword">a</span> = <span class="literal">null</span>;<span class="comment"> //使用完毕之后，释放内存空间</span></div></pre></td></tr></table></figure>
+<p>但解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;初学JavaScript时，看红皮书了解了JS基本类型和引用类型在内存中的位置，结果看了简书里的一篇文章，发现对这块的了解还是有些缺陷。&lt;br&gt;
     
     </summary>
     
@@ -489,32 +609,6 @@
   </entry>
   
   <entry>
-    <title>Mac上用Navicat连接Oracle</title>
-    <link href="/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
-    <id>/2017/03/10/Database/navicat连接oracle/</id>
-    <published>2017-03-09T16:00:00.000Z</published>
-    <updated>2017-03-24T07:15:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
-<a id="more"></a>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
-<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="database" scheme="/categories/database/"/>
-    
-    
-      <category term="Oracle" scheme="/tags/Oracle/"/>
-    
-  </entry>
-  
-  <entry>
     <title>How to install Hexo on Mac</title>
     <link href="/2017/03/10/Mac/Hexo/"/>
     <id>/2017/03/10/Mac/Hexo/</id>
@@ -605,6 +699,32 @@
     
     
       <category term="CSS" scheme="/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac上用Navicat连接Oracle</title>
+    <link href="/2017/03/10/Database/navicat%E8%BF%9E%E6%8E%A5oracle/"/>
+    <id>/2017/03/10/Database/navicat连接oracle/</id>
+    <published>2017-03-09T16:00:00.000Z</published>
+    <updated>2017-03-24T07:15:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed</p>
+<a id="more"></a>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>在终端上输入：~ hostname<br>localhost<br>查看/etc/hosts文件：~ cat /etc/hosts<br>127.0.0.1 localhost<br>保持hostname与hosts文件中127.0.0.1对应的名称一致即可！</p>
+<p>========================================<br>修改hostname命令<br>sudo scutil –set HostName yourname</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Mac上用Navicat连接Oracle的时候总是提示：ORA-21561: OID generation failed&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="database" scheme="/categories/database/"/>
+    
+    
+      <category term="Oracle" scheme="/tags/Oracle/"/>
     
   </entry>
   
