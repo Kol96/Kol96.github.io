@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="速度 简单的设计 完全分布式对非线性开发模式的强力支持（允许上千个并行开发的分支）有能力高效管理超大规模项目（速度和数据量）">
+<meta name="description" content="这篇文章将实时更新，记录我的CCS踩坑之路。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git命令">
-<meta property="og:url" content="/2015/07/26/Tools/git命令/index.html">
+<meta property="og:title" content="CSS踩坑集锦">
+<meta property="og:url" content="/2017/04/17/Front End/css坑/index.html">
 <meta property="og:site_name" content="Kylen's Blog">
-<meta property="og:description" content="速度 简单的设计 完全分布式对非线性开发模式的强力支持（允许上千个并行开发的分支）有能力高效管理超大规模项目（速度和数据量）">
-<meta property="og:updated_time" content="2017-03-24T07:17:12.000Z">
+<meta property="og:description" content="这篇文章将实时更新，记录我的CCS踩坑之路。">
+<meta property="og:updated_time" content="2017-04-17T03:19:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git命令">
-<meta name="twitter:description" content="速度 简单的设计 完全分布式对非线性开发模式的强力支持（允许上千个并行开发的分支）有能力高效管理超大规模项目（速度和数据量）">
+<meta name="twitter:title" content="CSS踩坑集锦">
+<meta name="twitter:description" content="这篇文章将实时更新，记录我的CCS踩坑之路。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,7 +54,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Git命令 | Kylen&#39;s Blog</title>
+<title>CSS踩坑集锦 | Kylen&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +267,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-Tools/git命令" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Front End/css坑" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/26/Tools/git命令/" class="article-date">
-      <time datetime="2015-07-25T16:00:00.000Z" itemprop="datePublished">2015-07-26</time>
+      <a href="/2017/04/17/Front End/css坑/" class="article-date">
+      <time datetime="2017-04-16T16:00:00.000Z" itemprop="datePublished">2017-04-17</time>
 </a>
 
 
@@ -284,7 +284,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Git命令
+      CSS踩坑集锦
     </h1>
   
 
@@ -293,13 +293,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Tools/">Tools</a>
+    <a class="article-category-link" href="/categories/Front-End/">Front End</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -309,21 +309,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>速度 简单的设计 完全分布式<br>对非线性开发模式的强力支持（允许上千个并行开发的分支）<br>有能力高效管理超大规模项目（速度和数据量）  </p>
-<a id="more"></a>
-<h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><p>使用homebrew下载<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span><span class="keyword">install </span>git</div></pre></td></tr></table></figure></p>
-<h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">"用户名"</span></div><div class="line">$ git config --global user<span class="selector-class">.email</span> <span class="string">"邮箱"</span>  </div></pre></td></tr></table></figure>
-<h2 id="三、初始化仓库"><a href="#三、初始化仓库" class="headerlink" title="三、初始化仓库"></a>三、初始化仓库</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">$ git remote add origin 地址</div><div class="line">$ git pull origin <span class="keyword">master</span>  </div><div class="line"><span class="title">或者</span></div><div class="line">$ git <span class="keyword">clone</span> <span class="title">git</span>://github.com/schacon/grit.git</div></pre></td></tr></table></figure>
-<h2 id="四、常用命令"><a href="#四、常用命令" class="headerlink" title="四、常用命令"></a>四、常用命令</h2><p>将文件从工作目录添加到缓存区<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="keyword">add</span><span class="bash"> 文件名</span></div></pre></td></tr></table></figure></p>
-<p>查看状态<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git status</div></pre></td></tr></table></figure></p>
-<p>提交到本地仓库<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git commit -m “说明”</div></pre></td></tr></table></figure></p>
-<p>上传到远程仓库<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">push</span> <span class="built_in">origin</span> 分支名</div></pre></td></tr></table></figure></p>
-<p>将远程仓库数据同步到本地仓库<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git fetch origin</div></pre></td></tr></table></figure></p>
-<p>创建分支<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="keyword">branch </span>分支名 远程分支名</div></pre></td></tr></table></figure></p>
-<p>切换分支<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git checkout 分支名</div></pre></td></tr></table></figure></p>
-<p>删除本地分支<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="keyword">branch </span>-d 分支名</div></pre></td></tr></table></figure></p>
-<p>删除远程分支<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">push</span> <span class="built_in">origin</span> :分支名</div></pre></td></tr></table></figure></p>
-<p>合并分支<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span> git merge --<span class="keyword">no</span>-ff 分支名</div></pre></td></tr></table></figure></p>
+        <p>这篇文章将实时更新，记录我的CCS踩坑之路。<br><a id="more"></a></p>
+<h2 id="margin折叠"><a href="#margin折叠" class="headerlink" title="margin折叠"></a>margin折叠</h2><p><a href="http://www.ituring.com.cn/article/64583" target="_blank" rel="external">参考</a><br>折叠的解决办法:  </p>
+<ul>
+<li><code>margin</code>折叠元素只发生在块元素上  </li>
+<li>将父元素与它的第一子元素「隔离开」，比如给父元素加 <code>padding</code> 或 <code>border</code>  </li>
+<li>为父元素创建块级格式化上下文（BFC），让它的子元素的 margin 值不影响父元素的 margin 值计算<a href="https://segmentfault.com/q/1010000002645174/a-1020000002646638" target="_blank" rel="external">关于body</a>  </li>
+<li>浮动元素不与其他元素<code>margin</code>折叠  </li>
+</ul>
+<p>1、元素的上外边距和其属于常规流中的第一个孩子的上外边距<br>一个盒子如果没有<code>padding-top</code>、<code>border-top</code>、<code>float</code>、<code>overflow</code>等属性时，那么这个盒子的上边距会和其内部文档流中的第一个子元素的上边距重叠。当发生重叠时，是按照谁上边距大就取谁作为这个盒子的上边距。  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.general</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">background</span>:pink;&#125;</div><div class="line">    <span class="selector-class">.box</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">background</span>:<span class="number">#bbb</span>;<span class="attribute">margin-top</span>:<span class="number">10px</span>;&#125;</div><div class="line">    <span class="selector-class">.top</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">50px</span>;<span class="attribute">background</span>:orange;<span class="attribute">margin-top</span>:<span class="number">20px</span>;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"general"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"top"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面的例子我们在浏览器中会看到box元素与general元素之间的空隙应为20px，因为top子元素的上边距大于box父元素的上边距。如果给box父元素增加<code>padding-top</code>、<code>border-top</code>、<code>float</code>、<code>overflow:hidden</code>任一属性，都会让margin-top重叠失效，结果会是box与general元素的空隙变为10px，top元素的margin会施加在box父元素的内部。  </p>
+<p>2、元素的下外边距和其属于常规流中的最后一个孩子的下外边距且父亲的高度计算值为<code>auto</code>  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.general</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">background</span>:pink;&#125;</div><div class="line">    <span class="selector-class">.box</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">background</span>:<span class="number">#bbb</span>;<span class="attribute">margin-bottom</span>:<span class="number">50px</span>;&#125;</div><div class="line">    <span class="selector-class">.bottom</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">50px</span>;<span class="attribute">background</span>:orange;<span class="attribute">margin-bottom</span>:<span class="number">20px</span>;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bottom"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"general"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>重点是只有box父元素的高度为auto，即为设置时才会产生这种情况的折叠。  </p>
+<p>3、元素的下外边距和其属于常规流中的下一个兄弟的上外边距  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.general</span>&#123;<span class="attribute">width</span>:<span class="number">300px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">background</span>:pink;<span class="attribute">margin</span>:<span class="number">50px</span>;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"general"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"general"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>两个general元素之间的间隙为50px，可以通过<code>float:left</code>取消margin折叠。  </p>
 
       
     </div>
@@ -335,16 +337,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2015/07/27/Tools/git分支管理/">
-                    Git分支管理策略
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2015/04/20/PHP/PHP+Mysql分页原理/">
-                    PHP+Mysql分页原理
+                <a href="/2017/04/15/Database/oracle_via_docker/">
+                    Mac下使用docker安装oracle
                 </a>
             </div>
         
@@ -356,7 +352,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装"><span class="toc-number">1.</span> <span class="toc-text">一、安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、配置"><span class="toc-number">2.</span> <span class="toc-text">二、配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、初始化仓库"><span class="toc-number">3.</span> <span class="toc-text">三、初始化仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、常用命令"><span class="toc-number">4.</span> <span class="toc-text">四、常用命令</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#margin折叠"><span class="toc-number">1.</span> <span class="toc-text">margin折叠</span></a></li></ol>
         
     </div>
     <style>
@@ -386,8 +382,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = '/2015/07/26/Tools/git命令/';
-            this.page.identifier = '2015/07/26/Tools/git命令/';
+            this.page.url = '/2017/04/17/Front End/css坑/';
+            this.page.identifier = '2017/04/17/Front End/css坑/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -409,15 +405,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/07/27/Tools/git分支管理/" title="Pre: Git分支管理策略">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/04/20/PHP/PHP+Mysql分页原理/" title="Next: PHP+Mysql分页原理">
+            <a href="/2017/04/15/Database/oracle_via_docker/" title="Next: Mac下使用docker安装oracle">
                 <i class="fa fa-angle-right"></i>
             </a>
         
