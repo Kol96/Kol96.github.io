@@ -21,7 +21,7 @@
 <meta property="og:url" content="/2017/04/17/Front End/css坑/index.html">
 <meta property="og:site_name" content="Kylen's Blog">
 <meta property="og:description" content="这篇文章将实时更新，记录我的CCS踩坑之路。">
-<meta property="og:updated_time" content="2017-04-17T03:19:45.000Z">
+<meta property="og:updated_time" content="2017-04-17T03:50:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS踩坑集锦">
 <meta name="twitter:description" content="这篇文章将实时更新，记录我的CCS踩坑之路。">
@@ -316,6 +316,7 @@
 <li>将父元素与它的第一子元素「隔离开」，比如给父元素加 <code>padding</code> 或 <code>border</code>  </li>
 <li>为父元素创建块级格式化上下文（BFC），让它的子元素的 margin 值不影响父元素的 margin 值计算<a href="https://segmentfault.com/q/1010000002645174/a-1020000002646638" target="_blank" rel="external">关于body</a>  </li>
 <li>浮动元素不与其他元素<code>margin</code>折叠  </li>
+<li>使用before伪类给父元素添加一个空元素<code>:before{content:&#39;&#39;;display:table;}</code>  </li>
 </ul>
 <p>1、元素的上外边距和其属于常规流中的第一个孩子的上外边距<br>一个盒子如果没有<code>padding-top</code>、<code>border-top</code>、<code>float</code>、<code>overflow</code>等属性时，那么这个盒子的上边距会和其内部文档流中的第一个子元素的上边距重叠。当发生重叠时，是按照谁上边距大就取谁作为这个盒子的上边距。  </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.general</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">background</span>:pink;&#125;</div><div class="line">    <span class="selector-class">.box</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">background</span>:<span class="number">#bbb</span>;<span class="attribute">margin-top</span>:<span class="number">10px</span>;&#125;</div><div class="line">    <span class="selector-class">.top</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">50px</span>;<span class="attribute">background</span>:orange;<span class="attribute">margin-top</span>:<span class="number">20px</span>;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"general"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"top"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -325,7 +326,7 @@
 <p>重点是只有box父元素的高度为auto，即为设置时才会产生这种情况的折叠。  </p>
 <p>3、元素的下外边距和其属于常规流中的下一个兄弟的上外边距  </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.general</span>&#123;<span class="attribute">width</span>:<span class="number">300px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">background</span>:pink;<span class="attribute">margin</span>:<span class="number">50px</span>;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"general"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"general"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>两个general元素之间的间隙为50px，可以通过<code>float:left</code>取消margin折叠。  </p>
+<p>两个general元素之间的间隙为50px，可以通过给第二个元素加<code>float:left/right</code>或<code>display:inline-block</code>取消margin折叠。  </p>
 
       
     </div>
