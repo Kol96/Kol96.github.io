@@ -4,6 +4,26 @@
   
     
     <entry>
+      <title><![CDATA[JavaScript技巧]]></title>
+      <url>/2017/05/01/Front%20End/JS%E6%8A%80%E5%B7%A7/</url>
+      <content type="html"><![CDATA[<p>记录一些js的兼容性技巧。<br><a id="more"></a></p>
+<h2 id="获取css属性"><a href="#获取css属性" class="headerlink" title="获取css属性"></a>获取css属性</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj, styleName)</span> </span>&#123; <span class="comment">//获取属性</span></div><div class="line">    <span class="keyword">if</span> (obj.currentStyle) &#123;</div><div class="line">        <span class="keyword">return</span> obj.currentStyle[styleName];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">null</span>)[styleName];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取event对象"><a href="#获取event对象" class="headerlink" title="获取event对象"></a>获取event对象</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//event是兼容ie e兼容ff</span></div><div class="line">oDiv.onclick=<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> oEvent = e || event;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取scrollTop"><a href="#获取scrollTop" class="headerlink" title="获取scrollTop"></a>获取scrollTop</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//clientWidth,clientHeight,scrollLeft</span></div><div class="line"><span class="comment">//body是兼容chrome</span></div><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop;</div></pre></td></tr></table></figure>
+<h2 id="获取月份的天数"><a href="#获取月份的天数" class="headerlink" title="获取月份的天数"></a>获取月份的天数</h2><p>6月0日会识别为5月的最后一天。  </p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> <span class="built_in">date</span> = <span class="literal">new</span> <span class="built_in">Date</span>(<span class="number">2017</span>,<span class="number">5</span>,<span class="number">0</span>);</div><div class="line"><span class="built_in">date</span>.getDate();</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Front End </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CSS踩坑集锦]]></title>
       <url>/2017/05/01/Front%20End/css%E5%9D%91/</url>
       <content type="html"><![CDATA[<p>这篇文章将实时更新，记录我的CCS踩坑之路、小技巧、浏览器兼容性问题。<br><a id="more"></a></p>
@@ -68,24 +88,6 @@
             <tag> CSS </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[JavaScript技巧]]></title>
-      <url>/2017/04/18/Front%20End/JS%E6%8A%80%E5%B7%A7/</url>
-      <content type="html"><![CDATA[<p>记录一些js的兼容性技巧。<br><a id="more"></a></p>
-<h2 id="获取css属性"><a href="#获取css属性" class="headerlink" title="获取css属性"></a>获取css属性</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj, styleName)</span> </span>&#123; <span class="comment">//获取属性</span></div><div class="line">    <span class="keyword">if</span> (obj.currentStyle) &#123;</div><div class="line">        <span class="keyword">return</span> obj.currentStyle[styleName];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">null</span>)[styleName];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="获取event对象"><a href="#获取event对象" class="headerlink" title="获取event对象"></a>获取event对象</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//event是兼容ie e兼容ff</span></div><div class="line">oDiv.onclick=<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> oEvent = e || event;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="获取scrollTop"><a href="#获取scrollTop" class="headerlink" title="获取scrollTop"></a>获取scrollTop</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//clientWidth,clientHeight,scrollLeft</span></div><div class="line"><span class="comment">//body是兼容chrome</span></div><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop;</div></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> Front End </category>
-            
-        </categories>
-        
         
     </entry>
     

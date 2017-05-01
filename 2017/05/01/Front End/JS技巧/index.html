@@ -15,15 +15,16 @@
 
 
 
-<meta name="description" content="You can never be happy if you&apos;re trapped in the past and fearful of the future.Living in the present is the only way to be happy.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kylen's Blog">
-<meta property="og:url" content="/tags/CSS/index.html">
+<meta name="description" content="记录一些js的兼容性技巧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript技巧">
+<meta property="og:url" content="/2017/05/01/Front End/JS技巧/index.html">
 <meta property="og:site_name" content="Kylen's Blog">
-<meta property="og:description" content="You can never be happy if you&apos;re trapped in the past and fearful of the future.Living in the present is the only way to be happy.">
+<meta property="og:description" content="记录一些js的兼容性技巧。">
+<meta property="og:updated_time" content="2017-05-01T05:50:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kylen's Blog">
-<meta name="twitter:description" content="You can never be happy if you&apos;re trapped in the past and fearful of the future.Living in the present is the only way to be happy.">
+<meta name="twitter:title" content="JavaScript技巧">
+<meta name="twitter:description" content="记录一些js的兼容性技巧。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -53,7 +54,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Tag: CSS | Kylen&#39;s Blog</title>
+<title>JavaScript技巧 | Kylen&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,9 +64,9 @@
         fancybox: false,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
-        isTag: true,
+        isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
@@ -266,208 +267,149 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Front End/JS技巧" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2017/05/01/Front End/JS技巧/" class="article-date">
+      <time datetime="2017-04-30T16:00:00.000Z" itemprop="datePublished">2017-05-01</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript技巧
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Front-End/">Front End</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/05/01/Front End/css坑/" class="archive-article-date">
-      <time datetime="2017-04-30T16:00:00.000Z" itemprop="datePublished">05-01</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/01/Front End/css坑/">CSS踩坑集锦</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Front-End/">Front End</a>
+        <p>记录一些js的兼容性技巧。<br><a id="more"></a></p>
+<h2 id="获取css属性"><a href="#获取css属性" class="headerlink" title="获取css属性"></a>获取css属性</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj, styleName)</span> </span>&#123; <span class="comment">//获取属性</span></div><div class="line">    <span class="keyword">if</span> (obj.currentStyle) &#123;</div><div class="line">        <span class="keyword">return</span> obj.currentStyle[styleName];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">null</span>)[styleName];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取event对象"><a href="#获取event对象" class="headerlink" title="获取event对象"></a>获取event对象</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//event是兼容ie e兼容ff</span></div><div class="line">oDiv.onclick=<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> oEvent = e || event;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取scrollTop"><a href="#获取scrollTop" class="headerlink" title="获取scrollTop"></a>获取scrollTop</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//clientWidth,clientHeight,scrollLeft</span></div><div class="line"><span class="comment">//body是兼容chrome</span></div><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop;</div></pre></td></tr></table></figure>
+<h2 id="获取月份的天数"><a href="#获取月份的天数" class="headerlink" title="获取月份的天数"></a>获取月份的天数</h2><p>6月0日会识别为5月的最后一天。  </p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> <span class="built_in">date</span> = <span class="literal">new</span> <span class="built_in">Date</span>(<span class="number">2017</span>,<span class="number">5</span>,<span class="number">0</span>);</div><div class="line"><span class="built_in">date</span>.getDate();</div></pre></td></tr></table></figure>
+
+      
     </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
   </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/05/01/Front End/css坑/">
+                    CSS踩坑集锦
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取css属性"><span class="toc-number">1.</span> <span class="toc-text">获取css属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取event对象"><span class="toc-number">2.</span> <span class="toc-text">获取event对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取scrollTop"><span class="toc-number">3.</span> <span class="toc-text">获取scrollTop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取月份的天数"><span class="toc-number">4.</span> <span class="toc-text">获取月份的天数</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+
+
     
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = '/2017/05/01/Front End/JS技巧/';
+            this.page.identifier = '2017/05/01/Front End/JS技巧/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//kol96.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/04/15/Front End/CSS属性语法/" class="archive-article-date">
-      <time datetime="2017-04-14T16:00:00.000Z" itemprop="datePublished">04-15</time>
-</a>
+    <script> loadComment(); </script>
+
+</section>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/15/Front End/CSS属性语法/">CSS属性值语法解析</a>
-    </h1>
-  
+    
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Front-End/">Front End</a>
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/05/01/Front End/css坑/" title="Next: CSS踩坑集锦">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/11/Front End/BFC/" class="archive-article-date">
-      <time datetime="2017-03-10T16:00:00.000Z" itemprop="datePublished">03-11</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/01/Front End/JS技巧/">JavaScript技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/01/Front End/css坑/">CSS踩坑集锦</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/15/Database/oracle_via_docker/">Mac下使用docker安装oracle</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/15/Front End/CSS属性语法/">CSS属性值语法解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/10/Front End/切图/">切图</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/07/Front End/JS学习之浏览器宽高/">JavaScript学习之浏览器宽高</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/30/Front End/JS学习之面向对象/">JavaScript学习之面向对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/25/Front End/JS学习之执行上下文/">JavaScript学习之执行上下文</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之hoist/">JavaScript学习之函数及变量hoist</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Front End/JS学习之内存/">JavaScript学习之内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/23/Front End/JS学习之thiis/">JavaScript学习之this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/Front End/jQuery样式/">jQuery样式篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/Tools/自动化构建工具/">自动化构建工具以及打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/BFC/">理解BFC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/11/Front End/清除浮动/">清除浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Mac/Hexo/">How to install Hexo on Mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Database/navicat连接oracle/">Mac上用Navicat连接Oracle</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/10/Front End/像素/">px,em,rem详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/Tools/Emmet/">Emmet</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/05/Linux/java和php共用/">Java、PHP共用端口使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Database/oracle11g silent install/">Centos6.5 x86_64下 静默安装Oracle 11g R2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/Linux/阿里云/">阿里云服务器下的Linux配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Database/oracle语法/">Oracle数据库的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Database/oracle安装/">Mac下的Oracle数据库的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/Tools/sublime/">Sublime Text的配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/PHP/cURL/">在PHP中使用cURL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/17/Linux/Linux服务器/">linux服务器的操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/12/Linux/Terminator/">Kali Terminator多窗口终端的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/11/Mac/Mnmp/">Mac Yosemite 安装Lnmp环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Linux/Aircrack/">Aircrack-ng hack wireless network</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/Linux/KaliConfig/">How to config your Kali Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Mac/Mamp/">Mac Yosemite Lamp环境安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/Mac/mac工具/">Mac必备工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/Tools/git分支管理/">Git分支管理策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/Tools/git命令/">Git命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/20/PHP/PHP+Mysql分页原理/">PHP+Mysql分页原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/PHP/PHP上传原理/">PHP上传原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/10/PHP/PHP随笔记/">PHP随笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/15/Life/博客/">为什么要写博客？</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/11/Front End/BFC/">理解BFC</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Front-End/">Front End</a>
-    </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFC/">BFC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/11/Front End/清除浮动/" class="archive-article-date">
-      <time datetime="2017-03-10T16:00:00.000Z" itemprop="datePublished">03-11</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/11/Front End/清除浮动/">清除浮动</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Front-End/">Front End</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/float/">float</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/10/Front End/像素/" class="archive-article-date">
-      <time datetime="2017-03-09T16:00:00.000Z" itemprop="datePublished">03-10</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/10/Front End/像素/">px,em,rem详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Front-End/">Front End</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
