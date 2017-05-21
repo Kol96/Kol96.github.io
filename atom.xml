@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-04T09:13:01.000Z</updated>
+  <updated>2017-05-09T10:07:48.000Z</updated>
   <id>/</id>
   
   <author>
@@ -16,11 +16,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SASS使用-让css写得方便起来</title>
+    <link href="/2017/05/09/Front%20End/sass%E4%BD%BF%E7%94%A8/"/>
+    <id>/2017/05/09/Front End/sass使用/</id>
+    <published>2017-05-08T16:00:00.000Z</published>
+    <updated>2017-05-09T10:07:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。 Sass 有助于保持大型样式表结构良好， 同时也让你能够快速开始小型项目， 特别是在搭配 Compass 样式库一同使用时。<br><a id="more"></a></p>
+<h2 id="SASS安装"><a href="#SASS安装" class="headerlink" title="SASS安装"></a>SASS安装</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。 Sass 有助于保持大型样式表结构良好， 同时也让你能够快速开始小型项目， 特别是在搭配 Compass 样式库一同使用时。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="/categories/Front-End/"/>
+    
+    
+      <category term="css" scheme="/tags/css/"/>
+    
+      <category term="sass" scheme="/tags/sass/"/>
+    
+      <category term="compass" scheme="/tags/compass/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaScript技巧</title>
     <link href="/2017/05/04/Front%20End/JS%E6%8A%80%E5%B7%A7/"/>
     <id>/2017/05/04/Front End/JS技巧/</id>
     <published>2017-05-03T16:00:00.000Z</published>
-    <updated>2017-05-04T09:13:01.000Z</updated>
+    <updated>2017-05-21T10:29:44.000Z</updated>
     
     <content type="html"><![CDATA[<p>记录一些js的兼容性技巧。<br><a id="more"></a></p>
 <h2 id="获取css属性"><a href="#获取css属性" class="headerlink" title="获取css属性"></a>获取css属性</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj, styleName)</span> </span>&#123; <span class="comment">//获取属性</span></div><div class="line">    <span class="keyword">if</span> (obj.currentStyle) &#123;</div><div class="line">        <span class="keyword">return</span> obj.currentStyle[styleName];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">null</span>)[styleName];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -55,6 +82,8 @@
 <li>判别标准类型（Undefined和Null除外）  </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(<span class="number">123</span>).constructor == <span class="built_in">Number</span> <span class="comment">//true</span></div><div class="line">(&#123;&#125;).constructor == <span class="built_in">Object</span> <span class="comment">//true</span></div><div class="line">[].constructor == <span class="built_in">Array</span> <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getConstructorName</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> (obj===<span class="literal">undefined</span>||obj===<span class="literal">null</span>)?obj:(obj.constructor&amp;&amp;obj.constructor.toString().match(<span class="regexp">/function\s*([^(]*)/</span>)[<span class="number">1</span>]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="DOM的getElementsByClassName兼容"><a href="#DOM的getElementsByClassName兼容" class="headerlink" title="DOM的getElementsByClassName兼容"></a>DOM的getElementsByClassName兼容</h2><p>getElementsByClassName与getElementsByTagName获取的节点是动态的（被赋值的变量会随着节点的添加或删除而改变）<br>querySelector与querySelectorAll获取的节点是静态的。  </p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementsByClassName</span><span class="params">(element, names)</span> </span>&#123;</div><div class="line">		    <span class="keyword">if</span> (element.getElementsByClassName) &#123;</div><div class="line">		        <span class="keyword">return</span> element.getElementsByClassName(names);</div><div class="line">		    &#125; <span class="keyword">else</span> &#123;</div><div class="line">		        <span class="keyword">var</span> elements = element.getElementsByTagName(<span class="string">'*'</span>);</div><div class="line">		        <span class="keyword">var</span> result = [];</div><div class="line">		        <span class="keyword">var</span> element,</div><div class="line">		            classNameStr,</div><div class="line">		            flag;</div><div class="line">		        names = names.split(<span class="string">' '</span>);</div><div class="line">		        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; element = elements[i]; i++) &#123;</div><div class="line">		            classNameStr = <span class="string">' '</span> + element.className + <span class="string">' '</span>;</div><div class="line">		            flag = <span class="literal">true</span>;</div><div class="line">		            <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, name; name = names[j]; j++) &#123;</div><div class="line">		                <span class="keyword">if</span> (classNameStr.indexOf(<span class="string">' '</span> + name + <span class="string">' '</span>) == <span class="number">-1</span>) &#123;</div><div class="line">		                    flag = <span class="literal">false</span>;</div><div class="line">		                    <span class="keyword">break</span>;</div><div class="line">		                &#125;</div><div class="line">		            &#125;</div><div class="line">		            <span class="keyword">if</span> (flag) &#123;</div><div class="line">		                result.push(element);</div><div class="line">		            &#125;</div><div class="line">		        &#125;</div><div class="line">		        <span class="keyword">return</span> result;</div><div class="line">		    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
