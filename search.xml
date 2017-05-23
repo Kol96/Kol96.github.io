@@ -4,35 +4,10 @@
   
     
     <entry>
-      <title><![CDATA[SASS使用-让css写得方便起来]]></title>
-      <url>/2017/05/09/Front%20End/sass%E4%BD%BF%E7%94%A8/</url>
-      <content type="html"><![CDATA[<p>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。 Sass 有助于保持大型样式表结构良好， 同时也让你能够快速开始小型项目， 特别是在搭配 Compass 样式库一同使用时。<br><a id="more"></a></p>
-<h2 id="SASS安装"><a href="#SASS安装" class="headerlink" title="SASS安装"></a>SASS安装</h2>]]></content>
-      
-        <categories>
-            
-            <category> Front End </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> css </tag>
-            
-            <tag> sass </tag>
-            
-            <tag> compass </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[JavaScript技巧]]></title>
-      <url>/2017/05/04/Front%20End/JS%E6%8A%80%E5%B7%A7/</url>
+      <url>/2017/05/22/Front%20End/JS%E6%8A%80%E5%B7%A7/</url>
       <content type="html"><![CDATA[<p>记录一些js的兼容性技巧。<br><a id="more"></a></p>
-<h2 id="获取css属性"><a href="#获取css属性" class="headerlink" title="获取css属性"></a>获取css属性</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj, styleName)</span> </span>&#123; <span class="comment">//获取属性</span></div><div class="line">    <span class="keyword">if</span> (obj.currentStyle) &#123;</div><div class="line">        <span class="keyword">return</span> obj.currentStyle[styleName];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">null</span>)[styleName];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取css属性"><a href="#获取css属性" class="headerlink" title="获取css属性"></a>获取css属性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span>(<span class="params">obj, styleName</span>) </span>&#123; <span class="comment">//获取属性</span></div><div class="line">    <span class="keyword">if</span> (obj.currentStyle) &#123; <span class="comment">//兼容IE</span></div><div class="line">        <span class="keyword">return</span> obj.currentStyle[styleName];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">//document.defaultView.getComputedStyle(obj, null)[styleName]</span></div><div class="line">        <span class="keyword">return</span> <span class="built_in">window</span>.getComputedStyle(obj, <span class="literal">null</span>)[styleName];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="获取event对象"><a href="#获取event对象" class="headerlink" title="获取event对象"></a>获取event对象</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//event是兼容ie e兼容ff</span></div><div class="line">oDiv.onclick=<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> oEvent = e || event;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="获取scrollTop"><a href="#获取scrollTop" class="headerlink" title="获取scrollTop"></a>获取scrollTop</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//clientWidth,clientHeight,scrollLeft</span></div><div class="line"><span class="comment">//body是兼容chrome</span></div><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop;</div></pre></td></tr></table></figure>
 <h2 id="获取月份的天数"><a href="#获取月份的天数" class="headerlink" title="获取月份的天数"></a>获取月份的天数</h2><p>6月0日会识别为5月的最后一天。  </p>
@@ -64,8 +39,12 @@
 <li>判别标准类型（Undefined和Null除外）  </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(<span class="number">123</span>).constructor == <span class="built_in">Number</span> <span class="comment">//true</span></div><div class="line">(&#123;&#125;).constructor == <span class="built_in">Object</span> <span class="comment">//true</span></div><div class="line">[].constructor == <span class="built_in">Array</span> <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getConstructorName</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> (obj===<span class="literal">undefined</span>||obj===<span class="literal">null</span>)?obj:(obj.constructor&amp;&amp;obj.constructor.toString().match(<span class="regexp">/function\s*([^(]*)/</span>)[<span class="number">1</span>]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="DOM的getElementsByClassName兼容"><a href="#DOM的getElementsByClassName兼容" class="headerlink" title="DOM的getElementsByClassName兼容"></a>DOM的getElementsByClassName兼容</h2><p>getElementsByClassName与getElementsByTagName获取的节点是动态的（被赋值的变量会随着节点的添加或删除而改变）<br>querySelector与querySelectorAll获取的节点是静态的。  </p>
+<h2 id="getElementsByClassName兼容"><a href="#getElementsByClassName兼容" class="headerlink" title="getElementsByClassName兼容"></a>getElementsByClassName兼容</h2><p>getElementsByClassName与getElementsByTagName获取的节点是动态的（被赋值的变量会随着节点的添加或删除而改变）<br>querySelector与querySelectorAll获取的节点是静态的。  </p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementsByClassName</span><span class="params">(element, names)</span> </span>&#123;</div><div class="line">		    <span class="keyword">if</span> (element.getElementsByClassName) &#123;</div><div class="line">		        <span class="keyword">return</span> element.getElementsByClassName(names);</div><div class="line">		    &#125; <span class="keyword">else</span> &#123;</div><div class="line">		        <span class="keyword">var</span> elements = element.getElementsByTagName(<span class="string">'*'</span>);</div><div class="line">		        <span class="keyword">var</span> result = [];</div><div class="line">		        <span class="keyword">var</span> element,</div><div class="line">		            classNameStr,</div><div class="line">		            flag;</div><div class="line">		        names = names.split(<span class="string">' '</span>);</div><div class="line">		        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; element = elements[i]; i++) &#123;</div><div class="line">		            classNameStr = <span class="string">' '</span> + element.className + <span class="string">' '</span>;</div><div class="line">		            flag = <span class="literal">true</span>;</div><div class="line">		            <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, name; name = names[j]; j++) &#123;</div><div class="line">		                <span class="keyword">if</span> (classNameStr.indexOf(<span class="string">' '</span> + name + <span class="string">' '</span>) == <span class="number">-1</span>) &#123;</div><div class="line">		                    flag = <span class="literal">false</span>;</div><div class="line">		                    <span class="keyword">break</span>;</div><div class="line">		                &#125;</div><div class="line">		            &#125;</div><div class="line">		            <span class="keyword">if</span> (flag) &#123;</div><div class="line">		                result.push(element);</div><div class="line">		            &#125;</div><div class="line">		        &#125;</div><div class="line">		        <span class="keyword">return</span> result;</div><div class="line">		    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="addEventListener兼容"><a href="#addEventListener兼容" class="headerlink" title="addEventListener兼容"></a>addEventListener兼容</h2><p>ie6-8不兼容该方法  </p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (el.addEventListener) &#123;</div><div class="line">  el.addEventListener(<span class="string">'click'</span>, listener); </div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.attachEvent)  &#123;</div><div class="line">  el.attachEvent(<span class="string">'onclick'</span>, listener);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>el.onlick</code>这种形式是完全兼容的，但是它无法对一个事件注册多个监听器。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//onclick 第二个监听器会把第一个覆盖</span></div><div class="line">el.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"click1"</span>);</div><div class="line">&#125;</div><div class="line">el.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"click2"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//两个监听器都能正常运行</span></div><div class="line">el.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"click1"</span>);</div><div class="line">&#125;)</div><div class="line">el.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"click2"</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -74,6 +53,31 @@
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[SASS使用-让css写得方便起来]]></title>
+      <url>/2017/05/09/Front%20End/sass%E4%BD%BF%E7%94%A8/</url>
+      <content type="html"><![CDATA[<p>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。 Sass 有助于保持大型样式表结构良好， 同时也让你能够快速开始小型项目， 特别是在搭配 Compass 样式库一同使用时。<br><a id="more"></a></p>
+<h2 id="SASS安装"><a href="#SASS安装" class="headerlink" title="SASS安装"></a>SASS安装</h2>]]></content>
+      
+        <categories>
+            
+            <category> Front End </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> css </tag>
+            
+            <tag> sass </tag>
+            
+            <tag> compass </tag>
+            
+        </tags>
         
     </entry>
     
